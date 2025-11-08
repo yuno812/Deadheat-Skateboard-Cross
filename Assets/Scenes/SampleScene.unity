@@ -680,6 +680,10 @@ PrefabInstance:
       propertyPath: Charge
       value: 
       objectReference: {fileID: 2021355348}
+    - target: {fileID: 2134504434992318527, guid: c2e1bdc7ad433dd4cb0b52c56eb2aaeb, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2372381899910702191, guid: c2e1bdc7ad433dd4cb0b52c56eb2aaeb, type: 3}
       propertyPath: m_Name
       value: skateboadmain
