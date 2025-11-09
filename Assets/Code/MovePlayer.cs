@@ -4,14 +4,20 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class MovePlayer : MonoBehaviour
 {
+    [Header("Player Info")]
+    [SerializeField] private PlayerState playerState;  // ← ScriptableObjectから能力値を読み込む
+    [SerializeField] private int playerNumber = 1;     // 1P or 2Pを指定（生成時に設定）
+
     [Header("Move")]
-    [SerializeField] private float maxSpeed = 5f;
-    [SerializeField] private float moveForce = 50f;
-    [SerializeField] private float deceleration = 5f;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float moveForce;
+    [SerializeField] private float deceleration;
+
     [Header("rotation")]
-    [SerializeField] private float rotationTorque = 200f;
+    [SerializeField] private float rotationTorque;
+
     [Header("jump")]
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float jumpForce;
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite chargingSprite;
     [SerializeField] private GameObject Normal;
@@ -24,10 +30,29 @@ public class MovePlayer : MonoBehaviour
 
     void Start()
     {
+        // コンポーネントの取得とキャラの状態の初期設定
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = normalSprite;
-        rb.angularDamping = 0.1f;
+
+        // ScriptableObjectからパラメータを読み込み
+        if (playerState != null)
+        {
+            maxSpeed = playerState.maxSpeed;
+            moveForce = playerState.moveForce;
+            deceleration = playerState.moveForce / 10; // 固定値5でもいいかも
+            rotationTorque = playerState.rotationTorque;
+            jumpForce = playerState.jumpForce;
+            rb.mass = playerState.weight; // ← 重さを設定
+        }
+
+        if (playerNumber == 2)
+        {
+            spriteRenderer.flipX = true; // 2P用に向きを反転
+        }
+
+        rb.angularDrag = 0f; // ← 回転減衰を無効化
+        rb.freezeRotation = false; // ← Z回転を物理的に固定しない
         Normal.SetActive(true);
         Charge.SetActive(false);
     }
@@ -36,32 +61,54 @@ public class MovePlayer : MonoBehaviour
     {
         var keyboard = Keyboard.current;
 
-        // 入力取得
+        // --------------------------
+        // プレイヤーごとに入力を分ける
+        // --------------------------
         float horizontalInput = 0f;
-        if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed) horizontalInput += 1;
-        if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) horizontalInput -= 1;
-
         float rotationInput = 0f;
-        if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) rotationInput += 1;
-        if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) rotationInput -= 1;
+        bool jumpKeyPressed = false;
+
+        if (playerNumber == 1)
+        {
+            // 1P操作（WASD + Space）
+            if (keyboard.wKey.isPressed) horizontalInput += 1;
+            if (keyboard.sKey.isPressed) horizontalInput -= 1;
+            if (keyboard.aKey.isPressed) rotationInput += 1;
+            if (keyboard.dKey.isPressed) rotationInput -= 1;
+            jumpKeyPressed = keyboard.spaceKey.isPressed;
+        }
+        else if (playerNumber == 2)
+        {
+            // 2P操作（↑↓←→ + Enter）
+            if (keyboard.upArrowKey.isPressed) horizontalInput -= 1;
+            if (keyboard.downArrowKey.isPressed) horizontalInput += 1;
+            if (keyboard.leftArrowKey.isPressed) rotationInput += 1;
+            if (keyboard.rightArrowKey.isPressed) rotationInput -= 1;
+            jumpKeyPressed = keyboard.enterKey.isPressed;
+        }
 
         // --------------------------
         // 地上挙動（x方向のみ制御）
         // --------------------------
+        Vector2 velocity = rb.velocity;
+
         if (groundWheelCount > 0)
         {
             if (Mathf.Abs(horizontalInput) > 0)
-                rb.AddForce(new Vector2(horizontalInput * moveForce, 0f), ForceMode2D.Force);
+            {
+                // 加速
+                velocity.x += horizontalInput * moveForce * Time.fixedDeltaTime;
+            }
             else
-                rb.linearVelocity = new Vector2(
-                    Mathf.MoveTowards(rb.linearVelocity.x, 0f, deceleration * Time.fixedDeltaTime),
-                    rb.linearVelocity.y
-                );
+            {
+                // 減速
+                velocity.x = Mathf.MoveTowards(velocity.x, 0f, deceleration * Time.fixedDeltaTime);
+            }
         }
 
-        // x方向速度制限（y方向は変更しない）
-        float clampedX = Mathf.Clamp(rb.linearVelocity.x, -maxSpeed, maxSpeed);
-        rb.linearVelocity = new Vector2(clampedX, rb.linearVelocity.y);
+        // 最大速度制限
+        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
+        rb.velocity = new Vector2(velocity.x, rb.velocity.y);
 
         // --------------------------
         // 回転（空中でも地上でも可）
@@ -72,9 +119,6 @@ public class MovePlayer : MonoBehaviour
         // --------------------------
         // ジャンプ処理
         // --------------------------
-        bool jumpKeyPressed = keyboard.spaceKey.isPressed || keyboard.enterKey.isPressed;
-
-        // 長押し中のスプライト切替（空中でも可）
         if (jumpKeyPressed && !isChargingJump)
         {
             isChargingJump = true;
@@ -83,7 +127,6 @@ public class MovePlayer : MonoBehaviour
             Charge.SetActive(true);
         }
 
-        // キー離した瞬間にジャンプ（地上のみ）
         if (isChargingJump && !jumpKeyPressed)
         {
             isChargingJump = false;
@@ -92,21 +135,17 @@ public class MovePlayer : MonoBehaviour
             if (groundWheelCount > 0)
             {
                 // キャラの頭の方向にジャンプ
-                rb.linearVelocity = rb.linearVelocity + (Vector2)(transform.up * jumpForce);
+                rb.velocity = rb.velocity + (Vector2)(transform.up * jumpForce);
             }
+
             Normal.SetActive(true);
             Charge.SetActive(false);
         }
     }
 
+    // --------------------------
     // 接地タイヤのカウント増減
-    public void WheelLanded()
-    {
-        groundWheelCount++;
-    }
-
-    public void WheelLifted()
-    {
-        groundWheelCount = Mathf.Max(groundWheelCount - 1, 0);
-    }
+    // --------------------------
+    public void WheelLanded() => groundWheelCount++;
+    public void WheelLifted() => groundWheelCount = Mathf.Max(groundWheelCount - 1, 0);
 }
