@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 7525611392315270647}
   m_Layer: 0
   m_Name: hitsuji
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -959,8 +959,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7cb50c3ef22574daab1d492772f54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerState: {fileID: 0}
+  playerState: {fileID: 11400000, guid: b4daef41034485f43a40b9ab95b1e5ac, type: 2}
   playerNumber: 2
+  HP: 0
+  attack: 0
+  ultCharge: 0
   maxSpeed: 5
   moveForce: 50
   deceleration: 5

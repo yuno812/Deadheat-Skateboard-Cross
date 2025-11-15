@@ -6,7 +6,12 @@ public class MovePlayer : MonoBehaviour
 {
     [Header("Player Info")]
     [SerializeField] private PlayerState playerState;  // ← ScriptableObjectから能力値を読み込む
-    [SerializeField] private int playerNumber = 1;     // 1P or 2Pを指定（生成時に設定）
+    public int playerNumber = 1;     // 1P or 2Pを指定（生成時に設定）
+
+    [Header("State")]
+    public float HP;
+    [SerializeField] private float attack;
+    [SerializeField] private float ultCharge;
 
     [Header("Move")]
     [SerializeField] private float maxSpeed;
@@ -28,7 +33,7 @@ public class MovePlayer : MonoBehaviour
     private int groundWheelCount = 0;
     private bool isChargingJump = false;
 
-    void Start()
+    void Awake()
     {
         // コンポーネントの取得とキャラの状態の初期設定
         rb = GetComponent<Rigidbody2D>();
@@ -38,12 +43,16 @@ public class MovePlayer : MonoBehaviour
         // ScriptableObjectからパラメータを読み込み
         if (playerState != null)
         {
+            rb.mass = playerState.weight; // ← 重さを設定
             maxSpeed = playerState.maxSpeed;
             moveForce = playerState.moveForce;
             deceleration = playerState.moveForce / 10; // 固定値5でもいいかも
-            rotationTorque = playerState.rotationTorque;
             jumpForce = playerState.jumpForce;
-            rb.mass = playerState.weight; // ← 重さを設定
+            rotationTorque = playerState.rotationTorque;
+            attack = playerState.attack;
+            HP = playerState.hp;
+            ultCharge = playerState.ultCharge;
+            
         }
 
         if (playerNumber == 2)
@@ -51,7 +60,7 @@ public class MovePlayer : MonoBehaviour
             spriteRenderer.flipX = true; // 2P用に向きを反転
         }
 
-        rb.angularDrag = 0f; // ← 回転減衰を無効化
+        rb.angularDamping = 0f; // ← 回転減衰を無効化
         rb.freezeRotation = false; // ← Z回転を物理的に固定しない
         Normal.SetActive(true);
         Charge.SetActive(false);
@@ -90,7 +99,7 @@ public class MovePlayer : MonoBehaviour
         // --------------------------
         // 地上挙動（x方向のみ制御）
         // --------------------------
-        Vector2 velocity = rb.velocity;
+        Vector2 velocity = rb.linearVelocity;
 
         if (groundWheelCount > 0)
         {
@@ -108,7 +117,7 @@ public class MovePlayer : MonoBehaviour
 
         // 最大速度制限
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
-        rb.velocity = new Vector2(velocity.x, rb.velocity.y);
+        rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
 
         // --------------------------
         // 回転（空中でも地上でも可）
@@ -135,7 +144,7 @@ public class MovePlayer : MonoBehaviour
             if (groundWheelCount > 0)
             {
                 // キャラの頭の方向にジャンプ
-                rb.velocity = rb.velocity + (Vector2)(transform.up * jumpForce);
+                rb.linearVelocity = rb.linearVelocity + (Vector2)(transform.up * jumpForce);
             }
 
             Normal.SetActive(true);
