@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: hitsujiState
   m_EditorClassIdentifier: 
   CharacterName: hitsuji
-  weight: 0.4
+  weight: 0.5
   maxSpeed: 5
   moveForce: 10
   jumpForce: 10

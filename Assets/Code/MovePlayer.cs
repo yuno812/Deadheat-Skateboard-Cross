@@ -10,7 +10,7 @@ public class MovePlayer : MonoBehaviour
 
     [Header("State")]
     public float HP;
-    [SerializeField] private float attack;
+    public float attack;
     [SerializeField] private float ultCharge;
 
     [Header("Move")]
@@ -149,6 +149,26 @@ public class MovePlayer : MonoBehaviour
 
             Normal.SetActive(true);
             Charge.SetActive(false);
+        }
+    }
+
+    // --------------------------
+    // 衝突判定の実装
+    // --------------------------
+    public void HitSame(GameObject hitObject)
+    {
+        Vector2 dir = (transform.position - hitObject.transform.parent.parent.position).normalized;
+        rb.linearVelocity = dir * 10f;
+    }
+
+    public void HitAttack(GameObject hitObject, bool hitcheck)
+    {
+        Vector2 dir = (transform.position - hitObject.transform.parent.parent.position).normalized;
+        rb.linearVelocity = dir * 25f;
+        if (hitcheck)
+        {
+            MovePlayer enemy = hitObject.transform.parent.parent.GetComponent<MovePlayer>();
+            HP -= enemy.attack;
         }
     }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3283635922439436411}
   - component: {fileID: 924584770934712019}
   - component: {fileID: 5028394155780186224}
+  - component: {fileID: 2958151808280138128}
   m_Layer: 0
   m_Name: AttackCollision
   m_TagString: AttackCollision
@@ -134,6 +135,19 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2958151808280138128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43511607572563733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84144208bf753e543b93f0f48bd3f526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1827617822300557042}
 --- !u!1 &686645804923026663
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +579,7 @@ GameObject:
   - component: {fileID: 5547276400261596845}
   - component: {fileID: 2984927886977266396}
   - component: {fileID: 4365128635954090252}
+  - component: {fileID: 7644961870351180221}
   m_Layer: 0
   m_Name: MainCollision
   m_TagString: MainCollision
@@ -697,6 +712,19 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &7644961870351180221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2844126699935066642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c4b934f11c94f488496041bfe95b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1827617822300557042}
 --- !u!1 &3627126344965256854
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +736,7 @@ GameObject:
   - component: {fileID: 6470429875997497610}
   - component: {fileID: 4436913473335750057}
   - component: {fileID: 1102353834175467990}
+  - component: {fileID: 4899440884492460158}
   m_Layer: 0
   m_Name: MainCollision
   m_TagString: MainCollision
@@ -845,6 +874,19 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &4899440884492460158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627126344965256854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c4b934f11c94f488496041bfe95b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1827617822300557042}
 --- !u!1 &4001376759965653781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1106,7 @@ GameObject:
   - component: {fileID: 8791122474271634928}
   - component: {fileID: 6823790989624838096}
   - component: {fileID: 4529462977393186506}
+  - component: {fileID: 5364049425292386793}
   m_Layer: 0
   m_Name: AttackCollision
   m_TagString: AttackCollision
@@ -1187,6 +1230,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5364049425292386793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472832805513446912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84144208bf753e543b93f0f48bd3f526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1827617822300557042}
 --- !u!1 &8460098911896684137
 GameObject:
   m_ObjectHideFlags: 0
