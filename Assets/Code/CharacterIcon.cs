@@ -1,0 +1,121 @@
+using UnityEngine;
+using System.Collections;
+
+public class CharacterIcon : MonoBehaviour
+{
+    [Header("キャラクター本体")]
+    public GameObject PlayerPrefab;
+    public GameObject HeartPrefab;
+
+    [Header("スプライト")]
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite p1SelectedSprite;
+    [SerializeField] private Sprite p2SelectedSprite;
+    [SerializeField] private Sprite bothSelectedSprite;
+    [SerializeField] private Sprite headerSprite;
+
+    [Header("追加オブジェクト")]
+    [SerializeField] private GameObject p1Object;
+    [SerializeField] private GameObject p2Object;
+
+    [Header("スライド設定")]
+    [SerializeField] private float slideDistance = 0.3f;
+    [SerializeField] private float slideDuration = 0.2f;
+
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer p1sprite;
+    private SpriteRenderer p2sprite;
+
+    private Vector3 p1OriginalPos;
+    private Vector3 p2OriginalPos;
+
+    private Coroutine p1SlideCoroutine;
+    private Coroutine p2SlideCoroutine;
+
+    private bool p1HeaderShown = false;
+    private bool p2HeaderShown = false;
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (p1Object != null) p1sprite = p1Object.GetComponent<SpriteRenderer>();
+        if (p2Object != null) p2sprite = p2Object.GetComponent<SpriteRenderer>();
+
+        p1OriginalPos = p1Object.transform.position;
+        p2OriginalPos = p2Object.transform.position;
+
+        if (spriteRenderer == null)
+            Debug.LogError("SpriteRenderer がアタッチされていません！");
+    }
+
+    /// <summary>
+    /// カーソルまたは決定状態に応じてスプライトとヘッダーを更新
+    /// </summary>
+    public void SetSelected(bool p1Cursor, bool p2Cursor, bool confirmedP1, bool confirmedP2)
+    {
+        if (spriteRenderer == null) return;
+
+        // -----------------------
+        // 本体スプライト
+        // -----------------------
+        if (p1Cursor && p2Cursor)
+            spriteRenderer.sprite = bothSelectedSprite;
+        else if (p1Cursor)
+            spriteRenderer.sprite = p1SelectedSprite;
+        else if (p2Cursor)
+            spriteRenderer.sprite = p2SelectedSprite;
+        else
+            spriteRenderer.sprite = normalSprite;
+
+        // -----------------------
+        // 1Pヘッダー表示
+        // -----------------------
+        if (p1Cursor && p1sprite != null)
+        {
+            p1sprite.sprite = headerSprite;
+            if (!p1HeaderShown)
+            {
+                if (p1SlideCoroutine != null) StopCoroutine(p1SlideCoroutine);
+                p1SlideCoroutine = StartCoroutine(SlideIn(p1Object.transform, p1OriginalPos, true));
+                p1HeaderShown = true;
+            }
+        }
+        else if (p1sprite != null)
+        {
+            p1HeaderShown = false;
+        }
+
+        // -----------------------
+        // 2Pヘッダー表示
+        // -----------------------
+        if (p2Cursor && p2sprite != null)
+        {
+            p2sprite.sprite = headerSprite;
+            if (!p2HeaderShown)
+            {
+                if (p2SlideCoroutine != null) StopCoroutine(p2SlideCoroutine);
+                p2SlideCoroutine = StartCoroutine(SlideIn(p2Object.transform, p2OriginalPos, false));
+                p2HeaderShown = true;
+            }
+        }
+        else if (p2sprite != null)
+        {
+            p2HeaderShown = false;
+        }
+    }
+
+    private IEnumerator SlideIn(Transform target, Vector3 originalPos, bool fromLeft)
+    {
+        Vector3 startPos = originalPos + (fromLeft ? Vector3.left : Vector3.right) * slideDistance;
+        target.position = startPos;
+
+        float elapsed = 0f;
+        while (elapsed < slideDuration)
+        {
+            target.position = Vector3.Lerp(startPos, originalPos, elapsed / slideDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        target.position = originalPos;
+    }
+}

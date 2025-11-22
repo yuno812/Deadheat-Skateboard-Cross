@@ -55,11 +55,6 @@ public class MovePlayer : MonoBehaviour
             
         }
 
-        if (playerNumber == 2)
-        {
-            spriteRenderer.flipX = true; // 2P用に向きを反転
-        }
-
         rb.angularDamping = 0f; // ← 回転減衰を無効化
         rb.freezeRotation = false; // ← Z回転を物理的に固定しない
         Normal.SetActive(true);
@@ -68,6 +63,10 @@ public class MovePlayer : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (playerNumber == 2)
+        {
+            spriteRenderer.flipX = true; // 2P用に向きを反転
+        }
         var keyboard = Keyboard.current;
 
         // --------------------------
