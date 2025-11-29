@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cb61dc282d15b504695c3efe957717a1
+guid: db4d5e5e77084e549a7644cd1e19cfde
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6262024349036588149
-    second: Okuda_Header_0
+      213: -8584629485129098736
+    second: Okuda_Sit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Okuda_Header_0
+      name: Okuda_Sit_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 178
-        width: 903
-        height: 896
+        x: 0
+        y: 0
+        width: 640
+        height: 640
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b83d3dc3802d819a0800000000000000
-      internalID: -6262024349036588149
+      spriteID: 01a198277f44dd880800000000000000
+      internalID: -8584629485129098736
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7835eec224d220e43b020514b00226dd
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Okuda_Header_0: -6262024349036588149
+      Okuda_Sit_0: -8584629485129098736
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

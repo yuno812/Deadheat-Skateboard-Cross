@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cb61dc282d15b504695c3efe957717a1
+guid: 7ce2365c81532474384f7dfb5db9a7aa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6262024349036588149
-    second: Okuda_Header_0
+      213: 8443668746505776320
+    second: Okuda_Life_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Okuda_Header_0
+      name: Okuda_Life_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 178
-        width: 903
-        height: 896
+        x: 62
+        y: 12
+        width: 225
+        height: 292
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b83d3dc3802d819a0800000000000000
-      internalID: -6262024349036588149
+      spriteID: 0cc6b8c0dffed2570800000000000000
+      internalID: 8443668746505776320
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Okuda_Header_0: -6262024349036588149
+      Okuda_Life_0: 8443668746505776320
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

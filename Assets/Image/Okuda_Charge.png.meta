@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cb61dc282d15b504695c3efe957717a1
+guid: f56697d96157eb44da76483aea268dd8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6262024349036588149
-    second: Okuda_Header_0
+      213: -6246487637113269284
+    second: Okuda_Charge_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Okuda_Header_0
+      name: Okuda_Charge_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 178
-        width: 903
-        height: 896
+        x: 112
+        y: 0
+        width: 1058
+        height: 1280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b83d3dc3802d819a0800000000000000
-      internalID: -6262024349036588149
+      spriteID: cd39effd6940059a0800000000000000
+      internalID: -6246487637113269284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Okuda_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 767
+        width: 70
+        height: 289
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05efeb1b18b57af46a2debd820eb31e7
+      internalID: 1506760637
       vertices: []
       indices: 
       edges: []
@@ -138,7 +160,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: efdcf13850d91024a92916dc9b6415b9
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +170,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Okuda_Header_0: -6262024349036588149
+      Okuda_Charge_0: -6246487637113269284
+      Okuda_Charge_1: 1506760637
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
