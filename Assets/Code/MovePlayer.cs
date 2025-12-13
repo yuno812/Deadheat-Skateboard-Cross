@@ -32,6 +32,8 @@ public class MovePlayer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private int groundWheelCount = 0;
     private bool isChargingJump = false;
+    public Vector3 spawnArea;
+    public Vector3 outofArea;
 
     void Awake()
     {
@@ -63,6 +65,7 @@ public class MovePlayer : MonoBehaviour
 
     void FixedUpdate()
     {
+        OutofArea();
         if (playerNumber == 2)
         {
             spriteRenderer.flipX = true; // 2P用に向きを反転
@@ -176,4 +179,15 @@ public class MovePlayer : MonoBehaviour
     // --------------------------
     public void WheelLanded() => groundWheelCount++;
     public void WheelLifted() => groundWheelCount = Mathf.Max(groundWheelCount - 1, 0);
+
+    // --------------------------
+    // エリア外の判定処理
+    // --------------------------
+    public void OutofArea()
+    {
+        if (Mathf.Abs(transform.position.x) >= Mathf.Abs(outofArea.x) || Mathf.Abs(transform.position.y) >= Mathf.Abs(outofArea.y))
+        {
+            transform.position = spawnArea;
+        }
+    }
 }
