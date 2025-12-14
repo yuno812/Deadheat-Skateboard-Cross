@@ -10,6 +10,9 @@ public class PlayerSelection : MonoBehaviour
     public GameObject playerPrefabP2;
     public GameObject heartPrefabP2;
 
+    public bool stageselect = false;
+    public string nextSceneName;
+
     private void Awake()
     {
         if (Instance == null)

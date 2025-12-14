@@ -7,43 +7,72 @@ public class SelectCharacter : MonoBehaviour
 {
     [SerializeField] private CharacterIcon[] characters;
     [SerializeField] private int columns = 3;
-    [SerializeField] private string nextSceneName = "GameScene";
+    [SerializeField] private float moveDuration = 0.2f;
 
-    private int currentIndexP1 = 0;
-    private int currentIndexP2 = 0;
+    private int currentIndexP1;
+    private int currentIndexP2;
 
-    private bool canMoveP1 = true;
-    private bool canMoveP2 = true;
+    private bool canMoveP1;
+    private bool canMoveP2;
 
-    private bool confirmedP1 = false;
-    private bool confirmedP2 = false;
+    private bool confirmedP1;
+    private bool confirmedP2;
 
-    private bool countdownStarted = false;
+    private bool countdownStarted;
+    private bool lastStageSelect;
+
+    // ★ 追加：入力ロック
+    private bool inputLocked;
 
     void Start()
     {
+        ResetState();
         UpdateSelection();
     }
 
     void Update()
     {
+        if (PlayerSelection.Instance == null) return;
+
         var keyboard = Keyboard.current;
         if (keyboard == null) return;
 
-        // -------- 1P入力 --------
-        Vector2 moveP1 = Vector2.zero;
-        if (!confirmedP1)
-        {
-            if (keyboard.wKey.wasPressedThisFrame) moveP1 = Vector2.up;
-            if (keyboard.sKey.wasPressedThisFrame) moveP1 = Vector2.down;
-            if (keyboard.aKey.wasPressedThisFrame) moveP1 = Vector2.left;
-            if (keyboard.dKey.wasPressedThisFrame) moveP1 = Vector2.right;
+        bool stageSelect = PlayerSelection.Instance.stageselect;
 
-            if (moveP1 != Vector2.zero && canMoveP1)
+        // ===== ステージ選択 → キャラ選択に入った瞬間 =====
+        if (stageSelect && !lastStageSelect)
+        {
+            ResetState();
+            UpdateSelection();
+
+            inputLocked = true;
+            StartCoroutine(UnlockInputNextFrame());
+        }
+        lastStageSelect = stageSelect;
+
+        // ===== ESC：ステージ選択へ戻る =====
+        if (keyboard.escapeKey.wasPressedThisFrame && stageSelect)
+        {
+            PlayerSelection.Instance.stageselect = false;
+            ResetState();
+            UpdateSelection();
+            StopAllCoroutines();
+            return;
+        }
+
+        if (!stageSelect) return;
+        if (inputLocked) return; // ★ ここが重要
+
+        // -------- 1P --------
+        if (!confirmedP1 && canMoveP1)
+        {
+            Vector2 move = GetMoveInputP1(keyboard);
+            if (move != Vector2.zero)
             {
-                MoveSelection(ref currentIndexP1, moveP1);
                 canMoveP1 = false;
-                Invoke(nameof(ResetMoveFlagP1), 0.15f);
+                MoveSelection(ref currentIndexP1, move);
+                UpdateSelection();
+                StartCoroutine(WaitMoveEndP1());
             }
         }
 
@@ -55,22 +84,19 @@ public class SelectCharacter : MonoBehaviour
                 PlayerSelection.Instance.playerPrefabP1 = characters[currentIndexP1].PlayerPrefab;
                 PlayerSelection.Instance.heartPrefabP1 = characters[currentIndexP1].HeartPrefab;
             }
+            UpdateSelection();
         }
 
-        // -------- 2P入力 --------
-        Vector2 moveP2 = Vector2.zero;
-        if (!confirmedP2)
+        // -------- 2P --------
+        if (!confirmedP2 && canMoveP2)
         {
-            if (keyboard.upArrowKey.wasPressedThisFrame) moveP2 = Vector2.up;
-            if (keyboard.downArrowKey.wasPressedThisFrame) moveP2 = Vector2.down;
-            if (keyboard.leftArrowKey.wasPressedThisFrame) moveP2 = Vector2.left;
-            if (keyboard.rightArrowKey.wasPressedThisFrame) moveP2 = Vector2.right;
-
-            if (moveP2 != Vector2.zero && canMoveP2)
+            Vector2 move = GetMoveInputP2(keyboard);
+            if (move != Vector2.zero)
             {
-                MoveSelection(ref currentIndexP2, moveP2);
                 canMoveP2 = false;
-                Invoke(nameof(ResetMoveFlagP2), 0.15f);
+                MoveSelection(ref currentIndexP2, move);
+                UpdateSelection();
+                StartCoroutine(WaitMoveEndP2());
             }
         }
 
@@ -82,23 +108,54 @@ public class SelectCharacter : MonoBehaviour
                 PlayerSelection.Instance.playerPrefabP2 = characters[currentIndexP2].PlayerPrefab;
                 PlayerSelection.Instance.heartPrefabP2 = characters[currentIndexP2].HeartPrefab;
             }
+            UpdateSelection();
         }
 
-        // -------- 両方決定でカウント開始 --------
+        // -------- 両者確定 --------
         if (confirmedP1 && confirmedP2 && !countdownStarted)
         {
             countdownStarted = true;
             StartCoroutine(StartCountdown());
         }
+    }
 
-        // どちらかキャンセルしたらカウント中止
-        if ((!confirmedP1 || !confirmedP2) && countdownStarted)
-        {
-            countdownStarted = false;
-            StopAllCoroutines();
-        }
+    // =========================
+    // 共通処理
+    // =========================
 
-        UpdateSelection();
+    void ResetState()
+    {
+        currentIndexP1 = 0;
+        currentIndexP2 = 0;
+        confirmedP1 = false;
+        confirmedP2 = false;
+        canMoveP1 = true;
+        canMoveP2 = true;
+        countdownStarted = false;
+    }
+
+    IEnumerator UnlockInputNextFrame()
+    {
+        yield return null; // ★ 1フレーム待つ
+        inputLocked = false;
+    }
+
+    Vector2 GetMoveInputP1(Keyboard k)
+    {
+        if (k.wKey.wasPressedThisFrame) return Vector2.up;
+        if (k.sKey.wasPressedThisFrame) return Vector2.down;
+        if (k.aKey.wasPressedThisFrame) return Vector2.left;
+        if (k.dKey.wasPressedThisFrame) return Vector2.right;
+        return Vector2.zero;
+    }
+
+    Vector2 GetMoveInputP2(Keyboard k)
+    {
+        if (k.upArrowKey.wasPressedThisFrame) return Vector2.up;
+        if (k.downArrowKey.wasPressedThisFrame) return Vector2.down;
+        if (k.leftArrowKey.wasPressedThisFrame) return Vector2.left;
+        if (k.rightArrowKey.wasPressedThisFrame) return Vector2.right;
+        return Vector2.zero;
     }
 
     void MoveSelection(ref int currentIndex, Vector2 dir)
@@ -113,7 +170,8 @@ public class SelectCharacter : MonoBehaviour
         if (dir == Vector2.right) col = (col + 1) % columns;
 
         int newIndex = row * columns + col;
-        if (newIndex >= characters.Length) newIndex = row * columns;
+        if (newIndex >= characters.Length)
+            newIndex = row * columns;
 
         currentIndex = newIndex;
     }
@@ -122,25 +180,30 @@ public class SelectCharacter : MonoBehaviour
     {
         for (int i = 0; i < characters.Length; i++)
         {
-            bool p1Cursor = (i == currentIndexP1);
-            bool p2Cursor = (i == currentIndexP2);
-
-            // 確定状態も渡す
-            characters[i].SetSelected(p1Cursor, p2Cursor, confirmedP1, confirmedP2);
+            characters[i].SetSelected(
+                i == currentIndexP1,
+                i == currentIndexP2,
+                confirmedP1,
+                confirmedP2
+            );
         }
     }
 
-    private IEnumerator StartCountdown()
+    IEnumerator WaitMoveEndP1()
     {
-        float timer = 3f;
-        while (timer > 0)
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-        SceneManager.LoadScene(nextSceneName);
+        yield return new WaitForSeconds(moveDuration);
+        canMoveP1 = true;
     }
 
-    void ResetMoveFlagP1() => canMoveP1 = true;
-    void ResetMoveFlagP2() => canMoveP2 = true;
+    IEnumerator WaitMoveEndP2()
+    {
+        yield return new WaitForSeconds(moveDuration);
+        canMoveP2 = true;
+    }
+
+    IEnumerator StartCountdown()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(PlayerSelection.Instance.nextSceneName);
+    }
 }

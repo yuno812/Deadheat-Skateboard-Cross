@@ -41,23 +41,24 @@ public class CharacterIcon : MonoBehaviour
         if (p1Object != null) p1sprite = p1Object.GetComponent<SpriteRenderer>();
         if (p2Object != null) p2sprite = p2Object.GetComponent<SpriteRenderer>();
 
-        p1OriginalPos = p1Object.transform.position;
-        p2OriginalPos = p2Object.transform.position;
+        UpdateOriginalPositions();
 
         if (spriteRenderer == null)
             Debug.LogError("SpriteRenderer がアタッチされていません！");
     }
 
-    /// <summary>
-    /// カーソルまたは決定状態に応じてスプライトとヘッダーを更新
-    /// </summary>
+    // ★ 現在位置を基準として保存
+    void UpdateOriginalPositions()
+    {
+        if (p1Object != null) p1OriginalPos = p1Object.transform.position;
+        if (p2Object != null) p2OriginalPos = p2Object.transform.position;
+    }
+
     public void SetSelected(bool p1Cursor, bool p2Cursor, bool confirmedP1, bool confirmedP2)
     {
         if (spriteRenderer == null) return;
 
-        // -----------------------
         // 本体スプライト
-        // -----------------------
         if (p1Cursor && p2Cursor)
             spriteRenderer.sprite = bothSelectedSprite;
         else if (p1Cursor)
@@ -67,38 +68,40 @@ public class CharacterIcon : MonoBehaviour
         else
             spriteRenderer.sprite = normalSprite;
 
-        // -----------------------
-        // 1Pヘッダー表示
-        // -----------------------
+        // -------- 1P --------
         if (p1Cursor && p1sprite != null)
         {
             p1sprite.sprite = headerSprite;
             if (!p1HeaderShown)
             {
+                UpdateOriginalPositions(); // ★ ここが重要
                 if (p1SlideCoroutine != null) StopCoroutine(p1SlideCoroutine);
-                p1SlideCoroutine = StartCoroutine(SlideIn(p1Object.transform, p1OriginalPos, true));
+                p1SlideCoroutine = StartCoroutine(
+                    SlideIn(p1Object.transform, p1OriginalPos, true)
+                );
                 p1HeaderShown = true;
             }
         }
-        else if (p1sprite != null)
+        else
         {
             p1HeaderShown = false;
         }
 
-        // -----------------------
-        // 2Pヘッダー表示
-        // -----------------------
+        // -------- 2P --------
         if (p2Cursor && p2sprite != null)
         {
             p2sprite.sprite = headerSprite;
             if (!p2HeaderShown)
             {
+                UpdateOriginalPositions(); // ★ ここが重要
                 if (p2SlideCoroutine != null) StopCoroutine(p2SlideCoroutine);
-                p2SlideCoroutine = StartCoroutine(SlideIn(p2Object.transform, p2OriginalPos, false));
+                p2SlideCoroutine = StartCoroutine(
+                    SlideIn(p2Object.transform, p2OriginalPos, false)
+                );
                 p2HeaderShown = true;
             }
         }
-        else if (p2sprite != null)
+        else
         {
             p2HeaderShown = false;
         }
@@ -106,7 +109,9 @@ public class CharacterIcon : MonoBehaviour
 
     private IEnumerator SlideIn(Transform target, Vector3 originalPos, bool fromLeft)
     {
-        Vector3 startPos = originalPos + (fromLeft ? Vector3.left : Vector3.right) * slideDistance;
+        Vector3 startPos =
+            originalPos + (fromLeft ? Vector3.left : Vector3.right) * slideDistance;
+
         target.position = startPos;
 
         float elapsed = 0f;
@@ -116,6 +121,7 @@ public class CharacterIcon : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+
         target.position = originalPos;
     }
 }
