@@ -33,9 +33,7 @@ public class SelectCharacter : MonoBehaviour
     void Update()
     {
         if (PlayerSelection.Instance == null) return;
-
-        var keyboard = Keyboard.current;
-        if (keyboard == null) return;
+        if (InputManager.Instance == null) return;
 
         bool stageSelect = PlayerSelection.Instance.stageselect;
 
@@ -50,8 +48,14 @@ public class SelectCharacter : MonoBehaviour
         }
         lastStageSelect = stageSelect;
 
+        if (!stageSelect) return;
+        if (inputLocked) return; // ★ ここが重要
+
+        var input1 = InputManager.Instance.inputP1.GetInput();
+        var input2 = InputManager.Instance.inputP2.GetInput();
+
         // ===== ESC：ステージ選択へ戻る =====
-        if (keyboard.escapeKey.wasPressedThisFrame && stageSelect)
+        if ((input1.cancel || input2.cancel) && stageSelect)
         {
             PlayerSelection.Instance.stageselect = false;
             ResetState();
@@ -60,23 +64,16 @@ public class SelectCharacter : MonoBehaviour
             return;
         }
 
-        if (!stageSelect) return;
-        if (inputLocked) return; // ★ ここが重要
-
         // -------- 1P --------
-        if (!confirmedP1 && canMoveP1)
+        if (!confirmedP1 && canMoveP1 && input1.move != Vector2.zero)
         {
-            Vector2 move = GetMoveInputP1(keyboard);
-            if (move != Vector2.zero)
-            {
-                canMoveP1 = false;
-                MoveSelection(ref currentIndexP1, move);
-                UpdateSelection();
-                StartCoroutine(WaitMoveEndP1());
-            }
+            canMoveP1 = false;
+            MoveSelection(ref currentIndexP1, input1.move);
+            UpdateSelection();
+            StartCoroutine(WaitMoveEndP1());
         }
 
-        if (keyboard.spaceKey.wasPressedThisFrame)
+        if (input1.confirm)
         {
             confirmedP1 = !confirmedP1;
             if (confirmedP1)
@@ -88,19 +85,15 @@ public class SelectCharacter : MonoBehaviour
         }
 
         // -------- 2P --------
-        if (!confirmedP2 && canMoveP2)
+        if (!confirmedP2 && canMoveP2 && input2.move != Vector2.zero)
         {
-            Vector2 move = GetMoveInputP2(keyboard);
-            if (move != Vector2.zero)
-            {
-                canMoveP2 = false;
-                MoveSelection(ref currentIndexP2, move);
-                UpdateSelection();
-                StartCoroutine(WaitMoveEndP2());
-            }
+            canMoveP2 = false;
+            MoveSelection(ref currentIndexP2, input2.move);
+            UpdateSelection();
+            StartCoroutine(WaitMoveEndP2());
         }
 
-        if (keyboard.enterKey.wasPressedThisFrame)
+        if (input2.confirm)
         {
             confirmedP2 = !confirmedP2;
             if (confirmedP2)
@@ -138,24 +131,6 @@ public class SelectCharacter : MonoBehaviour
     {
         yield return null; // ★ 1フレーム待つ
         inputLocked = false;
-    }
-
-    Vector2 GetMoveInputP1(Keyboard k)
-    {
-        if (k.wKey.wasPressedThisFrame) return Vector2.up;
-        if (k.sKey.wasPressedThisFrame) return Vector2.down;
-        if (k.aKey.wasPressedThisFrame) return Vector2.left;
-        if (k.dKey.wasPressedThisFrame) return Vector2.right;
-        return Vector2.zero;
-    }
-
-    Vector2 GetMoveInputP2(Keyboard k)
-    {
-        if (k.upArrowKey.wasPressedThisFrame) return Vector2.up;
-        if (k.downArrowKey.wasPressedThisFrame) return Vector2.down;
-        if (k.leftArrowKey.wasPressedThisFrame) return Vector2.left;
-        if (k.rightArrowKey.wasPressedThisFrame) return Vector2.right;
-        return Vector2.zero;
     }
 
     void MoveSelection(ref int currentIndex, Vector2 dir)

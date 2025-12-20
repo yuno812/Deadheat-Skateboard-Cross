@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+// using UnityEngine.InputSystem;
 using System.Collections;
 
 public class SelectStage : MonoBehaviour
@@ -13,31 +13,24 @@ public class SelectStage : MonoBehaviour
 
     void Start()
     {
-        currentIndex = 0;
+        ResetState();
         UpdateSelection();
     }
 
     void Update()
     {
         if (PlayerSelection.Instance == null) return;
-
         // キャラ選択中はステージ操作しない
         if (PlayerSelection.Instance.stageselect) return;
+        if (InputManager.Instance == null) return;
 
-        var keyboard = Keyboard.current;
-        if (keyboard == null) return;
+        var input1 = InputManager.Instance.inputP1.GetInput();
+        var input2 = InputManager.Instance.inputP2.GetInput();
 
         Vector2 move = Vector2.zero;
 
-        // ===== キャラ選択と同じ入力 =====
-        if (keyboard.wKey.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame)
-            move = Vector2.up;
-        if (keyboard.sKey.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame)
-            move = Vector2.down;
-        if (keyboard.aKey.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame)
-            move = Vector2.left;
-        if (keyboard.dKey.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame)
-            move = Vector2.right;
+        if (input1.move != Vector2.zero) move = input1.move;
+        else if (input2.move != Vector2.zero) move = input2.move;
 
         // ===== 移動 =====
         if (move != Vector2.zero && canMove)
@@ -48,7 +41,7 @@ public class SelectStage : MonoBehaviour
         }
 
         // ===== 決定 =====
-        if (keyboard.spaceKey.wasPressedThisFrame || keyboard.enterKey.wasPressedThisFrame)
+        if (input1.confirm || input2.confirm)
         {
             // 選択中ステージのシーン名を保存
             PlayerSelection.Instance.nextSceneName =
@@ -57,6 +50,12 @@ public class SelectStage : MonoBehaviour
             // キャラ選択へ
             PlayerSelection.Instance.stageselect = true;
         }
+    }
+
+    void ResetState()
+    {
+        currentIndex = 0;
+        canMove = true;
     }
 
     void MoveSelection(Vector2 dir)
@@ -72,13 +71,14 @@ public class SelectStage : MonoBehaviour
 
         int newIndex = row * columns + col;
 
-        // 存在しないマス対策（キャラ選択と同じ）
+        // キャラ選択と同じ「存在しないマス対策」
         if (newIndex >= stages.Length)
             newIndex = row * columns;
 
         currentIndex = newIndex;
         UpdateSelection();
     }
+
 
     void UpdateSelection()
     {

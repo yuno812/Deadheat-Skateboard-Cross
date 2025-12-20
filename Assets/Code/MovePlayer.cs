@@ -32,6 +32,7 @@ public class MovePlayer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private int groundWheelCount = 0;
     private bool isChargingJump = false;
+    private bool P1;
     public Vector3 spawnArea;
     public Vector3 outofArea;
 
@@ -70,67 +71,111 @@ public class MovePlayer : MonoBehaviour
         {
             spriteRenderer.flipX = true; // 2P用に向きを反転
         }
-        var keyboard = Keyboard.current;
 
-        // --------------------------
-        // プレイヤーごとに入力を分ける
-        // --------------------------
-        float horizontalInput = 0f;
-        float rotationInput = 0f;
-        bool jumpKeyPressed = false;
+        InputState input = playerNumber == 1 ? InputManager.Instance.inputP1.GetInput() : InputManager.Instance.inputP2.GetInput();
+        P1 = playerNumber == 1 ? true : false;
 
-        if (playerNumber == 1)
-        {
-            // 1P操作（WASD + Space）
-            if (keyboard.wKey.isPressed) horizontalInput += 1;
-            if (keyboard.sKey.isPressed) horizontalInput -= 1;
-            if (keyboard.aKey.isPressed) rotationInput += 1;
-            if (keyboard.dKey.isPressed) rotationInput -= 1;
-            jumpKeyPressed = keyboard.spaceKey.isPressed;
-        }
-        else if (playerNumber == 2)
-        {
-            // 2P操作（↑↓←→ + Enter）
-            if (keyboard.upArrowKey.isPressed) horizontalInput -= 1;
-            if (keyboard.downArrowKey.isPressed) horizontalInput += 1;
-            if (keyboard.leftArrowKey.isPressed) rotationInput += 1;
-            if (keyboard.rightArrowKey.isPressed) rotationInput -= 1;
-            jumpKeyPressed = keyboard.enterKey.isPressed;
-        }
+        HandleMove(input);
+        HandleJump(input);
 
-        // --------------------------
-        // 地上挙動（x方向のみ制御）
-        // --------------------------
+        // var keyboard = Keyboard.current;
+
+        // // --------------------------
+        // // プレイヤーごとに入力を分ける
+        // // --------------------------
+        // float horizontalInput = 0f;
+        // float rotationInput = 0f;
+        // bool jumpKeyPressed = false;
+
+        // if (playerNumber == 1)
+        // {
+        //     // 1P操作（WASD + Space）
+        //     if (keyboard.wKey.isPressed) horizontalInput += 1;
+        //     if (keyboard.sKey.isPressed) horizontalInput -= 1;
+        //     if (keyboard.aKey.isPressed) rotationInput += 1;
+        //     if (keyboard.dKey.isPressed) rotationInput -= 1;
+        //     jumpKeyPressed = keyboard.spaceKey.isPressed;
+        // }
+        // else if (playerNumber == 2)
+        // {
+        //     // 2P操作（↑↓←→ + Enter）
+        //     if (keyboard.upArrowKey.isPressed) horizontalInput -= 1;
+        //     if (keyboard.downArrowKey.isPressed) horizontalInput += 1;
+        //     if (keyboard.leftArrowKey.isPressed) rotationInput += 1;
+        //     if (keyboard.rightArrowKey.isPressed) rotationInput -= 1;
+        //     jumpKeyPressed = keyboard.enterKey.isPressed;
+        // }
+
+        // // --------------------------
+        // // 地上挙動（x方向のみ制御）
+        // // --------------------------
+        // Vector2 velocity = rb.linearVelocity;
+
+        // if (groundWheelCount > 0)
+        // {
+        //     if (Mathf.Abs(horizontalInput) > 0)
+        //     {
+        //         // 加速
+        //         velocity.x += horizontalInput * moveForce * Time.fixedDeltaTime;
+        //     }
+        //     else
+        //     {
+        //         // 減速
+        //         velocity.x = Mathf.MoveTowards(velocity.x, 0f, deceleration * Time.fixedDeltaTime);
+        //     }
+        // }
+
+        // // 最大速度制限
+        // velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
+        // rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
+
+        // // --------------------------
+        // // 回転（空中でも地上でも可）
+        // // --------------------------
+        // if (rotationInput != 0f)
+        //     rb.AddTorque(rotationInput * rotationTorque, ForceMode2D.Force);
+    }
+
+    void HandleMove(InputState input)
+    {
         Vector2 velocity = rb.linearVelocity;
-
-        if (groundWheelCount > 0)
+        if (P1)
         {
-            if (Mathf.Abs(horizontalInput) > 0)
+            if (groundWheelCount > 0)
             {
-                // 加速
-                velocity.x += horizontalInput * moveForce * Time.fixedDeltaTime;
+                if (Mathf.Abs(input.moveX) > 0)
+                    velocity.x += input.moveX * moveForce * Time.fixedDeltaTime;
+                else
+                    velocity.x = Mathf.MoveTowards(
+                        velocity.x, 0f,
+                        deceleration * Time.fixedDeltaTime
+                    );
             }
-            else
+        }
+        else
+        {
+            if (groundWheelCount > 0)
             {
-                // 減速
-                velocity.x = Mathf.MoveTowards(velocity.x, 0f, deceleration * Time.fixedDeltaTime);
+                if (Mathf.Abs(input.moveX) > 0)
+                    velocity.x -= input.moveX * moveForce * Time.fixedDeltaTime;
+                else
+                    velocity.x = Mathf.MoveTowards(
+                        velocity.x, 0f,
+                        deceleration * Time.fixedDeltaTime
+                    );
             }
         }
 
-        // 最大速度制限
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
 
-        // --------------------------
-        // 回転（空中でも地上でも可）
-        // --------------------------
-        if (rotationInput != 0f)
-            rb.AddTorque(rotationInput * rotationTorque, ForceMode2D.Force);
+        if (input.rotate != 0f)
+            rb.AddTorque(input.rotate * rotationTorque, ForceMode2D.Force);
+    }
 
-        // --------------------------
-        // ジャンプ処理
-        // --------------------------
-        if (jumpKeyPressed && !isChargingJump)
+    void HandleJump(InputState input)
+    {
+        if (input.jumpPressed && !isChargingJump)
         {
             isChargingJump = true;
             spriteRenderer.sprite = chargingSprite;
@@ -138,16 +183,13 @@ public class MovePlayer : MonoBehaviour
             Charge.SetActive(true);
         }
 
-        if (isChargingJump && !jumpKeyPressed)
+        if (!input.jumpPressed && isChargingJump)
         {
             isChargingJump = false;
             spriteRenderer.sprite = normalSprite;
 
             if (groundWheelCount > 0)
-            {
-                // キャラの頭の方向にジャンプ
-                rb.linearVelocity = rb.linearVelocity + (Vector2)(transform.up * jumpForce);
-            }
+                rb.linearVelocity += (Vector2)(transform.up * jumpForce);
 
             Normal.SetActive(true);
             Charge.SetActive(false);
