@@ -24,19 +24,24 @@ public class InputManager : MonoBehaviour
 
     void SetupDefault()
     {
-        inputP1 = new KeyboardInputProvider(
-            Key.W, Key.S, Key.A, Key.D,
-            Key.Space,     // jump
-            Key.Space,     // confirm
-            Key.Escape     // cancel
-        );
+        // inputP1 = new KeyboardInputProvider(
+        //     Key.W, Key.S, Key.A, Key.D,
+        //     Key.Space,     // jump
+        //     Key.Space,     // confirm
+        //     Key.Escape     // cancel
+        // );
 
-        inputP2 = new KeyboardInputProvider(
-            Key.UpArrow, Key.DownArrow, Key.LeftArrow, Key.RightArrow,
-            Key.Enter,   // jump
-            Key.Enter,   // confirm
-            Key.Backspace // cancel
-        );
+        // inputP2 = new KeyboardInputProvider(
+        //     Key.UpArrow, Key.DownArrow, Key.LeftArrow, Key.RightArrow,
+        //     Key.Enter,   // jump
+        //     Key.Enter,   // confirm
+        //     Key.Backspace // cancel
+        // );
+        inputP1 = new GamepadInputProvider(0);
+
+        inputP2 = new GamepadInputProvider(1);
+
+        
     }
 
 }
