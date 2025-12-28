@@ -108,7 +108,14 @@ public class SelectCharacter : MonoBehaviour
         if (confirmedP1 && confirmedP2 && !countdownStarted)
         {
             countdownStarted = true;
-            StartCoroutine(StartCountdown());
+
+            if (NetworkRole.IsHost)
+            {
+                FindFirstObjectByType<NetworkControlSender>()
+                    .SendLoadScene(PlayerSelection.Instance.nextSceneName);
+            }
+
+            SceneManager.LoadScene(PlayerSelection.Instance.nextSceneName);
         }
     }
 
