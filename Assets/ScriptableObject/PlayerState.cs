@@ -11,5 +11,5 @@ public class PlayerState : ScriptableObject
     public float rotationTorque; // 回転速度
     public float attack; // 攻撃力
     public float hp; // 体力
-    public float ultCharge; // ウルトのチャージ量
+    public float ultAmount; // ウルトのチャージ量
 }

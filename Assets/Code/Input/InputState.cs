@@ -8,5 +8,7 @@ public struct InputState
     public bool jumpPressed;
     public bool confirm;
     public bool cancel;
+    public bool skillPressed;  // 固有スキル
+    public bool ultimatePressed; // ウルト
 }
 

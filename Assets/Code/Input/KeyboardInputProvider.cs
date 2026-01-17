@@ -10,6 +10,8 @@ public class KeyboardInputProvider : IInputProvider
     private Key jump;
     private Key confirm;
     private Key cancel;
+    private Key skill;
+    private Key ult;
 
     public KeyboardInputProvider(
         Key up,
@@ -18,7 +20,9 @@ public class KeyboardInputProvider : IInputProvider
         Key right,
         Key jump,
         Key confirm,
-        Key cancel
+        Key cancel,
+        Key skill,
+        Key ult
     )
     {
         this.up = up;
@@ -28,6 +32,8 @@ public class KeyboardInputProvider : IInputProvider
         this.jump = jump;
         this.confirm = confirm;
         this.cancel = cancel;
+        this.skill = skill;
+        this.ult = ult;
     }
 
     public InputState GetInput()
@@ -59,6 +65,8 @@ public class KeyboardInputProvider : IInputProvider
         state.jumpPressed = keyboard[jump].isPressed;
         state.confirm = keyboard[confirm].wasPressedThisFrame;
         state.cancel = keyboard[cancel].wasPressedThisFrame;
+        state.skillPressed = keyboard[skill].wasPressedThisFrame;
+        state.ultimatePressed = keyboard[ult].wasPressedThisFrame;
 
         return state;
     }

@@ -5,18 +5,26 @@ using UnityEngine.InputSystem;
 public class MovePlayer : MonoBehaviour
 {
     [Header("Player Info")]
-    [SerializeField] private PlayerState playerState;  // ← ScriptableObjectから能力値を読み込む
-    public int playerNumber = 1;     // 1P or 2Pを指定（生成時に設定）
+    [SerializeField] private PlayerState playerState;
+    public int playerNumber = 1;
 
     [Header("State")]
     public float HP;
     public float attack;
-    [SerializeField] private float ultCharge;
+    public float ultAmount;
+    public float ultGauge;
 
     [Header("Move")]
     [SerializeField] private float maxSpeed;
     [SerializeField] private float moveForce;
     [SerializeField] private float deceleration;
+
+    // --- ウルトゲージ用に追加 ---
+    [Header("Ultimate Gauge settings")]
+    [SerializeField] private float ultGainMultiplier = 5f; // 溜まりやすさ（調整用）
+    private MovePlayer opponent;
+    private Vector3 lastPosition;
+    // --------------------------
 
     [Header("rotation")]
     [SerializeField] private float rotationTorque;
@@ -35,41 +43,59 @@ public class MovePlayer : MonoBehaviour
     private bool P1;
     public Vector3 spawnArea;
     public Vector3 outofArea;
+    private bool ultInputBuffered = false; // 入力を一時保存する変数
 
     void Awake()
     {
-        // コンポーネントの取得とキャラの状態の初期設定
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = normalSprite;
 
-        // ScriptableObjectからパラメータを読み込み
         if (playerState != null)
         {
-            rb.mass = playerState.weight; // ← 重さを設定
+            rb.mass = playerState.weight;
             maxSpeed = playerState.maxSpeed;
             moveForce = playerState.moveForce;
-            deceleration = playerState.moveForce / 10; // 固定値5でもいいかも
+            deceleration = playerState.moveForce / 10;
             jumpForce = playerState.jumpForce;
             rotationTorque = playerState.rotationTorque;
             attack = playerState.attack;
             HP = playerState.hp;
-            ultCharge = playerState.ultCharge;
-            
+            ultAmount = playerState.ultAmount;
         }
 
-        rb.angularDamping = 0f; // ← 回転減衰を無効化
-        rb.freezeRotation = false; // ← Z回転を物理的に固定しない
+        rb.angularDamping = 0f;
+        rb.freezeRotation = false;
         Normal.SetActive(true);
         Charge.SetActive(false);
+    }
+
+    void Start()
+    {
+        lastPosition = transform.position;
+
+        // 相手プレイヤー（自分とは違う番号）を自動的に探す
+        MovePlayer[] allPlayers = FindObjectsByType<MovePlayer>(FindObjectsSortMode.None);
+        foreach (var p in allPlayers)
+        {
+            if (p.playerNumber != this.playerNumber)
+            {
+                opponent = p;
+                break;
+            }
+        }
     }
 
     void FixedUpdate()
     {
         OutofArea();
+        
+        // ゲージ蓄積計算を追加
+        AccumulateUltGauge();
+
         if (playerNumber == 2)
         {
-            spriteRenderer.flipX = true; // 2P用に向きを反転
+            spriteRenderer.flipX = true;
         }
 
         InputState input = playerNumber == 1 ? InputManager.Instance.inputP1.GetInput() : InputManager.Instance.inputP2.GetInput();
@@ -77,93 +103,82 @@ public class MovePlayer : MonoBehaviour
 
         HandleMove(input);
         HandleJump(input);
+        HandleSpecialActions(input); // ウルト/スキル判定用（後述）
+    }
 
-        // var keyboard = Keyboard.current;
+    void Update()
+    {
+        InputState input = playerNumber == 1 ? InputManager.Instance.inputP1.GetInput() : InputManager.Instance.inputP2.GetInput();
 
-        // // --------------------------
-        // // プレイヤーごとに入力を分ける
-        // // --------------------------
-        // float horizontalInput = 0f;
-        // float rotationInput = 0f;
-        // bool jumpKeyPressed = false;
+        // 押された瞬間を記録しておく
+        if (input.ultimatePressed)
+        {
+            ultInputBuffered = true;
+        }
+    }
 
-        // if (playerNumber == 1)
-        // {
-        //     // 1P操作（WASD + Space）
-        //     if (keyboard.wKey.isPressed) horizontalInput += 1;
-        //     if (keyboard.sKey.isPressed) horizontalInput -= 1;
-        //     if (keyboard.aKey.isPressed) rotationInput += 1;
-        //     if (keyboard.dKey.isPressed) rotationInput -= 1;
-        //     jumpKeyPressed = keyboard.spaceKey.isPressed;
-        // }
-        // else if (playerNumber == 2)
-        // {
-        //     // 2P操作（↑↓←→ + Enter）
-        //     if (keyboard.upArrowKey.isPressed) horizontalInput -= 1;
-        //     if (keyboard.downArrowKey.isPressed) horizontalInput += 1;
-        //     if (keyboard.leftArrowKey.isPressed) rotationInput += 1;
-        //     if (keyboard.rightArrowKey.isPressed) rotationInput -= 1;
-        //     jumpKeyPressed = keyboard.enterKey.isPressed;
-        // }
+    // ★新規追加：ウルトゲージ蓄積ロジック
+    void AccumulateUltGauge()
+    {
+        if (opponent == null) return;
 
-        // // --------------------------
-        // // 地上挙動（x方向のみ制御）
-        // // --------------------------
-        // Vector2 velocity = rb.linearVelocity;
+        // 1. このフレームでの移動ベクトル
+        Vector3 movement = transform.position - lastPosition;
 
-        // if (groundWheelCount > 0)
-        // {
-        //     if (Mathf.Abs(horizontalInput) > 0)
-        //     {
-        //         // 加速
-        //         velocity.x += horizontalInput * moveForce * Time.fixedDeltaTime;
-        //     }
-        //     else
-        //     {
-        //         // 減速
-        //         velocity.x = Mathf.MoveTowards(velocity.x, 0f, deceleration * Time.fixedDeltaTime);
-        //     }
-        // }
+        // 2. 相手への方向ベクトル
+        Vector3 directionToOpponent = (opponent.transform.position - transform.position).normalized;
 
-        // // 最大速度制限
-        // velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
-        // rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
+        // 3. 内積（Dot Product）で「相手に向かう方向」への移動距離を計算
+        float approachDistance = Vector3.Dot(movement, directionToOpponent);
 
-        // // --------------------------
-        // // 回転（空中でも地上でも可）
-        // // --------------------------
-        // if (rotationInput != 0f)
-        //     rb.AddTorque(rotationInput * rotationTorque, ForceMode2D.Force);
+        // 4. 近づいている（プラス）時だけ、倍率をかけてゲージ加算
+        if (approachDistance > 0)
+        {
+            ultGauge += approachDistance * ultGainMultiplier;
+            ultGauge = Mathf.Clamp(ultGauge, 0f, ultAmount);
+        }
+
+        // 位置の更新
+        lastPosition = transform.position;
+    }
+
+    // ★新規追加：必殺技・スキルの入力処理
+    void HandleSpecialActions(InputState input)
+    {
+        // ウルトボタン（：キー や パッド△）
+        if (ultInputBuffered && ultGauge >= (ultAmount - 0.1f))
+        {
+            ultGauge = 0f;
+            ultInputBuffered = false; // 実行したのでリセット
+            Debug.Log($"{playerNumber}P: ウルト発動！");
+            // ここに技の処理を書く
+        }
+
+        // 押されたけどゲージが足りなかった場合も、
+        // 次のフレームでまた押す必要があるならリセットしておく
+        if (ultInputBuffered)
+        {
+            ultInputBuffered = false; 
+        }
+        // スキルボタン（」キー や パッド□）
+        if (input.skillPressed)
+        {
+            // クールタイム判定などを入れてスキル実行
+        }
     }
 
     void HandleMove(InputState input)
     {
         Vector2 velocity = rb.linearVelocity;
-        if (P1)
+        // P1/P2の向き制御（既存ロジック）
+        float moveDir = P1 ? input.moveX : -input.moveX;
+
+        if (groundWheelCount > 0)
         {
-            if (groundWheelCount > 0)
-            {
-                if (Mathf.Abs(input.moveX) > 0)
-                    velocity.x += input.moveX * moveForce * Time.fixedDeltaTime;
-                else
-                    velocity.x = Mathf.MoveTowards(
-                        velocity.x, 0f,
-                        deceleration * Time.fixedDeltaTime
-                    );
-            }
-        }
-        else
-        {
-            if (groundWheelCount > 0)
-            {
-                if (Mathf.Abs(input.moveX) > 0)
-                    velocity.x -= input.moveX * moveForce * Time.fixedDeltaTime;
-                else
-                    velocity.x = Mathf.MoveTowards(
-                        velocity.x, 0f,
-                        deceleration * Time.fixedDeltaTime
-                    );
-            }
+            if (Mathf.Abs(moveDir) > 0)
+                velocity.x += moveDir * moveForce * Time.fixedDeltaTime;
+            else
+                velocity.x = Mathf.MoveTowards(velocity.x, 0f, deceleration * Time.fixedDeltaTime);
         }
 
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
@@ -173,6 +188,7 @@ public class MovePlayer : MonoBehaviour
             rb.AddTorque(input.rotate * rotationTorque, ForceMode2D.Force);
     }
 
+    // --- 以下、既存の HandleJump, HitSame, HitAttack, WheelLanded/Lifted, OutofArea は変更なし ---
     void HandleJump(InputState input)
     {
         if (input.jumpPressed && !isChargingJump)
@@ -196,9 +212,6 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    // --------------------------
-    // 衝突判定の実装
-    // --------------------------
     public void HitSame(GameObject hitObject)
     {
         Vector2 dir = (transform.position - hitObject.transform.parent.parent.position).normalized;
@@ -216,15 +229,9 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    // --------------------------
-    // 接地タイヤのカウント増減
-    // --------------------------
     public void WheelLanded() => groundWheelCount++;
     public void WheelLifted() => groundWheelCount = Mathf.Max(groundWheelCount - 1, 0);
 
-    // --------------------------
-    // エリア外の判定処理
-    // --------------------------
     public void OutofArea()
     {
         if (Mathf.Abs(transform.position.x) >= Mathf.Abs(outofArea.x) || Mathf.Abs(transform.position.y) >= Mathf.Abs(outofArea.y))

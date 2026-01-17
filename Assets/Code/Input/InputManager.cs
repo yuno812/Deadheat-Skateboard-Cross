@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
         inputP1 = new GamepadInputProvider(0);
         inputP2 = new KeyboardInputProvider(
             Key.UpArrow, Key.DownArrow, Key.LeftArrow, Key.RightArrow,
-            Key.Enter, Key.NumpadEnter, Key.Backspace
+            Key.Enter, Key.Enter, Key.Backspace, Key.Quote, Key.RightBracket
         );
     }
 
@@ -46,7 +46,7 @@ public class InputManager : MonoBehaviour
         inputP1 = networkReceiver;
         inputP2 = new KeyboardInputProvider(
             Key.W, Key.S, Key.A, Key.D, // クライアント側の自分用操作
-            Key.Space, Key.Enter, Key.Escape
+            Key.Space, Key.Space, Key.Escape, Key.Q, Key.E
         );
         Debug.Log("[InputManager] Client Mode: P1=Network, P2=Keyboard");
     }

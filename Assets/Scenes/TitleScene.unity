@@ -275,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1509704134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1759374005}
   - component: {fileID: 1759374006}
+  - component: {fileID: 1759374007}
   m_Layer: 0
   m_Name: ToSelectScene
   m_TagString: Untagged
@@ -424,12 +425,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759374003}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec87ee916a949a249b36634b465f0bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: SelectScene
+--- !u!114 &1759374007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759374003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96448d1e58424e94eb6e4c349a19d87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

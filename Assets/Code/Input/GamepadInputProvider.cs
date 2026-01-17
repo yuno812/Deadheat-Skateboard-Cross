@@ -32,6 +32,10 @@ public class GamepadInputProvider : IInputProvider
         state.confirm = pad.buttonSouth.wasPressedThisFrame;
 
         state.cancel = pad.buttonEast.wasPressedThisFrame;
+
+        state.skillPressed = pad.buttonWest.wasPressedThisFrame;
+
+        state.ultimatePressed = pad.buttonNorth.wasPressedThisFrame;
         
         return state;
     }
