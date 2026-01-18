@@ -22,6 +22,21 @@ public class CharacterIcon : MonoBehaviour
     [SerializeField] private float slideDistance = 0.3f;
     [SerializeField] private float slideDuration = 0.2f;
 
+    [Header("ステータス値の設定")]
+    [SerializeField] private int speedCount;
+    [SerializeField] private int physicalCount;
+    [SerializeField] private int specialCount;
+
+    [Header("1P用の表示先")]
+    [SerializeField] private StatBarSpawner p1SpeedSpawner;
+    [SerializeField] private StatBarSpawner p1PhysicalSpawner;
+    [SerializeField] private StatBarSpawner p1SpecialSpawner;
+
+    [Header("2P用の表示先")]
+    [SerializeField] private StatBarSpawner p2SpeedSpawner;
+    [SerializeField] private StatBarSpawner p2PhysicalSpawner;
+    [SerializeField] private StatBarSpawner p2SpecialSpawner;
+
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer p1sprite;
     private SpriteRenderer p2sprite;
@@ -79,6 +94,7 @@ public class CharacterIcon : MonoBehaviour
                 p1SlideCoroutine = StartCoroutine(
                     SlideIn(p1Object.transform, p1OriginalPos, true)
                 );
+                UpdateStatDisplays(true);
                 p1HeaderShown = true;
             }
         }
@@ -98,6 +114,7 @@ public class CharacterIcon : MonoBehaviour
                 p2SlideCoroutine = StartCoroutine(
                     SlideIn(p2Object.transform, p2OriginalPos, false)
                 );
+                UpdateStatDisplays(false);
                 p2HeaderShown = true;
             }
         }
@@ -122,6 +139,20 @@ public class CharacterIcon : MonoBehaviour
             yield return null;
         }
 
-        target.position = originalPos;
+        // target.position = originalPos;
+        target.position = new Vector3(target.parent.position.x, target.parent.position.y, target.position.z);
+    }
+
+    private void UpdateStatDisplays(bool isP1)
+    {
+        // 1Pと2Pで、ターゲットとなるSpawnerを切り替える
+        StatBarSpawner speedTarget = isP1 ? p1SpeedSpawner : p2SpeedSpawner;
+        StatBarSpawner physicalTarget = isP1 ? p1PhysicalSpawner : p2PhysicalSpawner;
+        StatBarSpawner specialTarget = isP1 ? p1SpecialSpawner : p2SpecialSpawner;
+
+        // 設定された数値（int）をそれぞれのSpawnerに渡す
+        if (speedTarget != null) speedTarget.SetStatValue(speedCount);
+        if (physicalTarget != null) physicalTarget.SetStatValue(physicalCount);
+        if (specialTarget != null) specialTarget.SetStatValue(specialCount);
     }
 }
