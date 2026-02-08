@@ -27,15 +27,15 @@ public class GamepadInputProvider : IInputProvider
 
         state.rotate = -pad.rightStick.ReadValue().x;
 
-        state.jumpPressed = pad.buttonSouth.isPressed;
+        state.jumpPressed = pad.rightTrigger.isPressed || pad.leftTrigger.isPressed;
 
         state.confirm = pad.buttonSouth.wasPressedThisFrame;
 
         state.cancel = pad.buttonEast.wasPressedThisFrame;
 
-        state.skillPressed = pad.buttonWest.wasPressedThisFrame;
+        state.skillPressed = pad.rightShoulder.wasPressedThisFrame;
 
-        state.ultimatePressed = pad.buttonNorth.wasPressedThisFrame;
+        state.ultimatePressed = pad.leftShoulder.wasPressedThisFrame;
         
         return state;
     }
