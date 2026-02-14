@@ -31,6 +31,7 @@ public class MovePlayer : MonoBehaviour
 
     [Header("jump")]
     [SerializeField] private float jumpForce;
+    private float areaJumpMultiplier = 1f;
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite chargingSprite;
     [SerializeField] private GameObject Normal;
@@ -188,7 +189,11 @@ public class MovePlayer : MonoBehaviour
             rb.AddTorque(input.rotate * rotationTorque, ForceMode2D.Force);
     }
 
-    // --- 以下、既存の HandleJump, HitSame, HitAttack, WheelLanded/Lifted, OutofArea は変更なし ---
+    public void SetJumpMultiplier(float multiplier)
+    {
+        areaJumpMultiplier = multiplier;
+    }
+
     void HandleJump(InputState input)
     {
         if (input.jumpPressed && !isChargingJump)
@@ -205,7 +210,7 @@ public class MovePlayer : MonoBehaviour
             spriteRenderer.sprite = normalSprite;
 
             if (groundWheelCount > 0)
-                rb.linearVelocity += (Vector2)(transform.up * jumpForce);
+                rb.linearVelocity += (Vector2)(transform.up * jumpForce * areaJumpMultiplier);
 
             Normal.SetActive(true);
             Charge.SetActive(false);

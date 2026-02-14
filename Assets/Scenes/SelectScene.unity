@@ -359,7 +359,7 @@ MonoBehaviour:
   normalSprite: {fileID: -3196267285507519304, guid: c4cedd91a07165a44a2576e945a54a23, type: 3}
   selectedSprite: {fileID: -8366402307168206726, guid: 0765e519a0c5e944895d4d62d3cc9c0b, type: 3}
   headerSprite: {fileID: -2025899892412332790, guid: 57d4bf3bdfad0314f82c3db7de0b905b, type: 3}
-  sceneName: DemoScene
+  sceneName: R2500Scene
   headerObject: {fileID: 1372163786}
   slideDistance: 0.3
   slideDuration: 0.2
@@ -2325,7 +2325,7 @@ MonoBehaviour:
   normalSprite: {fileID: 5568958819990017556, guid: 451dffe1700d12d4e8d51bc88ca73979, type: 3}
   selectedSprite: {fileID: -2593189146026899969, guid: c7bbdb34e608d414c86109a2925c6f33, type: 3}
   headerSprite: {fileID: 3997971038976187057, guid: 95b561f2e1deaef4ca24b031a1a8ce28, type: 3}
-  sceneName: DemoScene
+  sceneName: SpringScene
   headerObject: {fileID: 1372163786}
   slideDistance: 0.3
   slideDuration: 0.2

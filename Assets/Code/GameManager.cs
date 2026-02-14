@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
     public Transform spawnPointP2;
     public Transform outofArea;
 
+    [Header("生成サイズの設定")]
+    public Vector3 playerScale = Vector3.one; 
+
     public HeartUI heartUI1; // 1P用 HeartUI
     public HeartUI heartUI2; // 2P用 HeartUI
 
@@ -22,6 +25,7 @@ public class GameManager : MonoBehaviour
         if (PlayerSelection.Instance.playerPrefabP1 != null)
         {
             GameObject player1 = Instantiate(PlayerSelection.Instance.playerPrefabP1, spawnPointP1.position, Quaternion.identity);
+            player1.transform.localScale = playerScale;
             MovePlayer mp1 = player1.GetComponent<MovePlayer>();
             mp1.playerNumber = 1;
             mp1.spawnArea = spawnPointP1.position;
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
         if (PlayerSelection.Instance.playerPrefabP2 != null)
         {
             GameObject player2 = Instantiate(PlayerSelection.Instance.playerPrefabP2, spawnPointP2.position, Quaternion.identity);
+            player2.transform.localScale = playerScale;
             MovePlayer mp2 = player2.GetComponent<MovePlayer>();
             mp2.playerNumber = 2;
             mp2.spawnArea = spawnPointP2.position;
