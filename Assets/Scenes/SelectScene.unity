@@ -2324,7 +2324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalSprite: {fileID: 5568958819990017556, guid: 451dffe1700d12d4e8d51bc88ca73979, type: 3}
   selectedSprite: {fileID: -2593189146026899969, guid: c7bbdb34e608d414c86109a2925c6f33, type: 3}
-  headerSprite: {fileID: 3997971038976187057, guid: 95b561f2e1deaef4ca24b031a1a8ce28, type: 3}
+  headerSprite: {fileID: 1822180828767842707, guid: 06356e8025a5eb141b0c6fbd7107950b, type: 3}
   sceneName: SpringScene
   headerObject: {fileID: 1372163786}
   slideDistance: 0.3

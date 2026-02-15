@@ -1075,6 +1075,7 @@ MonoBehaviour:
   spawnPointP1: {fileID: 1860678103}
   spawnPointP2: {fileID: 309672926}
   outofArea: {fileID: 1085588908}
+  playerScale: {x: 0.2, y: 0.2, z: 1}
   heartUI1: {fileID: 2117744948}
   heartUI2: {fileID: 1306605305}
 --- !u!1 &1860678102

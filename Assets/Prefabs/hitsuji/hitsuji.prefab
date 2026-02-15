@@ -1235,6 +1235,7 @@ GameObject:
   - component: {fileID: 1816565742827607655}
   - component: {fileID: 4247399074461280813}
   - component: {fileID: 7525611392315270647}
+  - component: {fileID: 5768399405818589310}
   m_Layer: 0
   m_Name: hitsuji
   m_TagString: Player
@@ -1357,16 +1358,32 @@ MonoBehaviour:
   playerNumber: 2
   HP: 0
   attack: 0
-  ultCharge: 0
+  ultAmount: 0
+  ultGauge: 0
   maxSpeed: 5
   moveForce: 50
   deceleration: 5
+  ultGainMultiplier: 5
   rotationTorque: 5
   jumpForce: 10
   normalSprite: {fileID: -5231564041320008768, guid: 8116a01af464781498224f725e02a77c, type: 3}
   chargingSprite: {fileID: -196784909802636762, guid: 14dedeffde48aa949b3f992d0ff4c915, type: 3}
   Normal: {fileID: 7496068937225841364}
   Charge: {fileID: 7320784412164737414}
+  spawnArea: {x: 0, y: 0, z: 0}
+  outofArea: {x: 0, y: 0, z: 0}
+--- !u!114 &5768399405818589310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022803904816585721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5098cd1268e9d4a97bdb903f7b7f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8586258242094327035
 GameObject:
   m_ObjectHideFlags: 0

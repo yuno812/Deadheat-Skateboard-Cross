@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class MovePlayer : MonoBehaviour
 {
     [Header("Player Info")]
-    [SerializeField] private PlayerState playerState;
+    public PlayerState playerState;
     public int playerNumber = 1;
 
     [Header("State")]
@@ -45,12 +45,14 @@ public class MovePlayer : MonoBehaviour
     public Vector3 spawnArea;
     public Vector3 outofArea;
     private bool ultInputBuffered = false; // 入力を一時保存する変数
+    private UltimateAbility ultimateSystem;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = normalSprite;
+        ultimateSystem = GetComponent<UltimateAbility>();
 
         if (playerState != null)
         {
@@ -149,10 +151,16 @@ public class MovePlayer : MonoBehaviour
         // ウルトボタン（：キー や パッド△）
         if (ultInputBuffered && ultGauge >= (ultAmount - 0.1f))
         {
-            ultGauge = 0f;
-            ultInputBuffered = false; // 実行したのでリセット
-            Debug.Log($"{playerNumber}P: ウルト発動！");
-            // ここに技の処理を書く
+            // アタッチされているウルトスクリプトがあるか確認
+            if (ultimateSystem != null)
+            {
+                ultGauge = 0f;
+                ultInputBuffered = false; // 実行したのでリセット
+                
+                ultimateSystem.Execute(this); 
+                
+                Debug.Log($"{playerNumber}P: ウルト「{ultimateSystem.GetType().Name}」発動！");
+            }
         }
 
         // 押されたけどゲージが足りなかった場合も、
