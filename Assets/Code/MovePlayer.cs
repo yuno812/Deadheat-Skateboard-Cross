@@ -125,6 +125,13 @@ public class MovePlayer : MonoBehaviour
     {
         if (opponent == null) return;
 
+        // ★ここで判定：ウルトが「活動中」ならゲージ加算をスキップ
+        if (ultimateSystem != null && ultimateSystem.IsActive())
+        {
+            lastPosition = transform.position; // 移動履歴だけ更新して抜ける
+            return;
+        }
+        
         // 1. このフレームでの移動ベクトル
         Vector3 movement = transform.position - lastPosition;
 

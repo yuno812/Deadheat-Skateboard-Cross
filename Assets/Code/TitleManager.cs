@@ -34,9 +34,6 @@ public class TitleManager : MonoBehaviour
         // マウス：右クリック
         if (ms != null && ms.rightButton.wasPressedThisFrame) return true;
 
-        // ゲームパッド：〇ボタン (東側のボタン)
-        if (gp != null && gp.buttonEast.wasPressedThisFrame) return true;
-
         return false;
     }
 

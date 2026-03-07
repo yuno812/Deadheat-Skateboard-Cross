@@ -9,6 +9,7 @@ TagManager:
   - AttackCollision
   - BulletCollision
   - Ground
+  - Bullet
   layers:
   - Default
   - TransparentFX
