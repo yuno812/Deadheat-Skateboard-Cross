@@ -2752,7 +2752,7 @@ GameObject:
   - component: {fileID: 2056244952}
   - component: {fileID: 2056244951}
   m_Layer: 0
-  m_Name: Hitsuji_nonselect_0 (1)
+  m_Name: Meme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2781,9 +2781,9 @@ MonoBehaviour:
   p2Object: {fileID: 1644359279}
   slideDistance: 0.3
   slideDuration: 0.2
-  speedCount: 3
+  speedCount: 2
   physicalCount: 3
-  specialCount: 3
+  specialCount: 4
   p1SpeedSpawner: {fileID: 562601659}
   p1PhysicalSpawner: {fileID: 1824014821}
   p1SpecialSpawner: {fileID: 927364822}
