@@ -608,16 +608,20 @@ MonoBehaviour:
   playerNumber: 2
   HP: 0
   attack: 0
-  ultCharge: 0
+  ultAmount: 0
+  ultGauge: 0
   maxSpeed: 5
   moveForce: 50
   deceleration: 5
+  ultGainMultiplier: 5
   rotationTorque: 5
   jumpForce: 10
   normalSprite: {fileID: 0}
   chargingSprite: {fileID: 0}
   Normal: {fileID: 4922573484754551545}
   Charge: {fileID: 3818742674176879402}
+  spawnArea: {x: 0, y: 0, z: 0}
+  outofArea: {x: 0, y: 0, z: 0}
 --- !u!1 &7819831887181839200
 GameObject:
   m_ObjectHideFlags: 0

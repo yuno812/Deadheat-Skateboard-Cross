@@ -80,6 +80,8 @@ public class SelectCharacter : MonoBehaviour
             {
                 PlayerSelection.Instance.playerPrefabP1 = characters[currentIndexP1].PlayerPrefab;
                 PlayerSelection.Instance.heartPrefabP1 = characters[currentIndexP1].HeartPrefab;
+                PlayerSelection.Instance.resultHeader1 = characters[currentIndexP1].headerSprite;
+                PlayerSelection.Instance.Icon1 = characters[currentIndexP1].normalSprite;
             }
             UpdateSelection();
         }
@@ -100,6 +102,8 @@ public class SelectCharacter : MonoBehaviour
             {
                 PlayerSelection.Instance.playerPrefabP2 = characters[currentIndexP2].PlayerPrefab;
                 PlayerSelection.Instance.heartPrefabP2 = characters[currentIndexP2].HeartPrefab;
+                PlayerSelection.Instance.resultHeader2 = characters[currentIndexP2].headerSprite;
+                PlayerSelection.Instance.Icon2 = characters[currentIndexP2].normalSprite;
             }
             UpdateSelection();
         }

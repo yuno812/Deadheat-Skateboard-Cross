@@ -20,4 +20,4 @@ MonoBehaviour:
   rotationTorque: 4
   attack: 1
   hp: 3
-  ultAmount: 100
+  ultAmount: 50

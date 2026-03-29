@@ -40,14 +40,18 @@ public class GameObserver : MonoBehaviour
 
         if (lose1 && lose2)
         {
+            PlayerSelection.Instance.lose1 = true;
+            PlayerSelection.Instance.lose2 = true;
             SceneManager.LoadScene("ResultScene");
         }
         else if (lose1)
         {
+            PlayerSelection.Instance.lose1 = true;
             SceneManager.LoadScene("ResultScene");
         }
         else if (lose2)
         {
+            PlayerSelection.Instance.lose2 = true;
             SceneManager.LoadScene("ResultScene");
         }
 

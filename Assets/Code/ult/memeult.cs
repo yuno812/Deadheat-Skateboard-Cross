@@ -33,7 +33,7 @@ public class memeult : UltimateAbility
         float randomAngle = Random.Range(0f, 360f);
         Vector3 spawnOffset = Quaternion.Euler(0, 0, randomAngle) * Vector3.up * spawnDistance;
         Vector3 spawnPos = owner.transform.position + spawnOffset;
-        spawnPos.z = -1f;
+        spawnPos.z = -2f;
 
         GameObject orbObj = Instantiate(orbPrefab, spawnPos, Quaternion.identity);
         orbObj.transform.up = spawnOffset.normalized;

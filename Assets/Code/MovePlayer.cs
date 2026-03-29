@@ -87,6 +87,10 @@ public class MovePlayer : MonoBehaviour
                 break;
             }
         }
+        if (playerNumber == 2)
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180f, transform.eulerAngles.z);
+        }
     }
 
     void FixedUpdate()
@@ -95,11 +99,6 @@ public class MovePlayer : MonoBehaviour
         
         // ゲージ蓄積計算を追加
         AccumulateUltGauge();
-
-        if (playerNumber == 2)
-        {
-            spriteRenderer.flipX = true;
-        }
 
         InputState input = playerNumber == 1 ? InputManager.Instance.inputP1.GetInput() : InputManager.Instance.inputP2.GetInput();
         P1 = playerNumber == 1 ? true : false;

@@ -6,9 +6,15 @@ public class PlayerSelection : MonoBehaviour
 
     public GameObject playerPrefabP1;
     public GameObject heartPrefabP1;
+    public Sprite resultHeader1;
+    public Sprite Icon1;
+    public bool lose1 = false;
 
     public GameObject playerPrefabP2;
     public GameObject heartPrefabP2;
+    public Sprite resultHeader2;
+    public Sprite Icon2;
+    public bool lose2 = false;
 
     public bool stageselect = false;
     public string nextSceneName;

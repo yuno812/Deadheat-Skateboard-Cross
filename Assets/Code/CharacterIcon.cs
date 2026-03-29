@@ -8,11 +8,11 @@ public class CharacterIcon : MonoBehaviour
     public GameObject HeartPrefab;
 
     [Header("スプライト")]
-    [SerializeField] private Sprite normalSprite;
+    public Sprite normalSprite;
     [SerializeField] private Sprite p1SelectedSprite;
     [SerializeField] private Sprite p2SelectedSprite;
     [SerializeField] private Sprite bothSelectedSprite;
-    [SerializeField] private Sprite headerSprite;
+    public Sprite headerSprite;
 
     [Header("追加オブジェクト")]
     [SerializeField] private GameObject p1Object;
