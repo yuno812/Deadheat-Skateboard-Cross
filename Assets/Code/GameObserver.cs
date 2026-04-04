@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameObserver : MonoBehaviour
 {
@@ -7,10 +8,12 @@ public class GameObserver : MonoBehaviour
     private MovePlayer Player2;
     private bool lose1 = false;
     private bool lose2 = false;
+    [SerializeField] private GameObject Game;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Game.SetActive(false);
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (var obj in players)
         {
@@ -42,18 +45,27 @@ public class GameObserver : MonoBehaviour
         {
             PlayerSelection.Instance.lose1 = true;
             PlayerSelection.Instance.lose2 = true;
-            SceneManager.LoadScene("ResultScene");
+            StartCoroutine(FinishGame());
         }
         else if (lose1)
         {
             PlayerSelection.Instance.lose1 = true;
-            SceneManager.LoadScene("ResultScene");
+            StartCoroutine(FinishGame());
         }
         else if (lose2)
         {
             PlayerSelection.Instance.lose2 = true;
-            SceneManager.LoadScene("ResultScene");
+            StartCoroutine(FinishGame());
         }
 
+    }
+
+    private IEnumerator FinishGame()
+    {
+        Game.SetActive(true);
+        Time.timeScale = 0.3f;
+        yield return new WaitForSeconds(0.45f);
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("ResultScene");
     }
 }

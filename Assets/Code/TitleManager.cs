@@ -57,7 +57,7 @@ public class TitleManager : MonoBehaviour
         if (kb != null && kb.anyKey.wasPressedThisFrame && !kb.escapeKey.wasPressedThisFrame) return true;
         
         // マウスのクリック
-        if (ms != null && ms.leftButton.wasPressedThisFrame) return true;
+        if (ms != null && ms.leftButton.wasReleasedThisFrame) return true;
 
         // パッドのボタンのどれか
         if (gp != null)

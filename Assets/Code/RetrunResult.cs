@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class RetrunResult : MonoBehaviour
 {
     [SerializeField] private GameObject press;
-    // 3秒後に true になるフラグ
+    // 1秒後に true になるフラグ
     public bool isFinished = false;
 
     void Start()
@@ -18,7 +18,7 @@ public class RetrunResult : MonoBehaviour
 
     private IEnumerator StartTimer()
     {
-        // 3秒間待機
+        // 1秒間待機
         yield return new WaitForSeconds(1f);
 
         // フラグを true に変更

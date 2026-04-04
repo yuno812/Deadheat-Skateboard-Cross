@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e158370e27984f9bacf4aeec6ea8c, type: 3}
-  m_Name: memeState
+  m_Name: cubu
   m_EditorClassIdentifier: 
-  CharacterName: meme
-  weight: 0.6
-  maxSpeed: 4.5
-  moveForce: 10
-  jumpForce: 9
+  CharacterName: cubu
+  weight: 0.7
+  maxSpeed: 5
+  moveForce: 7.5
+  jumpForce: 8
   rotationTorque: 3
   attack: 1
-  hp: 3
-  ultAmount: 150
+  hp: 4
+  ultAmount: 100

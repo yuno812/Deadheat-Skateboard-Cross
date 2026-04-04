@@ -14,33 +14,35 @@ public class ResultManager : MonoBehaviour
 
     void Start()
     {
-        Sprite WinnerSprite = Winner.GetComponent<SpriteRenderer>().sprite;
-        Sprite WinnerSprite1 = Winner1.GetComponent<SpriteRenderer>().sprite;
-        Sprite WinnerSprite2 = Winner2.GetComponent<SpriteRenderer>().sprite;
-        Sprite WinnerIconSprite = WinnerIcon.GetComponent<SpriteRenderer>().sprite;
-        Sprite WinnerNumSprite = WinnerNum.GetComponent<SpriteRenderer>().sprite;
-        Sprite LoserIconSprite = LoserIcon.GetComponent<SpriteRenderer>().sprite;
-        Sprite LoserNumSprite = LoserNum.GetComponent<SpriteRenderer>().sprite;
+        SpriteRenderer WinnerSprite = Winner.GetComponent<SpriteRenderer>();
+        SpriteRenderer WinnerSprite1 = Winner1.GetComponent<SpriteRenderer>();
+        SpriteRenderer WinnerSprite2 = Winner2.GetComponent<SpriteRenderer>();
+        SpriteRenderer WinnerIconSprite = WinnerIcon.GetComponent<SpriteRenderer>();
+        SpriteRenderer WinnerNumSprite = WinnerNum.GetComponent<SpriteRenderer>();
+        SpriteRenderer LoserIconSprite = LoserIcon.GetComponent<SpriteRenderer>();
+        SpriteRenderer LoserNumSprite = LoserNum.GetComponent<SpriteRenderer>();
 
         if (PlayerSelection.Instance.lose2)
         {
-            WinnerSprite = PlayerSelection.Instance.resultHeader1;
-            WinnerSprite1 = PlayerSelection.Instance.resultHeader1;
-            WinnerSprite2 = PlayerSelection.Instance.resultHeader1;
-            WinnerIconSprite = PlayerSelection.Instance.Icon1;
-            WinnerNumSprite = sprite1P;
-            LoserIconSprite = PlayerSelection.Instance.Icon2;
-            LoserNumSprite = sprite2P;
+            Debug.Log("lose2");
+            WinnerSprite.sprite = PlayerSelection.Instance.resultHeader1;
+            WinnerSprite1.sprite = PlayerSelection.Instance.resultHeader1;
+            WinnerSprite2.sprite = PlayerSelection.Instance.resultHeader1;
+            WinnerIconSprite.sprite = PlayerSelection.Instance.Icon1;
+            WinnerNumSprite.sprite = sprite1P;
+            LoserIconSprite.sprite = PlayerSelection.Instance.Icon2;
+            LoserNumSprite.sprite = sprite2P;
         }
         else if (PlayerSelection.Instance.lose1)
         {
-            WinnerSprite = PlayerSelection.Instance.resultHeader2;
-            WinnerSprite1 = PlayerSelection.Instance.resultHeader2;
-            WinnerSprite2 = PlayerSelection.Instance.resultHeader2;
-            WinnerIconSprite = PlayerSelection.Instance.Icon2;
-            WinnerNumSprite = sprite2P;
-            LoserIconSprite = PlayerSelection.Instance.Icon1;
-            LoserNumSprite = sprite1P;
+            Debug.Log("lose1");
+            WinnerSprite.sprite = PlayerSelection.Instance.resultHeader2;
+            WinnerSprite1.sprite = PlayerSelection.Instance.resultHeader2;
+            WinnerSprite2.sprite = PlayerSelection.Instance.resultHeader2;
+            WinnerIconSprite.sprite = PlayerSelection.Instance.Icon2;
+            WinnerNumSprite.sprite = sprite2P;
+            LoserIconSprite.sprite = PlayerSelection.Instance.Icon1;
+            LoserNumSprite.sprite = sprite1P;
         }
     }
 }

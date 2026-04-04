@@ -103,9 +103,12 @@ public class MovePlayer : MonoBehaviour
         InputState input = playerNumber == 1 ? InputManager.Instance.inputP1.GetInput() : InputManager.Instance.inputP2.GetInput();
         P1 = playerNumber == 1 ? true : false;
 
-        HandleMove(input);
-        HandleJump(input);
-        HandleSpecialActions(input); // ウルト/スキル判定用（後述）
+        if (HP > 0)
+        {
+            HandleMove(input);
+            HandleJump(input);
+            HandleSpecialActions(input); // ウルト/スキル判定用（後述）
+        }
     }
 
     void Update()
