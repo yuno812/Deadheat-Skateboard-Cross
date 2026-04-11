@@ -80,7 +80,7 @@ public class Homing : MonoBehaviour
             }
             else if (other.CompareTag("AttackCollision") || other.CompareTag("TireCollision") || other.CompareTag("Bullet"))
             {
-                damageMultiplier = 0.0f; // 装甲は半分
+                damageMultiplier = 0.25f; // 装甲は半分
             }
 
             // 最終ダメージ

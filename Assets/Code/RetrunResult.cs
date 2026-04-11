@@ -30,6 +30,8 @@ public class RetrunResult : MonoBehaviour
     {
         if (isFinished && AnyKeyRecentlyPressd())
         {
+            PlayerSelection.Instance.lose1 = false;
+            PlayerSelection.Instance.lose2 = false;
             SceneManager.LoadScene("SelectScene");
         }
     }

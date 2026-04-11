@@ -63,6 +63,7 @@ public class cubuult : UltimateAbility
     // ★ここで「玉がある間はアクティブ」と定義する
     public override bool IsActive()
     {
-        return isSpawning || activeOrbCount > 0;
+        // return isSpawning || activeOrbCount > 0;
+        return true;
     }
 }

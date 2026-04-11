@@ -25,6 +25,8 @@ public class ResultManager : MonoBehaviour
         if (PlayerSelection.Instance.lose2)
         {
             Debug.Log("lose2");
+            Debug.Log(PlayerSelection.Instance.lose1);
+            Debug.Log(PlayerSelection.Instance.lose2);
             WinnerSprite.sprite = PlayerSelection.Instance.resultHeader1;
             WinnerSprite1.sprite = PlayerSelection.Instance.resultHeader1;
             WinnerSprite2.sprite = PlayerSelection.Instance.resultHeader1;
@@ -36,6 +38,8 @@ public class ResultManager : MonoBehaviour
         else if (PlayerSelection.Instance.lose1)
         {
             Debug.Log("lose1");
+            Debug.Log(PlayerSelection.Instance.lose1);
+            Debug.Log(PlayerSelection.Instance.lose2);
             WinnerSprite.sprite = PlayerSelection.Instance.resultHeader2;
             WinnerSprite1.sprite = PlayerSelection.Instance.resultHeader2;
             WinnerSprite2.sprite = PlayerSelection.Instance.resultHeader2;
