@@ -36,7 +36,6 @@ public class cubuult : UltimateAbility
             }
         }
 
-        isSpawning = false;
         Destroy(orbObj);
     }
 
@@ -64,6 +63,6 @@ public class cubuult : UltimateAbility
     public override bool IsActive()
     {
         // return isSpawning || activeOrbCount > 0;
-        return true;
+        return isSpawning;
     }
 }

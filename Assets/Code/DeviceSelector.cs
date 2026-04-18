@@ -19,6 +19,8 @@ public class DeviceSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private Image targetImage;
     public bool isSelected = false;
+    [SerializeField] private DeviceSelectionManager battleManager;
+    [SerializeField] private TDeviceSelectionManager tutorialManager;
 
     void Awake()
     {
@@ -54,7 +56,16 @@ public class DeviceSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (partner != null) partner.Deselect();
 
         // 親（Manager）に選択が終わったことを通知
-        Object.FindAnyObjectByType<DeviceSelectionManager>().CheckAllPlayersReady();
+        if (battleManager != null)
+        {
+            battleManager.CheckAllPlayersReady();
+        }
+        
+        // チュートリアル用のマネージャーが設定されているなら実行
+        if (tutorialManager != null)
+        {
+            tutorialManager.CheckAllPlayersReady();
+        }
     }
 
     // 他が選ばれた時に状態を戻す用

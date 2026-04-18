@@ -32,7 +32,7 @@ public class RetrunResult : MonoBehaviour
         {
             PlayerSelection.Instance.lose1 = false;
             PlayerSelection.Instance.lose2 = false;
-            SceneManager.LoadScene("SelectScene");
+            SceneManager.LoadScene("MenuScene");
         }
     }
 

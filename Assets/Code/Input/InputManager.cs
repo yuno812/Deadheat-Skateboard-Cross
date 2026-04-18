@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
             // 1Pがキーボードなら、相手が何であれ1Pは常にWASD
             inputP1 = CreateWASDKeyboard();
         }
-        else
+        else if (p1Type == "Controller")
         {
             inputP1 = new GamepadInputProvider(0);
         }
@@ -49,11 +49,15 @@ public class InputManager : MonoBehaviour
                 inputP2 = CreateWASDKeyboard();
             }
         }
-        else
+        else if (p2Type == "Controller")
         {
             // 1Pがコントローラーなら2Pは2台目(1)、1Pがキーボードなら2Pは1台目(0)
             int p2PadIndex = (p1Type == "Controller") ? 1 : 0;
             inputP2 = new GamepadInputProvider(p2PadIndex);
+        }
+        else
+        {
+            inputP2 = new NullInputProvider();
         }
 
         Debug.Log($"[InputManager] 割り当て完了: P1={p1Type}, P2={p2Type}");

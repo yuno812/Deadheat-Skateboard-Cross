@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 2cf4850f720d78b4c8c8647f35423323
   - enabled: 1
-    path: Assets/Scenes/ConfigScene.unity
+    path: Assets/Scenes/TConfigScene.unity
     guid: 299ffaa53ab42e3419b20c01e168a55e
   - enabled: 1
     path: Assets/Scenes/SelectScene.unity
@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ResultScene.unity
     guid: 9daa716daa1f78247aafe056ed46a0e8
+  - enabled: 1
+    path: Assets/Scenes/ConfigScene.unity
+    guid: 965dd547b34196b40b6e9bdf8117f104
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 1b8c53052e351724fbd6a2dd6c5a9753
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
