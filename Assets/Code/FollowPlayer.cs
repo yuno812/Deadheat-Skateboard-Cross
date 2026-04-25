@@ -1,34 +1,16 @@
 using UnityEngine;
+using Unity.Cinemachine; 
 
 public class FollowPlayer : MonoBehaviour
 {
     private Transform playerTransform;
-    
-    [Header("Offset")]
-    [SerializeField] private float offsetX = 6f;
-    [SerializeField] private float offsetY = 2.5f;
 
     void Start()
     {
         FindPlayer();
+        this.GetComponent<CinemachineCamera>().Follow = playerTransform;
     }
 
-    void Update()
-    {
-        // プレイヤーが見つかっていない場合は再度探す
-        if (playerTransform == null)
-        {
-            FindPlayer();
-            return;
-        }
-
-        // 追従処理
-        transform.position = new Vector3(
-            playerTransform.position.x + offsetX, 
-            playerTransform.position.y + offsetY, 
-            transform.position.z
-        );
-    }
 
     private void FindPlayer()
     {
