@@ -1,24 +1,25 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BGMManager : MonoBehaviour
 {
-    [Header("Audio Clips")]
-    [SerializeField] private AudioClip introClip; // 最初に一度だけ流す曲
-    [SerializeField] private AudioClip loopClip;  // その後にループさせる曲
-
     [Header("Components")]
-    [SerializeField] private AudioSource audioSource; // 再生用のAudioSource
+    [SerializeField] private AudioSource audioSource;
+
+    [Header("Music Database")]
+    [SerializeField] private List<MusicData> allMusic; // 全ての曲リストをインスペクターでセットしてください
 
     private static BGMManager instance;
+    public static BGMManager Instance => instance;
+
+    private Coroutine currentRoutine;
 
     void Awake()
     {
-        // シングルトンパターン：既にBGMManagerが存在する場合は、新しく作られた方を破棄する
         if (instance == null)
         {
             instance = this;
-            // このオブジェクトをシーン切り替えで破棄しないように設定
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -28,28 +29,78 @@ public class BGMManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Start() 
     {
-        // 重複チェックで破棄されなかったインスタンスのみ再生を開始
-        if (instance == this && audioSource != null && introClip != null && loopClip != null)
+        // 保存された曲名を取得
+        string savedBGM = PlayerPrefs.GetString("SelectedBGM", "");
+        MusicData targetMusic = null;
+
+        if (!string.IsNullOrEmpty(savedBGM)) 
         {
-            StartCoroutine(PlayBGMSequence());
+            // 1. 保存された曲名と一致するデータをリストから探す
+            targetMusic = allMusic.Find(m => m.name == savedBGM);
+        }
+
+        if (targetMusic == null) 
+        {
+            // 2. 保存がない、または見つからない場合は default フラグが立っている曲を探す
+            targetMusic = allMusic.Find(m => m.isDefaultBGM);
+        }
+
+        // 対象が見つかった場合は再生を開始
+        if (targetMusic != null)
+        {
+            ChangeBGM(targetMusic);
         }
     }
 
-    private IEnumerator PlayBGMSequence()
+    // 外部（UIなど）から曲を切り替えるメソッド
+    public void ChangeBGM(MusicData data)
     {
-        // 1. イントロを再生（ループなし）
-        audioSource.clip = introClip;
-        audioSource.loop = false;
-        audioSource.Play();
+        if (data == null || audioSource == null) return;
 
-        // 2. イントロが終わるまで待機
-        yield return new WaitForSeconds(introClip.length);
+        // すでに再生中のシーケンスがあれば止める
+        if (currentRoutine != null)
+        {
+            StopCoroutine(currentRoutine);
+        }
 
-        // 3. ループ曲に切り替えて再生（ループあり）
-        audioSource.clip = loopClip;
-        audioSource.loop = true;
-        audioSource.Play();
+        // 曲固有の音量を反映
+        audioSource.volume = data.volume;
+
+        // 新しい再生処理を開始
+        currentRoutine = StartCoroutine(PlayBGMSequence(data.introClip, data.loopClip));
+        
+        // 設定を保存
+        PlayerPrefs.SetString("SelectedBGM", data.name);
+    }
+
+    private IEnumerator PlayBGMSequence(AudioClip intro, AudioClip loop)
+    {
+        audioSource.Stop();
+        audioSource.clip = null;
+
+        // イントロの処理
+        if (intro != null)
+        {
+            audioSource.clip = intro;
+            audioSource.loop = false;
+            audioSource.Play();
+            yield return new WaitForSeconds(intro.length);
+        }
+
+        // ループの処理
+        if (loop != null)
+        {
+            audioSource.clip = loop;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.Stop();
+        }
+
+        currentRoutine = null;
     }
 }

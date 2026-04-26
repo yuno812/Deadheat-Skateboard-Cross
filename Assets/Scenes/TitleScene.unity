@@ -1017,9 +1017,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22dc274b6db26646b51d3aeb6f35a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introClip: {fileID: 8300000, guid: 606c159c0650db54da555c08d4a6d3f3, type: 3}
-  loopClip: {fileID: 8300000, guid: 494d7af0a0e9b6e44a188929516331ed, type: 3}
   audioSource: {fileID: 1828696410}
+  allMusic:
+  - {fileID: 11400000, guid: 3f6a839250519714c850d9c35d1e0c32, type: 2}
 --- !u!82 &1828696410
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1033,7 +1033,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
