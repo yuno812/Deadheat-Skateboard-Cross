@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26593e197359c748aed87a0e7576ba2, type: 3}
-  m_Name: dsc_op
+  m_Name: meme
   m_EditorClassIdentifier: 
-  musicName: SkateBoard Bash
+  musicName: "\u3081\u3047\u3081\u3047\u3059\u305F\u3093\u3074\u30FC\u3069"
   volume: 0.2
-  isDefaultBGM: 1
-  introClip: {fileID: 8300000, guid: 606c159c0650db54da555c08d4a6d3f3, type: 3}
-  loopClip: {fileID: 8300000, guid: 494d7af0a0e9b6e44a188929516331ed, type: 3}
+  isDefaultBGM: 0
+  introClip: {fileID: 0}
+  loopClip: {fileID: 8300000, guid: dace051b5fc52f54191b371c0449aea3, type: 3}

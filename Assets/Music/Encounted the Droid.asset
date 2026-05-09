@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26593e197359c748aed87a0e7576ba2, type: 3}
-  m_Name: dsc_op
+  m_Name: Encounted the Droid
   m_EditorClassIdentifier: 
-  musicName: SkateBoard Bash
-  volume: 0.2
-  isDefaultBGM: 1
-  introClip: {fileID: 8300000, guid: 606c159c0650db54da555c08d4a6d3f3, type: 3}
-  loopClip: {fileID: 8300000, guid: 494d7af0a0e9b6e44a188929516331ed, type: 3}
+  musicName: Encounted the Droid
+  volume: 1
+  isDefaultBGM: 0
+  introClip: {fileID: 0}
+  loopClip: {fileID: 8300000, guid: b82c5a1c04cc7f743a386e749c710f3c, type: 3}

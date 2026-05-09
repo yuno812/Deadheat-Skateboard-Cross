@@ -25,6 +25,7 @@ public class SettingsManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            // このオブジェクト（および子要素の画像など）をシーン移動で破棄しないようにする
             DontDestroyOnLoad(gameObject);
             
             // 初回起動時の初期化
@@ -33,7 +34,7 @@ public class SettingsManager : MonoBehaviour
         else
         {
             // 二回目以降、設定シーンに戻ってきた時、
-            // 新しく配置されたインスペクターの参照を、生き残っている Instance に引き渡す
+            // スライダー（UI）の参照だけを引き渡し、Overlay（実体）の上書きは慎重に行います。
             Instance.UpdateReferences(volumeSlider, brightnessSlider, brightnessOverlay);
             
             // 自分自身（新しく作られた重複分）は破棄
@@ -46,15 +47,10 @@ public class SettingsManager : MonoBehaviour
         // 最初のシーンでのみ実行される初期化
         if (Instance == this)
         {
-            float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
-            float savedBrightness = PlayerPrefs.GetFloat(BrightnessKey, 1.0f);
-
-            // リスナーの登録（重複登録を避けるため一度クリアしてから登録）
-            SetupUI(volumeSlider, brightnessSlider, savedVolume, savedBrightness);
+            RefreshUI();
         }
     }
 
-    // 保存された値を読み込んで反映する
     private void LoadAndApplySettings()
     {
         float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
@@ -64,7 +60,13 @@ public class SettingsManager : MonoBehaviour
         SetBrightness(savedBrightness);
     }
 
-    // UIの初期値設定とリスナー登録
+    private void RefreshUI()
+    {
+        float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
+        float savedBrightness = PlayerPrefs.GetFloat(BrightnessKey, 1.0f);
+        SetupUI(volumeSlider, brightnessSlider, savedVolume, savedBrightness);
+    }
+
     private void SetupUI(Slider vol, Slider bright, float vVal, float bVal)
     {
         if (vol != null)
@@ -82,31 +84,33 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    // 参照を更新し、イベントを再登録する
     public void UpdateReferences(Slider vol, Slider bright, Image overlay)
     {
         Debug.Log("SettingsManager: 参照を更新します");
 
-        // 新しい参照をセット
+        // --- 修正ポイント ---
+        // もし既に有効な Overlay（子オブジェクトなど）を持っているなら、
+        // 消えてしまう運命の「新しいシーンのOverlay」で上書きしないようにします。
+        if (brightnessOverlay == null && overlay != null)
+        {
+            brightnessOverlay = overlay;
+        }
+
+        // スライダー（UI）はシーンごとに新しくなるので必ず更新する
         volumeSlider = vol;
         brightnessSlider = bright;
-        brightnessOverlay = overlay;
 
-        // 現在の保存値を適用しつつUIを再構築
-        float currentVol = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
-        float currentBright = PlayerPrefs.GetFloat(BrightnessKey, 1.0f);
-
-        SetupUI(volumeSlider, brightnessSlider, currentVol, currentBright);
+        // 現在の保存値をUIに反映
+        RefreshUI();
         
-        // 新しいシーンのオーバーレイにも即座に現在の明るさを反映
-        SetBrightness(currentBright); 
+        // 保存されている明るさを現在の（生き残っている）Overlayに再適用
+        SetBrightness(PlayerPrefs.GetFloat(BrightnessKey, 1.0f)); 
     }
 
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
         PlayerPrefs.SetFloat(VolumeKey, volume);
-        // デバッグ用ログ
         Debug.Log($"SettingsManager: 音量を {volume} に変更しました");
     }
 
@@ -120,12 +124,17 @@ public class SettingsManager : MonoBehaviour
             Color color = brightnessOverlay.color;
             color.a = alpha;
             brightnessOverlay.color = color;
-            // デバッグ用ログ
-            Debug.Log($"SettingsManager: 明るさを {value} (Alpha: {alpha}) に変更しました");
         }
         else
         {
-            Debug.LogWarning("SettingsManager: BrightnessOverlay が割り当てられていません！");
+            // もし何らかの理由で参照が外れていたら、子要素から探し出す（保険）
+            brightnessOverlay = GetComponentInChildren<Image>();
+            
+            // それでもなければ警告
+            if (brightnessOverlay == null)
+            {
+                Debug.LogWarning("SettingsManager: BrightnessOverlay が見つかりません。");
+            }
         }
     }
 }
