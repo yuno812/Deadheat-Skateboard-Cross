@@ -35,6 +35,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialScene.unity
     guid: 1b8c53052e351724fbd6a2dd6c5a9753
+  - enabled: 1
+    path: Assets/Scenes/HitsujiScene.unity
+    guid: 44bf70a9bca642c46ae2b860fd55ca9c
+  - enabled: 1
+    path: Assets/Scenes/MemeScene.unity
+    guid: a29d4c102963492438cd721b1e91c083
+  - enabled: 1
+    path: Assets/Scenes/OkudaScene.unity
+    guid: 2a2f1908b892f984ea999e803b1d8a4f
+  - enabled: 1
+    path: Assets/Scenes/CubuScene.unity
+    guid: e30efcb6411117b448fb86966a027d7f
+  - enabled: 1
+    path: Assets/Scenes/NagisaScene.unity
+    guid: ff9e36cecabeeb042b5e51ccc11b844a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

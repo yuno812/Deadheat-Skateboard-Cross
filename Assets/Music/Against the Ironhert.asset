@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26593e197359c748aed87a0e7576ba2, type: 3}
   m_Name: Against the Ironhert
   m_EditorClassIdentifier: 
-  musicName: Against the Ironhert
+  musicName: Against the Ironheart
   volume: 1
   isDefaultBGM: 0
   introClip: {fileID: 0}

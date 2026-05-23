@@ -19,5 +19,5 @@ MonoBehaviour:
   jumpForce: 9
   rotationTorque: 3.5
   attack: 1
-  hp: 4
+  hp: 3
   ultAmount: 100

@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2055,9 +2055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b3604b86c9dbd41929b8badac822a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {x: 0, y: -1050}
+  pointA: {x: 0, y: -2000}
   pointB: {x: 0, y: 0}
-  moveTime: 0.5
+  moveTime: 0
   set: 0
 --- !u!114 &1187330027
 MonoBehaviour:
@@ -3287,6 +3287,7 @@ GameObject:
   - component: {fileID: 2115883399}
   - component: {fileID: 2115883398}
   - component: {fileID: 2115883397}
+  - component: {fileID: 2115883400}
   m_Layer: 5
   m_Name: Boder
   m_TagString: Untagged
@@ -3356,7 +3357,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2115883398}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115883400}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2115883398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3395,6 +3408,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115883395}
   m_CullTransparentMesh: 1
+--- !u!114 &2115883400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115883395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710d4e94c45ca88418310e27831e739f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: HitsujiScene
 --- !u!1 &2122921536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,7 +3456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -443, y: -333}
+  m_AnchoredPosition: {x: -443, y: -327.72}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2122921538
