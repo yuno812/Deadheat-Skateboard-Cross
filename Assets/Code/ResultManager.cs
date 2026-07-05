@@ -34,6 +34,7 @@ public class ResultManager : MonoBehaviour
             WinnerNumSprite.sprite = sprite1P;
             LoserIconSprite.sprite = PlayerSelection.Instance.Icon2;
             LoserNumSprite.sprite = sprite2P;
+            UnlockCharacterSpecificAchievement();
         }
         else if (PlayerSelection.Instance.lose1)
         {
@@ -47,6 +48,29 @@ public class ResultManager : MonoBehaviour
             WinnerNumSprite.sprite = sprite2P;
             LoserIconSprite.sprite = PlayerSelection.Instance.Icon1;
             LoserNumSprite.sprite = sprite1P;
+        }
+
+        if(PlayerSelection.Instance.playerPrefabP1.name.Contains("meme") && PlayerSelection.Instance.playerPrefabP2.name.Contains("cubu") || PlayerSelection.Instance.playerPrefabP2.name.Contains("meme") && PlayerSelection.Instance.playerPrefabP1.name.Contains("cubu"))
+        {
+            AchievementManager.Instance.UnlockAchievement("meme_vs_cubu");
+        }
+    }
+
+    private void UnlockCharacterSpecificAchievement()
+    {
+        string charName = PlayerSelection.Instance.playerPrefabP1.name;
+
+        if (PlayerSelection.Instance.playerPrefabP2.name.Contains("Tutorial"))
+        {
+            AchievementManager.Instance.UnlockAchievement("tutorial");
+        }
+        else if (charName.Contains("hitsuji"))
+        {
+            AchievementManager.Instance.UnlockAchievement("hitsuji");
+        }
+        else if (charName.Contains("okuda"))
+        {
+            AchievementManager.Instance.UnlockAchievement("okuda");
         }
     }
 }

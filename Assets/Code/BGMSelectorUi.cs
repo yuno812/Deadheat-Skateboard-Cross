@@ -81,6 +81,7 @@ public class BGMSelectorUI : MonoBehaviour
 
     private void OnMusicSelected(MusicData data)
     {
+        AchievementManager.Instance.UnlockAchievement("music");
         if (BGMManager.Instance != null)
         {
             BGMManager.Instance.ChangeBGM(data);

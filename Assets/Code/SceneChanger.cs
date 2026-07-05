@@ -12,6 +12,10 @@ public class SceneChanger : MonoBehaviour
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             Debug.Log($"{nextSceneName} へ移動します。");
+            if (nextSceneName.Contains("Hitsuji"))
+            {
+                AchievementManager.Instance.UnlockAchievement("boader");
+            }
             SceneManager.LoadScene(nextSceneName);
         }
         else

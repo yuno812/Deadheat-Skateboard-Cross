@@ -20,6 +20,7 @@ public class NagisaUltimate : UltimateAbility
 
     private IEnumerator DashRoutine(MovePlayer owner)
     {
+        AchievementManager.Instance.UnlockAchievement("nagisa");
         isDashing = true;
         
         Rigidbody2D rb = owner.GetComponent<Rigidbody2D>();
