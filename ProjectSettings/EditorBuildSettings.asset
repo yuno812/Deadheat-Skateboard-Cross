@@ -15,20 +15,26 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 2cf4850f720d78b4c8c8647f35423323
   - enabled: 1
-    path: Assets/Scenes/TConfigScene.unity
-    guid: 299ffaa53ab42e3419b20c01e168a55e
-  - enabled: 1
     path: Assets/Scenes/SelectScene.unity
     guid: 9b4f96499b97d564eb0990875df7c162
+  - enabled: 1
+    path: Assets/Scenes/TConfigScene.unity
+    guid: 299ffaa53ab42e3419b20c01e168a55e
   - enabled: 1
     path: Assets/Scenes/DemoScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/SpringScene.unity
+    path: Assets/Scenes/Stage/SpringScene.unity
     guid: 9f1d8a86b3b81f845af23b329b0344be
   - enabled: 1
-    path: Assets/Scenes/R2500Scene.unity
+    path: Assets/Scenes/Stage/R2500Scene.unity
     guid: 21ec72884de6bda489abf57b615e4e19
+  - enabled: 1
+    path: Assets/Scenes/Stage/RugbyScene.unity
+    guid: 5e4310dea6e35d44b8f14b0075d86f1f
+  - enabled: 1
+    path: Assets/Scenes/Stage/PinballScene.unity
+    guid: 560335b35f23f7347b4ab13b95b42acc
   - enabled: 1
     path: Assets/Scenes/ResultScene.unity
     guid: 9daa716daa1f78247aafe056ed46a0e8
@@ -39,19 +45,19 @@ EditorBuildSettings:
     path: Assets/Scenes/TutorialScene.unity
     guid: 1b8c53052e351724fbd6a2dd6c5a9753
   - enabled: 1
-    path: Assets/Scenes/HitsujiScene.unity
+    path: Assets/Scenes/Character/HitsujiScene.unity
     guid: 44bf70a9bca642c46ae2b860fd55ca9c
   - enabled: 1
-    path: Assets/Scenes/MemeScene.unity
+    path: Assets/Scenes/Character/MemeScene.unity
     guid: a29d4c102963492438cd721b1e91c083
   - enabled: 1
-    path: Assets/Scenes/OkudaScene.unity
+    path: Assets/Scenes/Character/OkudaScene.unity
     guid: 2a2f1908b892f984ea999e803b1d8a4f
   - enabled: 1
-    path: Assets/Scenes/CubuScene.unity
+    path: Assets/Scenes/Character/CubuScene.unity
     guid: e30efcb6411117b448fb86966a027d7f
   - enabled: 1
-    path: Assets/Scenes/NagisaScene.unity
+    path: Assets/Scenes/Character/NagisaScene.unity
     guid: ff9e36cecabeeb042b5e51ccc11b844a
   - enabled: 1
     path: Assets/Scenes/Achievement1.unity
