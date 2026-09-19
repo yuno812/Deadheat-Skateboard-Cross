@@ -119,12 +119,12 @@ TextureImporter:
       name: 84_20260829154145_0
       rect:
         serializedVersion: 2
-        x: 137
+        x: 0
         y: 0
-        width: 567
-        height: 424
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,33 +137,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: 84_20260829154145_1
-      rect:
-        serializedVersion: 2
-        x: 1216
-        y: 0
-        width: 567
-        height: 424
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b0f5e95f2af3e9430800000000000000
-      internalID: 3791537905430585099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3b93f7b58dfb2dc449345ee6e7f3bcc0
     internalID: 0
     vertices: []
     indices: 

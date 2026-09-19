@@ -1841,9 +1841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb9f0bba04f059458a5bc4650117e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSprite: {fileID: -3196267285507519304, guid: c4cedd91a07165a44a2576e945a54a23, type: 3}
-  selectedSprite: {fileID: -8366402307168206726, guid: 0765e519a0c5e944895d4d62d3cc9c0b, type: 3}
-  headerSprite: {fileID: -2960204484323142788, guid: 2cf407126a22ca449963fa04b2969c11, type: 3}
+  normalSprite: {fileID: 1853860084362109495, guid: e24eeb52b659f4b42b16bc5676cad06f, type: 3}
+  selectedSprite: {fileID: 9108627248817747755, guid: 9a1ee49613a02c7449ac7756b996014b, type: 3}
+  headerSprite: {fileID: -978341241425276220, guid: 45b735bf6fc681d468ea33f1c9548221, type: 3}
   sceneName: PinballScene
   headerObject: {fileID: 1372163786}
   slideDistance: 0.3
@@ -1892,7 +1892,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3196267285507519304, guid: c4cedd91a07165a44a2576e945a54a23, type: 3}
+  m_Sprite: {fileID: 1853860084362109495, guid: e24eeb52b659f4b42b16bc5676cad06f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3266,9 +3266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb9f0bba04f059458a5bc4650117e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSprite: {fileID: -3196267285507519304, guid: c4cedd91a07165a44a2576e945a54a23, type: 3}
-  selectedSprite: {fileID: -8366402307168206726, guid: 0765e519a0c5e944895d4d62d3cc9c0b, type: 3}
-  headerSprite: {fileID: 4772919490950948961, guid: 4d29d1b33acef304a8249303577b00af, type: 3}
+  normalSprite: {fileID: 3779700575609399332, guid: e9f37782c305eab4da0af11387f5d152, type: 3}
+  selectedSprite: {fileID: 934599581222865951, guid: 563c8f02c32c03142be343e2458af2ee, type: 3}
+  headerSprite: {fileID: 3392354188176075178, guid: b563244daf201d147a69ae714ebf82ed, type: 3}
   sceneName: RugbyScene
   headerObject: {fileID: 1372163786}
   slideDistance: 0.3
@@ -3317,7 +3317,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3196267285507519304, guid: c4cedd91a07165a44a2576e945a54a23, type: 3}
+  m_Sprite: {fileID: 3779700575609399332, guid: e9f37782c305eab4da0af11387f5d152, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

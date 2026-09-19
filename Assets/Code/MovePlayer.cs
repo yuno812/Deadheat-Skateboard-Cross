@@ -258,7 +258,9 @@ public class MovePlayer : MonoBehaviour
     {
         if (Mathf.Abs(transform.position.x) >= Mathf.Abs(outofArea.x) || Mathf.Abs(transform.position.y) >= Mathf.Abs(outofArea.y))
         {
+            HP -= 1f;
             transform.position = spawnArea;
+            rb.linearVelocity = Vector2.zero;
         }
     }
 }
