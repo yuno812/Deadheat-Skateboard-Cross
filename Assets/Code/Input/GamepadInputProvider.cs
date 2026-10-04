@@ -23,11 +23,11 @@ public class GamepadInputProvider : IInputProvider
 
         state.move = new Vector2(Mathf.Round(stick.x), Mathf.Round(stick.y));
 
-        state.moveX = pad.leftStick.ReadValue().y;
+        state.moveX = pad.rightTrigger.ReadValue() - pad.leftTrigger.ReadValue();
 
-        state.rotate = -pad.rightStick.ReadValue().x;
+        state.rotate = -(pad.leftStick.ReadValue().x + pad.rightStick.ReadValue().x);
 
-        state.jumpPressed = pad.rightTrigger.isPressed || pad.leftTrigger.isPressed;
+        state.jumpPressed = pad.buttonEast.isPressed;
 
         state.confirm = pad.buttonSouth.wasPressedThisFrame;
 
@@ -35,7 +35,7 @@ public class GamepadInputProvider : IInputProvider
 
         state.skillPressed = pad.rightShoulder.wasPressedThisFrame;
 
-        state.ultimatePressed = pad.leftShoulder.wasPressedThisFrame;
+        state.ultimatePressed = pad.buttonSouth.wasPressedThisFrame;
         
         return state;
     }

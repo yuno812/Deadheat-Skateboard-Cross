@@ -46,6 +46,8 @@ public class MovePlayer : MonoBehaviour
     public Vector3 outofArea;
     private bool ultInputBuffered = false; // 入力を一時保存する変数
     private UltimateAbility ultimateSystem;
+    [SerializeField] private float moveDebuffMultiplier = 1f; // デバフ用の倍率
+    [SerializeField] private float jumpDebuffMultiplier = 1f; // デバフ用の倍率
 
     void Awake()
     {
@@ -120,6 +122,25 @@ public class MovePlayer : MonoBehaviour
         {
             ultInputBuffered = true;
         }
+    }
+
+    // 移動速度デバフ
+    public void SetMoveDebuff(float multiplier)
+    {
+        moveDebuffMultiplier = multiplier;
+    }
+
+    // ジャンプ力デバフ
+    public void SetJumpDebuff(float multiplier)
+    {
+        jumpDebuffMultiplier = multiplier;
+    }
+
+    // デバフ解除
+    public void ClearDebuffs()
+    {
+        moveDebuffMultiplier = 1f;
+        jumpDebuffMultiplier = 1f;
     }
 
     // ★新規追加：ウルトゲージ蓄積ロジック
@@ -199,7 +220,7 @@ public class MovePlayer : MonoBehaviour
                 velocity.x = Mathf.MoveTowards(velocity.x, 0f, deceleration * Time.fixedDeltaTime);
         }
 
-        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
+        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed * moveDebuffMultiplier, maxSpeed * moveDebuffMultiplier);
         rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
 
         if (input.rotate != 0f)
@@ -227,7 +248,7 @@ public class MovePlayer : MonoBehaviour
             spriteRenderer.sprite = normalSprite;
 
             if (groundWheelCount > 0)
-                rb.linearVelocity += (Vector2)(transform.up * jumpForce * areaJumpMultiplier);
+                rb.linearVelocity += (Vector2)(transform.up * jumpForce * areaJumpMultiplier * jumpDebuffMultiplier);
 
             Normal.SetActive(true);
             Charge.SetActive(false);
