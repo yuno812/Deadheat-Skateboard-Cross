@@ -34,8 +34,10 @@ public class MovePlayer : MonoBehaviour
     private float areaJumpMultiplier = 1f;
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite chargingSprite;
+    [SerializeField] private Sprite ultSprite;
     [SerializeField] private GameObject Normal;
     [SerializeField] private GameObject Charge;
+    [SerializeField] private GameObject Ult;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -46,6 +48,9 @@ public class MovePlayer : MonoBehaviour
     public Vector3 outofArea;
     private bool ultInputBuffered = false; // 入力を一時保存する変数
     private UltimateAbility ultimateSystem;
+    private bool chargebool = false;
+    public bool ultimatebool = false;
+    private bool normalbool = true;
     [SerializeField] private float moveDebuffMultiplier = 1f; // デバフ用の倍率
     [SerializeField] private float jumpDebuffMultiplier = 1f; // デバフ用の倍率
 
@@ -104,6 +109,28 @@ public class MovePlayer : MonoBehaviour
 
         InputState input = playerNumber == 1 ? InputManager.Instance.inputP1.GetInput() : InputManager.Instance.inputP2.GetInput();
         P1 = playerNumber == 1 ? true : false;
+
+        if(ultimatebool)
+        {
+            Normal.SetActive(false);
+            Charge.SetActive(false);
+            Ult.SetActive(true);
+            spriteRenderer.sprite = ultSprite;
+        }
+        else if(chargebool)
+        {
+            Normal.SetActive(false);
+            Charge.SetActive(true);
+            Ult.SetActive(false);
+            spriteRenderer.sprite = chargingSprite;
+        }
+        else if(normalbool)
+        {
+            Normal.SetActive(true);
+            Charge.SetActive(false);
+            Ult.SetActive(false);
+            spriteRenderer.sprite = normalSprite;
+        }
 
         if (HP > 0)
         {
@@ -237,21 +264,17 @@ public class MovePlayer : MonoBehaviour
         if (input.jumpPressed && !isChargingJump)
         {
             isChargingJump = true;
-            spriteRenderer.sprite = chargingSprite;
-            Normal.SetActive(false);
-            Charge.SetActive(true);
+            chargebool = true;
         }
 
         if (!input.jumpPressed && isChargingJump)
         {
             isChargingJump = false;
-            spriteRenderer.sprite = normalSprite;
 
             if (groundWheelCount > 0)
                 rb.linearVelocity += (Vector2)(transform.up * jumpForce * areaJumpMultiplier * jumpDebuffMultiplier);
 
-            Normal.SetActive(true);
-            Charge.SetActive(false);
+            chargebool = false;
         }
     }
 
