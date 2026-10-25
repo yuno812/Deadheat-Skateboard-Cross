@@ -72,10 +72,13 @@ public class DebuffArea : MonoBehaviour
         if (debuffType == DebuffType.Move)
         {
             player.SetMoveDebuff(value);
+            player.SetRotateDebuff(value);
         }
         else
         {
             player.SetJumpDebuff(value);
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            rb.gravityScale = rb.gravityScale / value;
         }
     }
 
@@ -84,10 +87,13 @@ public class DebuffArea : MonoBehaviour
         if (debuffType == DebuffType.Move)
         {
             player.SetMoveDebuff(1f);
+            player.SetRotateDebuff(1f);
         }
         else
         {
             player.SetJumpDebuff(1f);
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            rb.gravityScale = 1f;
         }
     }
 
@@ -98,6 +104,8 @@ public class DebuffArea : MonoBehaviour
         {
             if (player != null)
                 RemoveEffect(player);
+                Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+                rb.gravityScale = 1f;
         }
 
         playersInside.Clear();

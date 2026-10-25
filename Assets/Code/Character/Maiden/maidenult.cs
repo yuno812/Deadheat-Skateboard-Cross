@@ -64,9 +64,7 @@ public class maidenult : UltimateAbility
         float width = height * targetCamera.aspect;
 
         // 発動者と反対側の画面半分の中心
-        float centerX = targetCamera.transform.position.x
-            + (ownerIsLeft ? width / 4f : -width / 4f);
-
+        float centerX = targetCamera.transform.position.x;
         float centerY = targetCamera.transform.position.y;
 
         GameObject area = Instantiate(
@@ -84,9 +82,7 @@ public class maidenult : UltimateAbility
         }
 
         // エリアを画面半分の大きさにする
-        area.transform.localScale =
-            new Vector3(width / 2f, height, 1f);
-
+        area.transform.localScale = new Vector3(width, height, 1f);
         // 効果時間中はゲージを回復させない
         yield return new WaitForSeconds(duration);
 

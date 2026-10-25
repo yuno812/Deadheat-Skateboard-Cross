@@ -28,6 +28,7 @@ public class MovePlayer : MonoBehaviour
 
     [Header("rotation")]
     [SerializeField] private float rotationTorque;
+    private float maxRotationSpeed = 900f;
 
     [Header("jump")]
     [SerializeField] private float jumpForce;
@@ -52,6 +53,7 @@ public class MovePlayer : MonoBehaviour
     public bool ultimatebool = false;
     private bool normalbool = true;
     [SerializeField] private float moveDebuffMultiplier = 1f; // デバフ用の倍率
+    [SerializeField] private float rotateDebuffMultiplier = 1f; // デバフ用の倍率
     [SerializeField] private float jumpDebuffMultiplier = 1f; // デバフ用の倍率
 
     void Awake()
@@ -157,6 +159,12 @@ public class MovePlayer : MonoBehaviour
         moveDebuffMultiplier = multiplier;
     }
 
+    // 回転速度デバフ
+    public void SetRotateDebuff(float multiplier)
+    {
+        rotateDebuffMultiplier = multiplier;
+    }
+
     // ジャンプ力デバフ
     public void SetJumpDebuff(float multiplier)
     {
@@ -167,10 +175,11 @@ public class MovePlayer : MonoBehaviour
     public void ClearDebuffs()
     {
         moveDebuffMultiplier = 1f;
+        rotateDebuffMultiplier = 1f;
         jumpDebuffMultiplier = 1f;
     }
 
-    // ★新規追加：ウルトゲージ蓄積ロジック
+    // ウルトゲージ蓄積ロジック
     void AccumulateUltGauge()
     {
         if (opponent == null) return;
@@ -202,7 +211,7 @@ public class MovePlayer : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    // ★新規追加：必殺技・スキルの入力処理
+    // 必殺技・スキルの入力処理
     void HandleSpecialActions(InputState input)
     {
         // ウルトボタン（：キー や パッド△）
@@ -251,7 +260,9 @@ public class MovePlayer : MonoBehaviour
         rb.linearVelocity = new Vector2(velocity.x, rb.linearVelocity.y);
 
         if (input.rotate != 0f)
-            rb.AddTorque(input.rotate * rotationTorque, ForceMode2D.Force);
+            rb.AddTorque(input.rotate * rotationTorque * rotateDebuffMultiplier / Mathf.Abs(input.rotate), ForceMode2D.Force);
+        
+        rb.angularVelocity = Mathf.Clamp(rb.angularVelocity, -maxRotationSpeed * rotateDebuffMultiplier , maxRotationSpeed * rotateDebuffMultiplier);
     }
 
     public void SetJumpMultiplier(float multiplier)

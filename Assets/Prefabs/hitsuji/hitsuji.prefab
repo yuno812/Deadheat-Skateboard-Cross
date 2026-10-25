@@ -1987,6 +1987,7 @@ GameObject:
   - component: {fileID: 4247399074461280813}
   - component: {fileID: 7525611392315270647}
   - component: {fileID: 5768399405818589310}
+  - component: {fileID: 2566299928896444642}
   m_Layer: 0
   m_Name: hitsuji
   m_TagString: Player
@@ -2128,6 +2129,7 @@ MonoBehaviour:
   outofArea: {x: 0, y: 0, z: 0}
   ultimatebool: 0
   moveDebuffMultiplier: 1
+  rotateDebuffMultiplier: 1
   jumpDebuffMultiplier: 1
 --- !u!114 &5768399405818589310
 MonoBehaviour:
@@ -2141,6 +2143,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5098cd1268e9d4a97bdb903f7b7f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2566299928896444642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022803904816585721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad2f225fb6165149a879615c38d90f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7525611392315270647}
 --- !u!1 &8586258242094327035
 GameObject:
   m_ObjectHideFlags: 0

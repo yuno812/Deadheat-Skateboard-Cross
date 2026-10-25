@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: zero
   m_EditorClassIdentifier: 
   CharacterName: zero
-  weight: 0.6
+  weight: 0.55
   maxSpeed: 5
   moveForce: 10
   jumpForce: 9
   rotationTorque: 3
   attack: 1
   hp: 3
-  ultAmount: 150
+  ultAmount: 170

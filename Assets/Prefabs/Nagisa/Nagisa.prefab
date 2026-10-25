@@ -1819,6 +1819,7 @@ MonoBehaviour:
   outofArea: {x: 0, y: 0, z: 0}
   ultimatebool: 0
   moveDebuffMultiplier: 1
+  rotateDebuffMultiplier: 1
   jumpDebuffMultiplier: 1
 --- !u!114 &6030139770604879912
 MonoBehaviour:
