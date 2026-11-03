@@ -1,0 +1,3 @@
+# つよい（仮の値。E6で決める）
+reaction_delay_steps = 2
+noise = 0.0
