@@ -1,0 +1,31 @@
+{
+  "id": "S7-hitsuji-a-90-rotR",
+  "stage": "R2500",
+  "p1": "hitsuji",
+  "p2": "hitsuji",
+  "steps": 300,
+  "init": [
+    {
+      "slot": 1,
+      "angleDeg": -90.0
+    },
+    {
+      "slot": 2,
+      "angleDeg": -90.0
+    }
+  ],
+  "inputs": [
+    {
+      "slot": 1,
+      "from": 50,
+      "to": 300,
+      "rotate": -1.0
+    },
+    {
+      "slot": 2,
+      "from": 50,
+      "to": 300,
+      "rotate": -1.0
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "S8-hitsuji",
+  "stage": "R2500",
+  "p1": "hitsuji",
+  "p2": "hitsuji",
+  "steps": 250,
+  "inputs": [
+    {
+      "slot": 1,
+      "from": 50,
+      "to": 250,
+      "moveX": 1.0
+    },
+    {
+      "slot": 2,
+      "from": 50,
+      "to": 250,
+      "moveX": 1.0
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "S2-okuda",
+  "stage": "R2500",
+  "p1": "okuda",
+  "p2": "okuda",
+  "steps": 200,
+  "inputs": [
+    {
+      "slot": 1,
+      "from": 50,
+      "to": 200,
+      "moveX": -1.0
+    },
+    {
+      "slot": 2,
+      "from": 50,
+      "to": 200,
+      "moveX": -1.0
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "S3-hitsuji",
+  "stage": "R2500",
+  "p1": "hitsuji",
+  "p2": "hitsuji",
+  "steps": 200,
+  "inputs": [
+    {
+      "slot": 1,
+      "from": 50,
+      "to": 60,
+      "jump": true
+    },
+    {
+      "slot": 2,
+      "from": 50,
+      "to": 60,
+      "jump": true
+    }
+  ]
+}

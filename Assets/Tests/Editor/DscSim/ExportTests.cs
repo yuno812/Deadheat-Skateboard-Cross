@@ -24,7 +24,6 @@ namespace DscSim
     public class ExportTests
     {
         private const int Schema = 1;
-        private const string SelectScenePath = "Assets/Scenes/SelectScene.unity";
         private static readonly string[] Stages = { "R2500" };
         private static readonly string[] Poses = { "Normal", "Charge", "Ult" };
 
@@ -43,20 +42,20 @@ namespace DscSim
             // シーン内のUIなどがエラーを出しても、書き出しは続ける
             LogAssert.ignoreFailingMessages = true;
 
-            string scenePath = $"Assets/Scenes/Stage/{stage}Scene.unity";
-            string outDir = Path.Combine(DataDir(), "export", stage);
+            string scenePath = SimProject.StageScenePath(stage);
+            string outDir = Path.Combine(SimProject.DataDir(), "export", stage);
             Directory.CreateDirectory(outDir);
 
-            List<Character> characters = SelectableCharacters();
-            Assert.IsNotEmpty(characters, $"{SelectScenePath} からキャラが見つかりません");
-            EnsureManagers();
+            List<SimProject.Character> characters = SimProject.SelectableCharacters();
+            Assert.IsNotEmpty(characters, $"{SimProject.SelectScenePath} からキャラが見つかりません");
+            SimProject.EnsureManagers();
 
             float timeScale = Time.timeScale;
             Time.timeScale = 0f;
             try
             {
                 bool stageWritten = false;
-                foreach (Character character in characters)
+                foreach (SimProject.Character character in characters)
                 {
                     // 同じキャラをP1とP2に置き、反転なし・反転ありの両方を1回で取る
                     PlayerSelection.Instance.playerPrefabP1 = character.Prefab;
@@ -87,41 +86,6 @@ namespace DscSim
             }
 
             yield return new ExitPlayMode();
-        }
-
-        private sealed class Character
-        {
-            public string Name;
-            public string PrefabPath;
-            public GameObject Prefab;
-        }
-
-        // キャラ選択画面に並んでいるキャラ（MovePlayer を持つPrefab）。名前はPrefabのファイル名の小文字
-        private static List<Character> SelectableCharacters()
-        {
-            return AssetDatabase.GetDependencies(SelectScenePath, false)
-                .Where(p => p.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase))
-                .Select(p => new Character
-                {
-                    Name = Path.GetFileNameWithoutExtension(p).ToLowerInvariant(),
-                    PrefabPath = p,
-                    Prefab = AssetDatabase.LoadAssetAtPath<GameObject>(p),
-                })
-                .Where(c => c.Prefab != null && c.Prefab.GetComponent<MovePlayer>() != null)
-                .OrderBy(c => c.Name, StringComparer.Ordinal)
-                .ToList();
-        }
-
-        // 通常はタイトル画面などで作られる常駐オブジェクトを用意する
-        private static void EnsureManagers()
-        {
-            if (InputManager.Instance == null)
-                new GameObject("InputManager").AddComponent<InputManager>();
-            InputManager.Instance.inputP1 = new NullInputProvider();
-            InputManager.Instance.inputP2 = new NullInputProvider();
-
-            if (PlayerSelection.Instance == null)
-                new GameObject("PlayerSelection").AddComponent<PlayerSelection>();
         }
 
         // ---- ステージ ----
@@ -200,7 +164,7 @@ namespace DscSim
 
         // ---- キャラ ----
 
-        private static string CharacterJson(string stage, string scenePath, Character character, MovePlayer[] players)
+        private static string CharacterJson(string stage, string scenePath, SimProject.Character character, MovePlayer[] players)
         {
             var w = new JsonWriter();
             w.BeginObject()
@@ -465,7 +429,7 @@ namespace DscSim
             {
                 w.BeginObject()
                     .Prop("path", path)
-                    .Prop("sha256", Sha256WithoutCr(Path.Combine(ProjectRoot(), path)))
+                    .Prop("sha256", Sha256WithoutCr(Path.Combine(SimProject.ProjectRoot(), path)))
                     .EndObject();
             }
             w.EndArray();
@@ -476,16 +440,6 @@ namespace DscSim
             byte[] bytes = File.ReadAllBytes(file).Where(b => b != (byte)'\r').ToArray();
             using (SHA256 sha = SHA256.Create())
                 return string.Concat(sha.ComputeHash(bytes).Select(b => b.ToString("x2")));
-        }
-
-        // ---- 出力先 ----
-
-        private static string ProjectRoot() => Directory.GetParent(Application.dataPath).FullName;
-
-        private static string DataDir()
-        {
-            string env = Environment.GetEnvironmentVariable("DSC_DATA");
-            return string.IsNullOrEmpty(env) ? Path.Combine(ProjectRoot(), "rust", "data") : env;
         }
 
         private static void WriteFile(string path, string json)

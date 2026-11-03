@@ -102,6 +102,11 @@ dependencies = [
 [[package]]
 name = "dsc-scenario"
 version = "0.1.0"
+dependencies = [
+ "dsc-core",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "equivalent"
