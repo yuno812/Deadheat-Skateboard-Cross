@@ -48,38 +48,53 @@ pub fn run(data_dir: &Path, opts: &Options) -> Result<(), Box<dyn std::error::Er
     let out = opts.engine.trace_dir(data_dir);
     std::fs::create_dir_all(&out)?;
 
-    // シナリオごとに独立しているので、全コアで分け合う（物理ワールドはスレッドの中で作る）
+    let errors: Vec<String> = parallel_map(&scenarios, |s| {
+        let (p1, p2) = (&characters[&s.p1], &characters[&s.p2]);
+        play_with(opts.engine, &export, p1, p2, s)
+            .map_err(|e| e.to_string())
+            .and_then(|rows| std::fs::write(out.join(format!("{}.csv", s.id)), trace::write(&rows)).map_err(|e| e.to_string()))
+            .err()
+            .map(|e| format!("{}: {e}", s.id))
+    })
+    .into_iter()
+    .flatten()
+    .collect();
+    if !errors.is_empty() {
+        return Err(errors.join("\n").into());
+    }
+    println!("ran {} scenarios with {} to {}", scenarios.len(), opts.engine.name(), out.display());
+    Ok(())
+}
+
+/// 項目ごとに独立した処理を全コアで分け合う（物理ワールドは各スレッドの中で作る）。結果は items と同じ順
+pub fn parallel_map<T: Sync, R: Send>(items: &[T], f: impl Fn(&T) -> R + Sync) -> Vec<R> {
     let next = AtomicUsize::new(0);
-    let threads = std::thread::available_parallelism().map_or(1, |n| n.get()).min(scenarios.len().max(1));
-    let errors: Vec<String> = std::thread::scope(|scope| {
+    let threads = std::thread::available_parallelism().map_or(1, |n| n.get()).min(items.len().max(1));
+    let mut indexed: Vec<(usize, R)> = std::thread::scope(|scope| {
         let workers: Vec<_> = (0..threads)
             .map(|_| {
                 scope.spawn(|| {
-                    let mut errors = Vec::new();
-                    while let Some(s) = scenarios.get(next.fetch_add(1, Ordering::Relaxed)) {
-                        let (p1, p2) = (&characters[&s.p1], &characters[&s.p2]);
-                        let rows = match opts.engine {
-                            Engine::Rs => play::<RsPhysics>(&export, p1, p2, s),
-                            Engine::Cpp => play::<CppPhysics>(&export, p1, p2, s),
-                        };
-                        let written = rows
-                            .map_err(|e| e.to_string())
-                            .and_then(|rows| std::fs::write(out.join(format!("{}.csv", s.id)), trace::write(&rows)).map_err(|e| e.to_string()));
-                        if let Err(e) = written {
-                            errors.push(format!("{}: {e}", s.id));
-                        }
+                    let mut out = Vec::new();
+                    let mut i = next.fetch_add(1, Ordering::Relaxed);
+                    while let Some(item) = items.get(i) {
+                        out.push((i, f(item)));
+                        i = next.fetch_add(1, Ordering::Relaxed);
                     }
-                    errors
+                    out
                 })
             })
             .collect();
         workers.into_iter().flat_map(|w| w.join().expect("worker panicked")).collect()
     });
-    if !errors.is_empty() {
-        return Err(errors.join("\n").into());
+    indexed.sort_by_key(|(i, _)| *i);
+    indexed.into_iter().map(|(_, r)| r).collect()
+}
+
+pub fn play_with(engine: Engine, stage: &StageExport, p1: &CharacterExport, p2: &CharacterExport, s: &Scenario) -> Result<Vec<TraceRow>, SimError> {
+    match engine {
+        Engine::Rs => play::<RsPhysics>(stage, p1, p2, s),
+        Engine::Cpp => play::<CppPhysics>(stage, p1, p2, s),
     }
-    println!("ran {} scenarios with {} on {threads} threads to {}", scenarios.len(), opts.engine.name(), out.display());
-    Ok(())
 }
 
 pub fn load_scenarios(data_dir: &Path, opts: &Options) -> Result<Vec<Scenario>, Box<dyn std::error::Error>> {

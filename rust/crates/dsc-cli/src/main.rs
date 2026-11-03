@@ -4,6 +4,7 @@ mod bench;
 mod check;
 mod compare;
 mod distribution;
+mod exp;
 mod generate;
 mod paths;
 mod run;
@@ -12,7 +13,7 @@ use std::process::ExitCode;
 
 use regex::Regex;
 
-const USAGE: &str = "usage: dsc <check|gen|run|compare|sweep|bench> ...
+const USAGE: &str = "usage: dsc <check|gen|run|compare|bench|exp|sweep> ...
 
   check [STAGE...]                     書き出しデータと移植が、Unityプロジェクトの今の状態に追いついているか確かめる
   gen verify [STAGE]                   照合用シナリオ S1〜S11 を data/scenarios/<STAGE>/ に書き出す
@@ -20,6 +21,7 @@ const USAGE: &str = "usage: dsc <check|gen|run|compare|sweep|bench> ...
   run [OPTIONS]        シナリオを再生して data/traces/sim-<ENGINE>/ にトレースを書く
   compare [OPTIONS]    Unity とシミュレーターのトレースを照合する（data/results/compare-<STAGE>-<ENGINE>.md）
   bench [OPTIONS]      シナリオの再生速度を測る
+  exp e1 [OPTIONS]     E1：回転だけで起き上がれるか（data/results/e1-<STAGE>.md と .csv）
 
   OPTIONS: [STAGE] [--filter REGEX] [--engine rs|cpp]
     STAGE の既定は R2500。REGEX はシナリオ id の正規表現。ENGINE の既定は cpp（rs は照合の突き合わせ用）";
@@ -43,6 +45,7 @@ fn main() -> ExitCode {
             (Ok(opts), _) => bench::bench(&data_dir, &opts).map(|()| true),
             (Err(e), _) => Err(e),
         },
+        ["exp", "e1", rest @ ..] => Options::parse(rest).and_then(|opts| exp::e1(&data_dir, &opts)),
         ["sweep", ..] => Err("dsc sweep: not implemented yet".into()),
         _ => {
             eprintln!("{USAGE}");
