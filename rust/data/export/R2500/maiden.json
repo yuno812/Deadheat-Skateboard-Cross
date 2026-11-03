@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "unity": "6000.1.14f1",
   "stage": "R2500",
   "character": "maiden",
@@ -52,6 +52,7 @@
       },
       "shapes": [
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -77,6 +78,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -105,6 +107,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -133,6 +136,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -159,6 +163,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -185,6 +190,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -210,6 +216,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -238,6 +245,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -266,6 +274,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -291,6 +300,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -317,6 +327,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -342,6 +353,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -368,6 +380,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -398,6 +411,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -426,6 +440,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -453,6 +468,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -481,6 +497,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -506,6 +523,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -533,6 +551,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -558,6 +577,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -584,6 +604,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -614,6 +635,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -642,6 +664,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -667,6 +690,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -693,6 +717,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -719,6 +744,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -744,6 +770,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -771,6 +798,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -801,6 +829,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -828,6 +857,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -855,6 +885,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -885,6 +916,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -914,6 +946,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -940,6 +973,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -969,6 +1003,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -998,6 +1033,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1025,6 +1061,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1051,6 +1088,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1077,6 +1115,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1103,6 +1142,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1128,6 +1168,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1154,6 +1195,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1182,6 +1224,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1208,6 +1251,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1235,6 +1279,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1265,6 +1310,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1290,6 +1336,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1316,6 +1363,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1342,6 +1390,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1369,6 +1418,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1395,6 +1445,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1422,6 +1473,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1447,6 +1499,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1473,6 +1526,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1500,6 +1554,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1525,6 +1580,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1552,6 +1608,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1580,6 +1637,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1607,6 +1665,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1633,6 +1692,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1659,6 +1719,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1684,6 +1745,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1709,6 +1771,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1734,6 +1797,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1764,6 +1828,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1792,6 +1857,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1818,6 +1884,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1847,6 +1914,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1873,6 +1941,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1899,6 +1968,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1925,6 +1995,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -1951,6 +2022,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 2,
           "object": "Normal/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Normal",
@@ -1974,6 +2046,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 3,
           "object": "Normal/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Normal",
@@ -1997,6 +2070,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2022,6 +2096,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2051,6 +2126,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2077,6 +2153,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2107,6 +2184,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2136,6 +2214,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2164,6 +2243,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2193,6 +2273,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2218,6 +2299,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2244,6 +2326,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2270,6 +2353,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2295,6 +2379,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2320,6 +2405,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2345,6 +2431,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2371,6 +2458,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2397,6 +2485,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2422,6 +2511,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2452,6 +2542,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2479,6 +2570,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2505,6 +2597,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2530,6 +2623,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2555,6 +2649,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2585,6 +2680,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2612,6 +2708,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2638,6 +2735,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2663,6 +2761,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2688,6 +2787,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2718,6 +2818,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2746,6 +2847,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2771,6 +2873,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2799,6 +2902,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2829,6 +2933,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2859,6 +2964,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2887,6 +2993,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2914,6 +3021,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2940,6 +3048,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2966,6 +3075,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -2991,6 +3101,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3016,6 +3127,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3041,6 +3153,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3071,6 +3184,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3099,6 +3213,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3125,6 +3240,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3154,6 +3270,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3180,6 +3297,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3206,6 +3324,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3232,6 +3351,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -3258,6 +3378,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 6,
           "object": "Charge/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Charge",
@@ -3281,6 +3402,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 7,
           "object": "Charge/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Charge",
@@ -3304,6 +3426,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3329,6 +3452,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3357,6 +3481,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3385,6 +3510,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3411,6 +3537,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3437,6 +3564,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3462,6 +3590,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3490,6 +3619,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3518,6 +3648,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3543,6 +3674,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3569,6 +3701,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3594,6 +3727,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3620,6 +3754,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3650,6 +3785,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3678,6 +3814,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3705,6 +3842,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3733,6 +3871,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3758,6 +3897,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3785,6 +3925,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3810,6 +3951,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3836,6 +3978,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3866,6 +4009,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3894,6 +4038,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3919,6 +4064,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3945,6 +4091,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3971,6 +4118,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -3996,6 +4144,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4023,6 +4172,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4053,6 +4203,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4080,6 +4231,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4107,6 +4259,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4137,6 +4290,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4166,6 +4320,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4192,6 +4347,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4221,6 +4377,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4250,6 +4407,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4277,6 +4435,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4303,6 +4462,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4329,6 +4489,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4355,6 +4516,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4380,6 +4542,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4406,6 +4569,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4434,6 +4598,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4460,6 +4625,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4487,6 +4653,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4517,6 +4684,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4542,6 +4710,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4568,6 +4737,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4594,6 +4764,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4621,6 +4792,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4647,6 +4819,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4674,6 +4847,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4699,6 +4873,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4725,6 +4900,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4752,6 +4928,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4777,6 +4954,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4804,6 +4982,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4832,6 +5011,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4859,6 +5039,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4885,6 +5066,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4911,6 +5093,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4936,6 +5119,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4961,6 +5145,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -4986,6 +5171,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5016,6 +5202,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5044,6 +5231,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5070,6 +5258,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5099,6 +5288,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5125,6 +5315,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5151,6 +5342,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5177,6 +5369,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -5203,6 +5396,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 10,
           "object": "Ult/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Ult",
@@ -5226,6 +5420,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 11,
           "object": "Ult/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Ult",
@@ -5285,6 +5480,7 @@
       },
       "shapes": [
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5311,6 +5507,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5338,6 +5535,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5366,6 +5564,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5396,6 +5595,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5424,6 +5624,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5450,6 +5651,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5479,6 +5681,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5506,6 +5709,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5533,6 +5737,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5562,6 +5767,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5588,6 +5794,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5613,6 +5820,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5639,6 +5847,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5666,6 +5875,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5692,6 +5902,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5721,6 +5932,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5748,6 +5960,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5773,6 +5986,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5801,6 +6015,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5829,6 +6044,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5854,6 +6070,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5880,6 +6097,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5907,6 +6125,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5934,6 +6153,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5959,6 +6179,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -5985,6 +6206,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6015,6 +6237,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6040,6 +6263,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6070,6 +6294,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6096,6 +6321,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6121,6 +6347,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6148,6 +6375,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6176,6 +6404,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6201,6 +6430,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6226,6 +6456,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6251,6 +6482,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6276,6 +6508,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6302,6 +6535,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6330,6 +6564,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6359,6 +6594,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6385,6 +6621,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6415,6 +6652,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6441,6 +6679,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6466,6 +6705,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6493,6 +6733,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6519,6 +6760,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6548,6 +6790,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6574,6 +6817,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6600,6 +6844,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6626,6 +6871,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6653,6 +6899,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6678,6 +6925,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6708,6 +6956,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6733,6 +6982,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 0,
           "object": "Normal/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6761,6 +7011,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6789,6 +7040,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6816,6 +7068,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6843,6 +7096,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6868,6 +7122,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6895,6 +7150,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6923,6 +7179,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6953,6 +7210,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -6979,6 +7237,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -7004,6 +7263,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -7030,6 +7290,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -7058,6 +7319,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -7083,6 +7345,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -7108,6 +7371,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 1,
           "object": "Normal/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Normal",
@@ -7136,6 +7400,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 2,
           "object": "Normal/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Normal",
@@ -7159,6 +7424,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 3,
           "object": "Normal/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Normal",
@@ -7182,6 +7448,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7209,6 +7476,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7238,6 +7506,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7267,6 +7536,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7292,6 +7562,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7317,6 +7588,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7343,6 +7615,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7368,6 +7641,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7398,6 +7672,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7423,6 +7698,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7448,6 +7724,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7474,6 +7751,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7501,6 +7779,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7528,6 +7807,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7556,6 +7836,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7584,6 +7865,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7609,6 +7891,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7635,6 +7918,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7663,6 +7947,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7689,6 +7974,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7718,6 +8004,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7743,6 +8030,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7772,6 +8060,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7798,6 +8087,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7828,6 +8118,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7855,6 +8146,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7883,6 +8175,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7913,6 +8206,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7938,6 +8232,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7964,6 +8259,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 4,
           "object": "Charge/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -7994,6 +8290,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8022,6 +8319,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8049,6 +8347,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8076,6 +8375,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8101,6 +8401,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8128,6 +8429,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8156,6 +8458,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8186,6 +8489,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8212,6 +8516,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8237,6 +8542,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8263,6 +8569,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8291,6 +8598,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8316,6 +8624,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8341,6 +8650,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 5,
           "object": "Charge/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Charge",
@@ -8369,6 +8679,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 6,
           "object": "Charge/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Charge",
@@ -8392,6 +8703,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 7,
           "object": "Charge/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Charge",
@@ -8415,6 +8727,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8441,6 +8754,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8468,6 +8782,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8496,6 +8811,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8526,6 +8842,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8554,6 +8871,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8580,6 +8898,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8609,6 +8928,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8636,6 +8956,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8663,6 +8984,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8692,6 +9014,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8718,6 +9041,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8743,6 +9067,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8769,6 +9094,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8796,6 +9122,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8822,6 +9149,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8851,6 +9179,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8878,6 +9207,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8903,6 +9233,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8931,6 +9262,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8959,6 +9291,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -8984,6 +9317,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9010,6 +9344,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9037,6 +9372,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9064,6 +9400,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9089,6 +9426,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9115,6 +9453,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9145,6 +9484,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9170,6 +9510,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9200,6 +9541,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9226,6 +9568,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9251,6 +9594,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9278,6 +9622,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9306,6 +9651,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9331,6 +9677,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9356,6 +9703,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9381,6 +9729,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9406,6 +9755,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9432,6 +9782,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9460,6 +9811,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9489,6 +9841,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9515,6 +9868,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9545,6 +9899,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9571,6 +9926,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9596,6 +9952,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9623,6 +9980,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9649,6 +10007,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9678,6 +10037,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9704,6 +10064,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9730,6 +10091,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9756,6 +10118,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9783,6 +10146,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9808,6 +10172,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9838,6 +10203,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9863,6 +10229,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 8,
           "object": "Ult/mainCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9891,6 +10258,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9919,6 +10287,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9946,6 +10315,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9973,6 +10343,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -9998,6 +10369,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10025,6 +10397,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10053,6 +10426,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10083,6 +10457,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10109,6 +10484,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10134,6 +10510,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10160,6 +10537,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10188,6 +10566,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10213,6 +10592,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10238,6 +10618,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 9,
           "object": "Ult/attackCollision",
           "collider": "PolygonCollider2D",
           "pose": "Ult",
@@ -10266,6 +10647,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 10,
           "object": "Ult/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Ult",
@@ -10289,6 +10671,7 @@
           "excludeLayers": 0
         },
         {
+          "colliderIndex": 11,
           "object": "Ult/tireCollision",
           "collider": "CircleCollider2D",
           "pose": "Ult",

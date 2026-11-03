@@ -23,7 +23,7 @@ namespace DscSim
     // キャラの値は、GameManager がかける playerScale や、MovePlayer.Awake が上書きする質量を含むため。
     public class ExportTests
     {
-        private const int Schema = 1;
+        private const int Schema = 2;
         private static readonly string[] Stages = { "R2500" };
         private static readonly string[] Poses = { "Normal", "Charge", "Ult" };
 
@@ -111,13 +111,15 @@ namespace DscSim
 
             var materials = new List<string>();
             w.Key("shapes").BeginArray();
-            foreach (Collider2D col in Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None)
-                         .Where(c => c.GetComponentInParent<MovePlayer>(true) == null && IsLive(c))
-                         .OrderBy(c => HierarchyPath(c.transform, null), StringComparer.Ordinal))
+            Collider2D[] stageColliders = Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None)
+                .Where(c => c.GetComponentInParent<MovePlayer>(true) == null && IsLive(c))
+                .OrderBy(c => HierarchyPath(c.transform, null), StringComparer.Ordinal)
+                .ToArray();
+            for (int i = 0; i < stageColliders.Length; i++)
             {
-                foreach (ShapeRecord s in CaptureShapes(col, "Always", null))
+                foreach (ShapeRecord s in CaptureShapes(stageColliders[i], i, "Always", null))
                     WriteShape(w, s);
-                materials.AddRange(MaterialPaths(col));
+                materials.AddRange(MaterialPaths(stageColliders[i]));
             }
             w.EndArray();
 
@@ -217,6 +219,11 @@ namespace DscSim
                 .ToArray();
             bool[] wasActive = poseObjects.Select(g => g.activeSelf).ToArray();
 
+            // 同じ名前のオブジェクト（左右の tireCollision など）があるので、コライダーは番号で区別する
+            Dictionary<Collider2D, int> colliderIndex = p.GetComponentsInChildren<Collider2D>(true)
+                .Select((c, i) => (c, i))
+                .ToDictionary(x => x.c, x => x.i);
+
             // 姿勢ごとに、その姿勢の子だけを有効にして形と慣性モーメントを取る
             var shapes = new List<ShapeRecord>();
             var massByPose = new List<(string pose, float inertia, Vector2 com)>();
@@ -229,7 +236,7 @@ namespace DscSim
                     Physics2D.SyncTransforms();
                     massByPose.Add((pose.name, rb.inertia, rb.centerOfMass));
                     foreach (Collider2D col in pose.GetComponentsInChildren<Collider2D>(false).Where(IsLive))
-                        shapes.AddRange(CaptureShapes(col, pose.name, rb));
+                        shapes.AddRange(CaptureShapes(col, colliderIndex[col], pose.name, rb));
                 }
             }
             finally
@@ -242,7 +249,7 @@ namespace DscSim
             // どの姿勢の子にも属さない当たり判定は常に有効
             foreach (Collider2D col in p.GetComponentsInChildren<Collider2D>(false)
                          .Where(c => IsLive(c) && !poseObjects.Any(g => c.transform.IsChildOf(g.transform))))
-                shapes.AddRange(CaptureShapes(col, "Always", rb));
+                shapes.AddRange(CaptureShapes(col, colliderIndex[col], "Always", rb));
 
             Debug.Log($"[DscSim] {p.name} slot{p.playerNumber}: rb.rotation={rb.rotation} euler={p.transform.eulerAngles} lossyScale={p.transform.lossyScale}");
             w.BeginObject()
@@ -295,6 +302,7 @@ namespace DscSim
         private sealed class ShapeRecord
         {
             public Collider2D Collider;
+            public int ColliderIndex;
             public string Object;
             public string Pose;
             public string Kind;
@@ -306,7 +314,8 @@ namespace DscSim
 
         // 物理エンジンが実際に使っている形（PolygonCollider2D の凸分割後など）を取り出す。
         // 頂点は、bodyを渡せばその剛体のローカル（位置と角度だけ。拡大縮小と反転は頂点に含む）、null ならワールド。
-        private static List<ShapeRecord> CaptureShapes(Collider2D col, string pose, Rigidbody2D body)
+        // colliderIndex：キャラ（またはステージ）の中でコライダーを区別する番号。凸分割した片はすべて同じ番号になる
+        private static List<ShapeRecord> CaptureShapes(Collider2D col, int colliderIndex, string pose, Rigidbody2D body)
         {
             var group = new PhysicsShapeGroup2D();
             int count = col.GetShapes(group);
@@ -326,6 +335,7 @@ namespace DscSim
                 result.Add(new ShapeRecord
                 {
                     Collider = col,
+                    ColliderIndex = colliderIndex,
                     Object = HierarchyPath(col.transform, body != null ? body.transform : null),
                     Pose = pose,
                     Kind = shape.shapeType.ToString(),
@@ -344,6 +354,7 @@ namespace DscSim
         {
             Collider2D col = s.Collider;
             w.BeginObject()
+                .Prop("colliderIndex", s.ColliderIndex)
                 .Prop("object", s.Object)
                 .Prop("collider", col.GetType().Name)
                 .Prop("pose", s.Pose)

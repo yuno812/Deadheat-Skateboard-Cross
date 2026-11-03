@@ -1,26 +1,37 @@
 //! `dsc gen verify [STAGE]`：照合用シナリオ S1〜S11 を data/scenarios/<STAGE>/ に書き出す。
+//! `dsc gen random [STAGE] [--count N] [--seed S]`：ランダム照合 R1 のシナリオを書き出す。
 
 use std::path::Path;
 
 use dsc_core::export::StageDir;
-use dsc_scenario::verify;
+use dsc_scenario::{Scenario, random, verify};
 
 pub fn verify(data_dir: &Path, stage: &str) -> Result<(), Box<dyn std::error::Error>> {
     let dir = StageDir::new(data_dir, stage);
     let export = dir.load_stage()?;
     let scenarios = verify::scenarios(&export, &dir.characters()?);
+    write(data_dir, stage, &scenarios, is_verify_file)
+}
 
+pub fn random(data_dir: &Path, stage: &str, count: u32, seed: u64) -> Result<(), Box<dyn std::error::Error>> {
+    let dir = StageDir::new(data_dir, stage);
+    let export = dir.load_stage()?;
+    let scenarios = random::scenarios(&export, &dir.characters()?, count, seed);
+    write(data_dir, stage, &scenarios, |name| name.starts_with("R1-") && name.ends_with(".json"))
+}
+
+/// 同じ種類の前回のファイル（owned が true を返すもの）だけを消してから書き直す
+fn write(data_dir: &Path, stage: &str, scenarios: &[Scenario], owned: impl Fn(&str) -> bool) -> Result<(), Box<dyn std::error::Error>> {
     let out = data_dir.join("scenarios").join(stage);
     std::fs::create_dir_all(&out)?;
-    // 前回生成した照合用シナリオ（S<番号>-…）だけを消してから書き直す
     for entry in std::fs::read_dir(&out)? {
         let path = entry?.path();
         let name = path.file_name().and_then(|n| n.to_str()).unwrap_or_default();
-        if is_verify_file(name) {
+        if owned(name) {
             std::fs::remove_file(&path)?;
         }
     }
-    for s in &scenarios {
+    for s in scenarios {
         s.validate()?;
         std::fs::write(out.join(format!("{}.json", s.id)), s.to_json())?;
     }

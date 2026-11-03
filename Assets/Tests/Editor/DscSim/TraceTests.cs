@@ -25,7 +25,8 @@ namespace DscSim
         private static readonly FieldInfo LastPosition =
             typeof(MovePlayer).GetField("lastPosition", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        [UnityTest]
+        // 全シナリオを1件のテストで流すので、既定の3分では足りない（R1 は数百本ある）
+        [UnityTest, Timeout(6 * 60 * 60 * 1000)]
         public IEnumerator Trace()
         {
             yield return new EnterPlayMode();

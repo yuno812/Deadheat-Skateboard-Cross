@@ -12,3 +12,4 @@ path = "src/main.rs"
 dsc-core.workspace = true
 dsc-scenario.workspace = true
 dsc-ai.workspace = true
+regex.workspace = true

@@ -13,7 +13,7 @@ use serde::de::DeserializeOwned;
 
 use crate::source::Source;
 
-pub const SCHEMA: u32 = 1;
+pub const SCHEMA: u32 = 2;
 
 pub type Vec2 = [f32; 2];
 
@@ -167,6 +167,9 @@ pub enum Combine {
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Shape {
+    /// キャラ（またはステージ）の中でコライダー（Unity の Collider2D）を区別する番号。
+    /// 凸分割した片はすべて同じ番号。左右の車輪のように同じ名前のオブジェクトがあるため、object では区別できない
+    pub collider_index: u32,
     /// ヒエラルキー上のパス（キャラはルートより下）
     pub object: String,
     pub collider: String,
