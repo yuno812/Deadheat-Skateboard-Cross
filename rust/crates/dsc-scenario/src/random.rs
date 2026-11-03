@@ -2,13 +2,18 @@
 //!
 //! P1とP2に同じキャラを置き、それぞれに独立なランダムの初期角度と入力列を与える（1本で2サンプル）。
 //! 入力は 10〜50 ステップごとに、前後移動・回転を -1/0/1 から、ジャンプを押しっぱなし（30%）かどうかを選び直す。
+//! 最後の `QUIET_STEPS` は入力なしにして、止まったときに立っているか（起き上がり成功率）を比べられるようにする。
 
 use dsc_core::export::StageExport;
 
 use crate::rng::Pcg32;
 use crate::{Init, InputSpan, Scenario};
 
-pub const STEPS: u32 = 300;
+/// ランダムな入力を与えるステップ数
+pub const ACTIVE_STEPS: u32 = 300;
+/// その後の入力なしのステップ数
+pub const QUIET_STEPS: u32 = 100;
+pub const STEPS: u32 = ACTIVE_STEPS + QUIET_STEPS;
 
 /// id は R1-<キャラ>-<3桁の番号>。同じ seed なら同じシナリオになる
 pub fn scenarios(stage: &StageExport, characters: &[String], count: u32, seed: u64) -> Vec<Scenario> {
@@ -34,8 +39,8 @@ pub fn scenarios(stage: &StageExport, characters: &[String], count: u32, seed: u
                     ang_vel_deg: None,
                 });
                 let mut t = 0;
-                while t < STEPS {
-                    let to = (t + 10 + rng.below(41)).min(STEPS);
+                while t < ACTIVE_STEPS {
+                    let to = (t + 10 + rng.below(41)).min(ACTIVE_STEPS);
                     let move_x = rng.below(3) as f32 - 1.0;
                     let rotate = rng.below(3) as f32 - 1.0;
                     let jump = rng.below(10) < 3;
@@ -77,6 +82,7 @@ mod tests {
         assert_eq!(a.len(), 10);
         for s in &a {
             s.validate().unwrap();
+            assert!(s.inputs.iter().all(|i| i.to <= ACTIVE_STEPS));
         }
     }
 }

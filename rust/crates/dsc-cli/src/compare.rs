@@ -12,7 +12,7 @@ use dsc_scenario::Scenario;
 use dsc_scenario::trace::{self, TraceRow};
 
 use crate::Options;
-use crate::distribution::{DistResult, Distribution};
+use crate::distribution::{DistResult, Distribution, Metric};
 use crate::run::load_scenarios;
 
 const STRICT_STEPS: u32 = 10;
@@ -119,7 +119,10 @@ fn dist_summary(d: &DistResult) -> String {
         .metrics
         .iter()
         .filter(|m| !m.ok())
-        .map(|m| format!("{} unity {:.3} sim {:.3}", m.name, m.unity, m.sim))
+        .map(|m| {
+            let (u, r) = m.values();
+            format!("{} unity {u:.3} sim {r:.3}", m.name())
+        })
         .collect();
     if d.strict_failures > 0 {
         parts.push(format!("{} scenarios diverge within {STRICT_STEPS} steps", d.strict_failures));
@@ -134,27 +137,37 @@ fn render_distribution(dist: &[DistResult]) -> String {
     let _ = writeln!(md, "
 ## R1（ランダム照合）
 ");
-    let _ = writeln!(md, "{passed}/{} キャラ合格。起き上がり成功率の差 5 ポイント以内、最高点・跳んだ距離の中央値の差 5% 以内。
-", dist.len());
-    let _ = writeln!(md, "| キャラ | 合否 | シナリオ | 10ステップ以内のずれ | 起き上がり率 unity / sim | 最高点の中央値 unity / sim | 跳んだ距離の中央値 unity / sim（サンプル数） |");
-    let _ = writeln!(md, "| --- | --- | --- | --- | --- | --- | --- |");
+    let _ = writeln!(
+        md,
+        "{passed}/{} キャラ合格。起き上がり成功率の差 5 ポイント以内。最高点・跳んだ距離の中央値は、差が 5% 以内か、差の 95% 信頼区間（ブートストラップ）が 0 を含めば合格。
+",
+        dist.len()
+    );
+    let _ = writeln!(md, "| キャラ | 合否 | シナリオ | 10ステップ以内のずれ | 起き上がり率 unity / sim | 最高点の中央値 unity / sim [差の95%区間] | 跳んだ距離の中央値 unity / sim [差の95%区間]（サンプル数） | 止まった姿勢 立つ・横・逆さ unity / sim |");
+    let _ = writeln!(md, "| --- | --- | --- | --- | --- | --- | --- | --- |");
     for d in dist {
-        let m = |i: usize| {
-            let x = &d.metrics[i];
-            format!("{}{:.3} / {:.3}", if x.ok() { "" } else { "**✗** " }, x.unity, x.sim)
+        let cell = |m: &Metric| {
+            let mark = if m.ok() { "" } else { "**✗** " };
+            match *m {
+                Metric::Rate { unity, sim, .. } => format!("{mark}{:.1}% / {:.1}%", unity * 100.0, sim * 100.0),
+                Metric::Median { unity, sim, ci, n, .. } => {
+                    format!("{mark}{unity:.3} / {sim:.3} [{:+.3}, {:+.3}]（{} / {}）", ci.0, ci.1, n.0, n.1)
+                }
+            }
         };
+        let rest = |i: usize| d.rest.map(|r| [r.0, r.1][i] * 100.0);
+        let (ru, rs) = (rest(0), rest(1));
         let _ = writeln!(
             md,
-            "| {} | {} | {} | {} | {} | {} | {}（{} / {}） |",
+            "| {} | {} | {} | {} | {} | {} | {} | {:.0}・{:.0}・{:.0}% / {:.0}・{:.0}・{:.0}% |",
             d.character,
             if d.ok() { "○" } else { "✗" },
             d.scenarios,
             d.strict_failures,
-            m(0),
-            m(1),
-            m(2),
-            d.flights.0,
-            d.flights.1
+            cell(&d.metrics[0]),
+            cell(&d.metrics[1]),
+            cell(&d.metrics[2]),
+            ru[0], ru[1], ru[2], rs[0], rs[1], rs[2]
         );
     }
     md
