@@ -1,0 +1,3699 @@
+{
+  "schema": 1,
+  "unity": "6000.1.14f1",
+  "stage": "R2500",
+  "character": "cubu",
+  "prefab": "Assets/Prefabs/cubu/cubu.prefab",
+  "stats": {
+    "maxSpeed": 5,
+    "moveForce": 7.5,
+    "deceleration": 0.75,
+    "jumpForce": 8,
+    "rotationTorque": 3,
+    "maxRotationSpeed": 900,
+    "attack": 1,
+    "hp": 3.5,
+    "ultAmount": 100,
+    "ultGainMultiplier": 5
+  },
+  "slots": [
+    {
+      "slot": 1,
+      "mirrored": false,
+      "body": {
+        "mass": 0.7,
+        "useAutoMass": false,
+        "gravityScale": 1,
+        "linearDamping": 0,
+        "angularDamping": 0,
+        "bodyType": "Dynamic",
+        "collisionDetection": "Continuous",
+        "sleepMode": "StartAwake",
+        "interpolation": "None",
+        "constraints": "None",
+        "includeLayers": 0,
+        "excludeLayers": 0,
+        "pos": [-4.6, -2],
+        "angleDeg": 0
+      },
+      "poses": {
+        "Normal": {
+          "inertia": 0.188303158,
+          "centerOfMass": [-0.0403681919, -0.7062607]
+        },
+        "Charge": {
+          "inertia": 0.172829956,
+          "centerOfMass": [-0.0442313477, -0.8609571]
+        },
+        "Ult": {
+          "inertia": 0.188303053,
+          "centerOfMass": [-0.0403681919, -0.7062609]
+        }
+      },
+      "shapes": [
+        {
+          "object": "Normal/mainCollision",
+          "collider": "BoxCollider2D",
+          "pose": "Normal",
+          "tag": "MainCollision",
+          "layer": 0,
+          "handlers": [
+            "MainCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.357306957, -0.78],
+            [0.357306957, -0.0250005722],
+            [-0.377501, -0.0250005722],
+            [-0.377501, -0.78]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.940000057, -0.9120002],
+            [0.940000057, -0.888],
+            [0.930000067, -0.876000166],
+            [0.906000137, -0.855999947],
+            [0.93200016, -0.9200001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.93200016, -0.9200001],
+            [0.906000137, -0.855999947],
+            [0.8660002, -0.832],
+            [0.838000059, -0.8180001],
+            [0.7980001, -0.8000002],
+            [0.838000059, -0.9820001],
+            [0.876000166, -0.962000132],
+            [0.906000137, -0.942000151]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.838000059, -0.9820001],
+            [0.7980001, -0.8000002],
+            [0.7620001, -0.784000158],
+            [0.694000244, -0.766000032],
+            [0.646000147, -1.046],
+            [0.7160001, -1.02800012],
+            [0.7440002, -1.02],
+            [0.7980001, -1]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.694000244, -0.766000032],
+            [0.638, -0.7520001],
+            [0.610000134, -0.746000051],
+            [0.5700002, -0.738000154],
+            [0.536000252, -0.7320001],
+            [0.5580001, -1.06400013],
+            [0.6200001, -1.052],
+            [0.646000147, -1.046]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.5580001, -1.06400013],
+            [0.536000252, -0.7320001],
+            [0.480000019, -0.724],
+            [0.410000324, -0.7160001],
+            [0.36400032, -0.712000132],
+            [0.36400032, -1.088],
+            [0.4300003, -1.08200026],
+            [0.5100002, -1.072]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.36400032, -1.088],
+            [0.36400032, -0.712000132],
+            [0.266000271, -0.7060001],
+            [0.2119999, -0.704],
+            [0.124000072, -0.704],
+            [0.2119999, -1.09600019],
+            [0.266000271, -1.0940001],
+            [0.3039999, -1.092]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.2119999, -1.09600019],
+            [0.124000072, -0.704],
+            [0.122000217, -0.702000141],
+            [-0.009999752, -0.702000141],
+            [-0.0120000839, -0.704],
+            [-0.0120000839, -1.09600019],
+            [-0.009999752, -1.098],
+            [0.122000217, -1.098]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.0120000839, -1.09600019],
+            [-0.0120000839, -0.704],
+            [-0.127999783, -0.704],
+            [-0.201999664, -0.7060001],
+            [-0.127999783, -1.09600019]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.127999783, -1.09600019],
+            [-0.201999664, -0.7060001],
+            [-0.256000042, -0.7080002],
+            [-0.2999997, -0.710000038],
+            [-0.339999676, -1.088],
+            [-0.2999997, -1.09000015],
+            [-0.256000042, -1.092],
+            [-0.201999664, -1.0940001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.2999997, -0.710000038],
+            [-0.374000072, -0.7140002],
+            [-0.463999748, -0.72],
+            [-0.5159998, -0.724],
+            [-0.5619998, -0.728000164],
+            [-0.5159998, -1.07600021],
+            [-0.463999748, -1.07999992],
+            [-0.339999676, -1.088]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.5159998, -1.07600021],
+            [-0.5619998, -0.728000164],
+            [-0.65599966, -0.736000061],
+            [-0.65599966, -1.062],
+            [-0.644000053, -1.06400013],
+            [-0.5619998, -1.072]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.65599966, -1.062],
+            [-0.65599966, -0.736000061],
+            [-0.6739998, -0.702000141],
+            [-0.6760001, -1.09600019],
+            [-0.667999744, -1.086]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.6739998, -0.702000141],
+            [-0.717999935, -0.6620002],
+            [-0.7459998, -0.64800024],
+            [-0.7659998, -1.158],
+            [-0.7459998, -1.152],
+            [-0.717999935, -1.13600016],
+            [-0.7079997, -1.12800026],
+            [-0.6760001, -1.09600019]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.7459998, -0.64800024],
+            [-0.771999836, -0.6420002],
+            [-0.797999859, -0.6420002],
+            [-0.8080001, -0.646000147],
+            [-0.81799984, -0.656000137],
+            [-0.809999943, -1.15600014],
+            [-0.7999997, -1.158],
+            [-0.7659998, -1.158]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.809999943, -1.15600014],
+            [-0.81799984, -0.656000137],
+            [-0.8399997, -0.700000048],
+            [-0.855999947, -0.756000042],
+            [-0.8579998, -0.7800002],
+            [-0.85199976, -1.06],
+            [-0.8399997, -1.10000014],
+            [-0.81799984, -1.144]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.85199976, -1.06],
+            [-0.8579998, -0.7800002],
+            [-0.863999844, -0.828000069],
+            [-0.863999844, -0.9720001],
+            [-0.859999657, -1.00800014]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [0.806000233, -0.89800024],
+            [0.906000137, -0.89800024]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [-0.825999737, -1.05000019],
+            [-0.825999737, -0.75]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Normal",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [0.46600008, -1.1022]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Normal",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [-0.474200249, -1.0962]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/mainCollision",
+          "collider": "BoxCollider2D",
+          "pose": "Charge",
+          "tag": "MainCollision",
+          "layer": 0,
+          "handlers": [
+            "MainCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.524297237, -0.8000002],
+            [0.524297237, -0.5494478],
+            [-0.5402379, -0.5494478],
+            [-0.5402379, -0.8000002]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.9460001, -0.914000034],
+            [0.9460001, -0.889999866],
+            [0.9360001, -0.878],
+            [0.9120002, -0.8579998],
+            [0.9380002, -0.921999931]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.9380002, -0.921999931],
+            [0.9120002, -0.8579998],
+            [0.8720002, -0.8339999],
+            [0.8440001, -0.819999933],
+            [0.804000139, -0.802000046],
+            [0.8440001, -0.983999968],
+            [0.8820002, -0.964],
+            [0.9120002, -0.944]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.8440001, -0.983999968],
+            [0.804000139, -0.802000046],
+            [0.7680001, -0.786],
+            [0.7000003, -0.7679999],
+            [0.6520002, -1.04799986],
+            [0.7220001, -1.03],
+            [0.750000238, -1.02199984],
+            [0.804000139, -1.00199986]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.7000003, -0.7679999],
+            [0.644000053, -0.753999949],
+            [0.6160002, -0.7479999],
+            [0.5760002, -0.74],
+            [0.5420003, -0.733999968],
+            [0.5640001, -1.066],
+            [0.626000166, -1.0539999],
+            [0.6520002, -1.04799986]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.5640001, -1.066],
+            [0.5420003, -0.733999968],
+            [0.486000061, -0.725999832],
+            [0.416000366, -0.717999935],
+            [0.370000362, -0.714],
+            [0.370000362, -1.08999991],
+            [0.436000347, -1.08400011],
+            [0.5160003, -1.07399988]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.370000362, -1.08999991],
+            [0.370000362, -0.714],
+            [0.2720003, -0.707999945],
+            [0.217999935, -0.705999851],
+            [0.130000114, -0.705999851],
+            [0.217999935, -1.098],
+            [0.2720003, -1.096],
+            [0.309999943, -1.09399986]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.217999935, -1.098],
+            [0.130000114, -0.705999851],
+            [0.128000259, -0.704],
+            [-0.00399971, -0.704],
+            [-0.006000042, -0.705999851],
+            [-0.006000042, -1.098],
+            [-0.00399971, -1.0999999],
+            [0.128000259, -1.0999999]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.006000042, -1.098],
+            [-0.006000042, -0.705999851],
+            [-0.121999741, -0.705999851],
+            [-0.195999622, -0.707999945],
+            [-0.121999741, -1.098]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.121999741, -1.098],
+            [-0.195999622, -0.707999945],
+            [-0.25, -0.710000038],
+            [-0.293999672, -0.7119999],
+            [-0.333999634, -1.08999991],
+            [-0.293999672, -1.092],
+            [-0.25, -1.09399986],
+            [-0.195999622, -1.096]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.293999672, -0.7119999],
+            [-0.368000031, -0.7160001],
+            [-0.4579997, -0.7219999],
+            [-0.509999752, -0.725999832],
+            [-0.555999756, -0.73],
+            [-0.509999752, -1.07800007],
+            [-0.4579997, -1.08199978],
+            [-0.333999634, -1.08999991]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.509999752, -1.07800007],
+            [-0.555999756, -0.73],
+            [-0.6500001, -0.7379999],
+            [-0.6500001, -1.06399989],
+            [-0.638, -1.066],
+            [-0.555999756, -1.07399988]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.6500001, -1.06399989],
+            [-0.6500001, -0.7379999],
+            [-0.667999744, -0.704],
+            [-0.6699996, -1.098],
+            [-0.6619997, -1.08799982]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.667999744, -0.704],
+            [-0.7119999, -0.664000034],
+            [-0.7399998, -0.6500001],
+            [-0.759999752, -1.15999985],
+            [-0.7399998, -1.15399981],
+            [-0.7119999, -1.138],
+            [-0.701999664, -1.13000011],
+            [-0.6699996, -1.098]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.7399998, -0.6500001],
+            [-0.7659998, -0.644000053],
+            [-0.7919998, -0.644000053],
+            [-0.802000046, -0.648],
+            [-0.8119998, -0.658],
+            [-0.8039999, -1.158],
+            [-0.7939997, -1.15999985],
+            [-0.759999752, -1.15999985]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.8039999, -1.158],
+            [-0.8119998, -0.658],
+            [-0.833999634, -0.7019999],
+            [-0.8499999, -0.7579999],
+            [-0.85199976, -0.782000065],
+            [-0.8459997, -1.0619998],
+            [-0.833999634, -1.102],
+            [-0.8119998, -1.14599991]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.8459997, -1.0619998],
+            [-0.85199976, -0.782000065],
+            [-0.8579998, -0.8299999],
+            [-0.8579998, -0.974],
+            [-0.8539996, -1.01]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [0.8120003, -0.9000001],
+            [0.9120002, -0.9000001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [-0.8199997, -1.052],
+            [-0.8199997, -0.751999855]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Charge",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [0.46600008, -1.1022]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Charge",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [-0.474200249, -1.0962]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/mainCollision",
+          "collider": "BoxCollider2D",
+          "pose": "Ult",
+          "tag": "MainCollision",
+          "layer": 0,
+          "handlers": [
+            "MainCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.357306957, -0.7800002],
+            [0.357306957, -0.02500081],
+            [-0.377501, -0.02500081],
+            [-0.377501, -0.7800002]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.940000057, -0.9120002],
+            [0.940000057, -0.888],
+            [0.930000067, -0.876000166],
+            [0.906000137, -0.855999947],
+            [0.93200016, -0.9200001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.93200016, -0.9200001],
+            [0.906000137, -0.855999947],
+            [0.8660002, -0.832],
+            [0.838000059, -0.8180001],
+            [0.7980001, -0.8000002],
+            [0.838000059, -0.9820001],
+            [0.876000166, -0.962000132],
+            [0.906000137, -0.942000151]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.838000059, -0.9820001],
+            [0.7980001, -0.8000002],
+            [0.7620001, -0.784000158],
+            [0.694000244, -0.766000032],
+            [0.646000147, -1.046],
+            [0.7160001, -1.02800012],
+            [0.7440002, -1.02],
+            [0.7980001, -1]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.694000244, -0.766000032],
+            [0.638, -0.7520001],
+            [0.610000134, -0.746000051],
+            [0.5700002, -0.738000154],
+            [0.536000252, -0.7320001],
+            [0.5580001, -1.06400013],
+            [0.6200001, -1.052],
+            [0.646000147, -1.046]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.5580001, -1.06400013],
+            [0.536000252, -0.7320001],
+            [0.480000019, -0.724],
+            [0.410000324, -0.7160001],
+            [0.36400032, -0.712000132],
+            [0.36400032, -1.088],
+            [0.4300003, -1.08200026],
+            [0.5100002, -1.072]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.36400032, -1.088],
+            [0.36400032, -0.712000132],
+            [0.266000271, -0.7060001],
+            [0.2119999, -0.704],
+            [0.124000072, -0.704],
+            [0.2119999, -1.09600019],
+            [0.266000271, -1.0940001],
+            [0.3039999, -1.092]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.2119999, -1.09600019],
+            [0.124000072, -0.704],
+            [0.122000217, -0.702000141],
+            [-0.009999752, -0.702000141],
+            [-0.0120000839, -0.704],
+            [-0.0120000839, -1.09600019],
+            [-0.009999752, -1.098],
+            [0.122000217, -1.098]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.0120000839, -1.09600019],
+            [-0.0120000839, -0.704],
+            [-0.127999783, -0.704],
+            [-0.201999664, -0.7060001],
+            [-0.127999783, -1.09600019]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.127999783, -1.09600019],
+            [-0.201999664, -0.7060001],
+            [-0.256000042, -0.7080002],
+            [-0.2999997, -0.710000038],
+            [-0.339999676, -1.088],
+            [-0.2999997, -1.09000015],
+            [-0.256000042, -1.092],
+            [-0.201999664, -1.0940001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.2999997, -0.710000038],
+            [-0.374000072, -0.7140002],
+            [-0.463999748, -0.72],
+            [-0.5159998, -0.724],
+            [-0.5619998, -0.728000164],
+            [-0.5159998, -1.07600021],
+            [-0.463999748, -1.07999992],
+            [-0.339999676, -1.088]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.5159998, -1.07600021],
+            [-0.5619998, -0.728000164],
+            [-0.65599966, -0.736000061],
+            [-0.65599966, -1.062],
+            [-0.644000053, -1.06400013],
+            [-0.5619998, -1.072]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.65599966, -1.062],
+            [-0.65599966, -0.736000061],
+            [-0.6739998, -0.702000141],
+            [-0.6760001, -1.09600019],
+            [-0.667999744, -1.086]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.6739998, -0.702000141],
+            [-0.717999935, -0.6620002],
+            [-0.7459998, -0.64800024],
+            [-0.7659998, -1.158],
+            [-0.7459998, -1.152],
+            [-0.717999935, -1.13600016],
+            [-0.7079997, -1.12800026],
+            [-0.6760001, -1.09600019]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.7459998, -0.64800024],
+            [-0.771999836, -0.6420002],
+            [-0.797999859, -0.6420002],
+            [-0.8080001, -0.646000147],
+            [-0.81799984, -0.656000137],
+            [-0.809999943, -1.15600014],
+            [-0.7999997, -1.158],
+            [-0.7659998, -1.158]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.809999943, -1.15600014],
+            [-0.81799984, -0.656000137],
+            [-0.8399997, -0.700000048],
+            [-0.855999947, -0.756000042],
+            [-0.8579998, -0.7800002],
+            [-0.85199976, -1.06],
+            [-0.8399997, -1.10000014],
+            [-0.81799984, -1.144]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.85199976, -1.06],
+            [-0.8579998, -0.7800002],
+            [-0.863999844, -0.828000069],
+            [-0.863999844, -0.9720001],
+            [-0.859999657, -1.00800014]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [0.806000233, -0.89800024],
+            [0.906000137, -0.89800024]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [-0.825999737, -1.05000019],
+            [-0.825999737, -0.75]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Ult",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [0.46600008, -1.1022]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Ult",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [-0.474200249, -1.0962]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "mirrored": true,
+      "body": {
+        "mass": 0.7,
+        "useAutoMass": false,
+        "gravityScale": 1,
+        "linearDamping": 0,
+        "angularDamping": 0,
+        "bodyType": "Dynamic",
+        "collisionDetection": "Continuous",
+        "sleepMode": "StartAwake",
+        "interpolation": "None",
+        "constraints": "None",
+        "includeLayers": 0,
+        "excludeLayers": 0,
+        "pos": [4.6, -2],
+        "angleDeg": 0
+      },
+      "poses": {
+        "Normal": {
+          "inertia": 0.188303083,
+          "centerOfMass": [0.0403681919, -0.706260741]
+        },
+        "Charge": {
+          "inertia": 0.172829911,
+          "centerOfMass": [0.044231344, -0.860957146]
+        },
+        "Ult": {
+          "inertia": 0.188303024,
+          "centerOfMass": [0.0403681919, -0.70626086]
+        }
+      },
+      "shapes": [
+        {
+          "object": "Normal/mainCollision",
+          "collider": "BoxCollider2D",
+          "pose": "Normal",
+          "tag": "MainCollision",
+          "layer": 0,
+          "handlers": [
+            "MainCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.377501, -0.78],
+            [0.377501, -0.0250005722],
+            [-0.357306957, -0.0250005722],
+            [-0.357306957, -0.78]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.863999844, -0.9720001],
+            [0.863999844, -0.828000069],
+            [0.8579998, -0.7800002],
+            [0.859999657, -1.00800014]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.859999657, -1.00800014],
+            [0.8579998, -0.7800002],
+            [0.855999947, -0.756000042],
+            [0.85199976, -1.06]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.855999947, -0.756000042],
+            [0.8399997, -0.700000048],
+            [0.81799984, -0.656000137],
+            [0.8080001, -0.646000147],
+            [0.809999943, -1.15600014],
+            [0.81799984, -1.144],
+            [0.8399997, -1.10000014],
+            [0.85199976, -1.06]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.809999943, -1.15600014],
+            [0.8080001, -0.646000147],
+            [0.797999859, -0.6420002],
+            [0.771999836, -0.6420002],
+            [0.7459998, -0.64800024],
+            [0.7459998, -1.152],
+            [0.7659998, -1.158],
+            [0.7999997, -1.158]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.7459998, -1.152],
+            [0.7459998, -0.64800024],
+            [0.717999935, -0.6620002],
+            [0.6739998, -0.702000141],
+            [0.667999744, -1.086],
+            [0.6760001, -1.09600019],
+            [0.7079997, -1.12800026],
+            [0.717999935, -1.13600016]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.6739998, -0.702000141],
+            [0.65599966, -0.736000061],
+            [0.65599966, -1.062],
+            [0.667999744, -1.086]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.65599966, -1.062],
+            [0.65599966, -0.736000061],
+            [0.5619998, -0.728000164],
+            [0.5619998, -1.072],
+            [0.644000053, -1.06400013]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.5619998, -1.072],
+            [0.5619998, -0.728000164],
+            [0.5159998, -0.724],
+            [0.463999748, -0.72],
+            [0.463999748, -1.07999992],
+            [0.5159998, -1.07600021]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.463999748, -1.07999992],
+            [0.463999748, -0.72],
+            [0.374000072, -0.7140002],
+            [0.2999997, -0.710000038],
+            [0.256000042, -0.7080002],
+            [0.256000042, -1.092],
+            [0.2999997, -1.09000015],
+            [0.339999676, -1.088]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.256000042, -1.092],
+            [0.256000042, -0.7080002],
+            [0.201999664, -0.7060001],
+            [0.127999783, -0.704],
+            [0.0120000839, -0.704],
+            [0.0120000839, -1.09600019],
+            [0.127999783, -1.09600019],
+            [0.201999664, -1.0940001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.0120000839, -1.09600019],
+            [0.0120000839, -0.704],
+            [0.009999752, -0.702000141],
+            [-0.122000217, -0.702000141],
+            [-0.124000072, -0.704],
+            [-0.122000217, -1.098],
+            [0.009999752, -1.098]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.122000217, -1.098],
+            [-0.124000072, -0.704],
+            [-0.2119999, -0.704],
+            [-0.266000271, -0.7060001],
+            [-0.266000271, -1.0940001],
+            [-0.2119999, -1.09600019]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.266000271, -1.0940001],
+            [-0.266000271, -0.7060001],
+            [-0.36400032, -0.712000132],
+            [-0.410000324, -0.7160001],
+            [-0.480000019, -0.724],
+            [-0.4300003, -1.08200026],
+            [-0.36400032, -1.088],
+            [-0.3039999, -1.092]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.4300003, -1.08200026],
+            [-0.480000019, -0.724],
+            [-0.536000252, -0.7320001],
+            [-0.5700002, -0.738000154],
+            [-0.610000134, -0.746000051],
+            [-0.6200001, -1.052],
+            [-0.5580001, -1.06400013],
+            [-0.5100002, -1.072]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.610000134, -0.746000051],
+            [-0.638, -0.7520001],
+            [-0.694000244, -0.766000032],
+            [-0.7620001, -0.784000158],
+            [-0.7440002, -1.02],
+            [-0.7160001, -1.02800012],
+            [-0.646000147, -1.046],
+            [-0.6200001, -1.052]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.7440002, -1.02],
+            [-0.7620001, -0.784000158],
+            [-0.7980001, -0.8000002],
+            [-0.838000059, -0.8180001],
+            [-0.8660002, -0.832],
+            [-0.876000166, -0.962000132],
+            [-0.838000059, -0.9820001],
+            [-0.7980001, -1]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.8660002, -0.832],
+            [-0.906000137, -0.855999947],
+            [-0.930000067, -0.876000166],
+            [-0.940000057, -0.888],
+            [-0.940000057, -0.9120002],
+            [-0.93200016, -0.9200001],
+            [-0.906000137, -0.942000151],
+            [-0.876000166, -0.962000132]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [-0.806000233, -0.89800024],
+            [-0.906000137, -0.89800024]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Normal",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [0.825999737, -1.05000019],
+            [0.825999737, -0.75]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Normal",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [-0.46600008, -1.1022]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Normal/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Normal",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [0.474200249, -1.0962]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/mainCollision",
+          "collider": "BoxCollider2D",
+          "pose": "Charge",
+          "tag": "MainCollision",
+          "layer": 0,
+          "handlers": [
+            "MainCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.5402379, -0.8000002],
+            [0.5402379, -0.5494478],
+            [-0.524297237, -0.5494478],
+            [-0.524297237, -0.8000002]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.8579998, -0.974],
+            [0.8579998, -0.8299999],
+            [0.85199976, -0.782000065],
+            [0.8539996, -1.01]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.8539996, -1.01],
+            [0.85199976, -0.782000065],
+            [0.8499999, -0.7579999],
+            [0.8459997, -1.0619998]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.8499999, -0.7579999],
+            [0.833999634, -0.7019999],
+            [0.8119998, -0.658],
+            [0.802000046, -0.648],
+            [0.8039999, -1.158],
+            [0.8119998, -1.14599991],
+            [0.833999634, -1.102],
+            [0.8459997, -1.0619998]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.8039999, -1.158],
+            [0.802000046, -0.648],
+            [0.7919998, -0.644000053],
+            [0.7659998, -0.644000053],
+            [0.7399998, -0.6500001],
+            [0.7399998, -1.15399981],
+            [0.759999752, -1.15999985],
+            [0.7939997, -1.15999985]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.7399998, -1.15399981],
+            [0.7399998, -0.6500001],
+            [0.7119999, -0.664000034],
+            [0.667999744, -0.704],
+            [0.6619997, -1.08799982],
+            [0.6699996, -1.098],
+            [0.701999664, -1.13000011],
+            [0.7119999, -1.138]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.667999744, -0.704],
+            [0.6500001, -0.7379999],
+            [0.6500001, -1.06399989],
+            [0.6619997, -1.08799982]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.6500001, -1.06399989],
+            [0.6500001, -0.7379999],
+            [0.555999756, -0.73],
+            [0.555999756, -1.07399988],
+            [0.638, -1.066]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.555999756, -1.07399988],
+            [0.555999756, -0.73],
+            [0.509999752, -0.725999832],
+            [0.4579997, -0.7219999],
+            [0.4579997, -1.08199978],
+            [0.509999752, -1.07800007]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.4579997, -1.08199978],
+            [0.4579997, -0.7219999],
+            [0.368000031, -0.7160001],
+            [0.293999672, -0.7119999],
+            [0.25, -0.710000038],
+            [0.25, -1.09399986],
+            [0.293999672, -1.092],
+            [0.333999634, -1.08999991]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.25, -1.09399986],
+            [0.25, -0.710000038],
+            [0.195999622, -0.707999945],
+            [0.121999741, -0.705999851],
+            [0.006000042, -0.705999851],
+            [0.006000042, -1.098],
+            [0.121999741, -1.098],
+            [0.195999622, -1.096]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.006000042, -1.098],
+            [0.006000042, -0.705999851],
+            [0.00399971, -0.704],
+            [-0.128000259, -0.704],
+            [-0.130000114, -0.705999851],
+            [-0.128000259, -1.0999999],
+            [0.00399971, -1.0999999]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.128000259, -1.0999999],
+            [-0.130000114, -0.705999851],
+            [-0.217999935, -0.705999851],
+            [-0.2720003, -0.707999945],
+            [-0.2720003, -1.096],
+            [-0.217999935, -1.098]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.2720003, -1.096],
+            [-0.2720003, -0.707999945],
+            [-0.370000362, -0.714],
+            [-0.416000366, -0.717999935],
+            [-0.486000061, -0.725999832],
+            [-0.436000347, -1.08400011],
+            [-0.370000362, -1.08999991],
+            [-0.309999943, -1.09399986]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.436000347, -1.08400011],
+            [-0.486000061, -0.725999832],
+            [-0.5420003, -0.733999968],
+            [-0.5760002, -0.74],
+            [-0.6160002, -0.7479999],
+            [-0.626000166, -1.0539999],
+            [-0.5640001, -1.066],
+            [-0.5160003, -1.07399988]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.6160002, -0.7479999],
+            [-0.644000053, -0.753999949],
+            [-0.7000003, -0.7679999],
+            [-0.7680001, -0.786],
+            [-0.750000238, -1.02199984],
+            [-0.7220001, -1.03],
+            [-0.6520002, -1.04799986],
+            [-0.626000166, -1.0539999]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.750000238, -1.02199984],
+            [-0.7680001, -0.786],
+            [-0.804000139, -0.802000046],
+            [-0.8440001, -0.819999933],
+            [-0.8720002, -0.8339999],
+            [-0.8820002, -0.964],
+            [-0.8440001, -0.983999968],
+            [-0.804000139, -1.00199986]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.8720002, -0.8339999],
+            [-0.9120002, -0.8579998],
+            [-0.9360001, -0.878],
+            [-0.9460001, -0.889999866],
+            [-0.9460001, -0.914000034],
+            [-0.9380002, -0.921999931],
+            [-0.9120002, -0.944],
+            [-0.8820002, -0.964]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [-0.8120003, -0.9000001],
+            [-0.9120002, -0.9000001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Charge",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [0.8199997, -1.052],
+            [0.8199997, -0.751999855]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Charge",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [-0.46600008, -1.1022]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Charge/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Charge",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [0.474200249, -1.0962]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/mainCollision",
+          "collider": "BoxCollider2D",
+          "pose": "Ult",
+          "tag": "MainCollision",
+          "layer": 0,
+          "handlers": [
+            "MainCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.377501, -0.7800002],
+            [0.377501, -0.02500081],
+            [-0.357306957, -0.02500081],
+            [-0.357306957, -0.7800002]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.863999844, -0.9720001],
+            [0.863999844, -0.828000069],
+            [0.8579998, -0.7800002],
+            [0.859999657, -1.00800014]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.859999657, -1.00800014],
+            [0.8579998, -0.7800002],
+            [0.855999947, -0.756000042],
+            [0.85199976, -1.06]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.855999947, -0.756000042],
+            [0.8399997, -0.700000048],
+            [0.81799984, -0.656000137],
+            [0.8080001, -0.646000147],
+            [0.809999943, -1.15600014],
+            [0.81799984, -1.144],
+            [0.8399997, -1.10000014],
+            [0.85199976, -1.06]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.809999943, -1.15600014],
+            [0.8080001, -0.646000147],
+            [0.797999859, -0.6420002],
+            [0.771999836, -0.6420002],
+            [0.7459998, -0.64800024],
+            [0.7459998, -1.152],
+            [0.7659998, -1.158],
+            [0.7999997, -1.158]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.7459998, -1.152],
+            [0.7459998, -0.64800024],
+            [0.717999935, -0.6620002],
+            [0.6739998, -0.702000141],
+            [0.667999744, -1.086],
+            [0.6760001, -1.09600019],
+            [0.7079997, -1.12800026],
+            [0.717999935, -1.13600016]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.6739998, -0.702000141],
+            [0.65599966, -0.736000061],
+            [0.65599966, -1.062],
+            [0.667999744, -1.086]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.65599966, -1.062],
+            [0.65599966, -0.736000061],
+            [0.5619998, -0.728000164],
+            [0.5619998, -1.072],
+            [0.644000053, -1.06400013]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.5619998, -1.072],
+            [0.5619998, -0.728000164],
+            [0.5159998, -0.724],
+            [0.463999748, -0.72],
+            [0.463999748, -1.07999992],
+            [0.5159998, -1.07600021]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.463999748, -1.07999992],
+            [0.463999748, -0.72],
+            [0.374000072, -0.7140002],
+            [0.2999997, -0.710000038],
+            [0.256000042, -0.7080002],
+            [0.256000042, -1.092],
+            [0.2999997, -1.09000015],
+            [0.339999676, -1.088]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.256000042, -1.092],
+            [0.256000042, -0.7080002],
+            [0.201999664, -0.7060001],
+            [0.127999783, -0.704],
+            [0.0120000839, -0.704],
+            [0.0120000839, -1.09600019],
+            [0.127999783, -1.09600019],
+            [0.201999664, -1.0940001]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [0.0120000839, -1.09600019],
+            [0.0120000839, -0.704],
+            [0.009999752, -0.702000141],
+            [-0.122000217, -0.702000141],
+            [-0.124000072, -0.704],
+            [-0.122000217, -1.098],
+            [0.009999752, -1.098]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.122000217, -1.098],
+            [-0.124000072, -0.704],
+            [-0.2119999, -0.704],
+            [-0.266000271, -0.7060001],
+            [-0.266000271, -1.0940001],
+            [-0.2119999, -1.09600019]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.266000271, -1.0940001],
+            [-0.266000271, -0.7060001],
+            [-0.36400032, -0.712000132],
+            [-0.410000324, -0.7160001],
+            [-0.480000019, -0.724],
+            [-0.4300003, -1.08200026],
+            [-0.36400032, -1.088],
+            [-0.3039999, -1.092]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.4300003, -1.08200026],
+            [-0.480000019, -0.724],
+            [-0.536000252, -0.7320001],
+            [-0.5700002, -0.738000154],
+            [-0.610000134, -0.746000051],
+            [-0.6200001, -1.052],
+            [-0.5580001, -1.06400013],
+            [-0.5100002, -1.072]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.610000134, -0.746000051],
+            [-0.638, -0.7520001],
+            [-0.694000244, -0.766000032],
+            [-0.7620001, -0.784000158],
+            [-0.7440002, -1.02],
+            [-0.7160001, -1.02800012],
+            [-0.646000147, -1.046],
+            [-0.6200001, -1.052]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.7440002, -1.02],
+            [-0.7620001, -0.784000158],
+            [-0.7980001, -0.8000002],
+            [-0.838000059, -0.8180001],
+            [-0.8660002, -0.832],
+            [-0.876000166, -0.962000132],
+            [-0.838000059, -0.9820001],
+            [-0.7980001, -1]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "PolygonCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Polygon",
+          "radius": 0,
+          "vertices": [
+            [-0.8660002, -0.832],
+            [-0.906000137, -0.855999947],
+            [-0.930000067, -0.876000166],
+            [-0.940000057, -0.888],
+            [-0.940000057, -0.9120002],
+            [-0.93200016, -0.9200001],
+            [-0.906000137, -0.942000151],
+            [-0.876000166, -0.962000132]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [-0.806000233, -0.89800024],
+            [-0.906000137, -0.89800024]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/attackCollision",
+          "collider": "CapsuleCollider2D",
+          "pose": "Ult",
+          "tag": "AttackCollision",
+          "layer": 0,
+          "handlers": [
+            "AttackCollision"
+          ],
+          "trigger": false,
+          "kind": "Capsule",
+          "radius": 0.0499999821,
+          "vertices": [
+            [0.825999737, -1.05000019],
+            [0.825999737, -0.75]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Ult",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [-0.46600008, -1.1022]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        },
+        {
+          "object": "Ult/tireCollision",
+          "collider": "CircleCollider2D",
+          "pose": "Ult",
+          "tag": "TireCollision",
+          "layer": 0,
+          "handlers": [
+            "WheelGroundCheck"
+          ],
+          "trigger": false,
+          "kind": "Circle",
+          "radius": 0.120000005,
+          "vertices": [
+            [0.474200249, -1.0962]
+          ],
+          "friction": 1,
+          "bounciness": 0,
+          "frictionCombine": "Mean",
+          "bounceCombine": "Maximum",
+          "density": 1,
+          "includeLayers": 0,
+          "excludeLayers": 0
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "Assets/Prefabs/cubu/cubu.asset",
+      "sha256": "fbe99cced2ccb4446050957fd3b40464813c0834c2472d5c6aaa59dadf96ee43"
+    },
+    {
+      "path": "Assets/Prefabs/cubu/cubu.prefab",
+      "sha256": "9546515475a2ad051801cad01d8a5e6cf711bf1f183cb7eec2c3bda866acdbe6"
+    },
+    {
+      "path": "Assets/Scenes/Stage/R2500Scene.unity",
+      "sha256": "93a6a9fd173e867248e3d9805f9faf0bbc0b33e88a1a483b31dd3d41f07bad83"
+    },
+    {
+      "path": "Assets/State/Character.physicsMaterial2D",
+      "sha256": "ca6a35402ca31b982690fb7e5e4176802035b117f3c455df414c0bd5ec04375e"
+    }
+  ]
+}
