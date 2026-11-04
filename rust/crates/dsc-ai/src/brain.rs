@@ -11,6 +11,8 @@
 //!    予測できた瞬間に離す（E4 の予測）。相手が遠ければ、傾ききったところで離して近づく。
 //!    R2500 は中央の丘（約42°の斜面）を走って登れないので、移動もジャンプで行う
 
+use serde::{Deserialize, Serialize};
+
 use crate::jump::{JumpModel, predict};
 use crate::landing::{LandingParams, Wheels, landing_rotate, landing_target, rotate_toward};
 use crate::recovery::{Recovery, RecoveryParams};
@@ -27,7 +29,9 @@ pub struct Knowledge {
 }
 
 /// 行動の判断に使う数値（E5・E6 で調整する）
-#[derive(Debug, Clone, Copy, PartialEq)]
+/// 設定ファイルに無い項目は仮の値（Default）で補う。項目を足しても、前に保存した値をそのまま読める
+#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+#[serde(default, deny_unknown_fields)]
 pub struct Tactics {
     /// これより傾いていたら倒れているとみなす（度）
     pub upright_deg: f32,

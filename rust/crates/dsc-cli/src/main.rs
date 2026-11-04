@@ -8,6 +8,7 @@ mod e2;
 mod e3;
 mod e4;
 mod e5;
+mod e5search;
 mod exp;
 mod generate;
 mod paths;
@@ -31,6 +32,7 @@ const USAGE: &str = "usage: dsc <check|gen|run|compare|bench|exp|sweep> ...
   exp e3 [OPTIONS]     E3：着地合わせ（data/results/e3-<STAGE>.md、選んだ値は e3-<STAGE>-best.toml）
   exp e4 [OPTIONS]     E4：ジャンプ予測の精度（data/results/e4-<STAGE>.md）
   exp e5 [OPTIONS]     E5：対戦（CPU 対 何もしない／ランダム／突進／CPU。data/results/e5-<STAGE>.md）
+  exp e5-search [OPTIONS]  E5：行動の数値をランダム探索（選んだ値は data/results/e5-<STAGE>-tactics.toml）
   exp e5-trace CPU_CHAR OPP_CHAR idle|random|rush|cpu [OPTIONS]  1試合の経過を出す（調査用）
 
   OPTIONS: [STAGE] [--filter REGEX] [--engine rs|cpp]
@@ -60,6 +62,7 @@ fn main() -> ExitCode {
         ["exp", "e3", rest @ ..] => Options::parse(rest).and_then(|opts| e3::e3(&data_dir, &opts)),
         ["exp", "e4", rest @ ..] => Options::parse(rest).and_then(|opts| e4::e4(&data_dir, &opts)),
         ["exp", "e5", rest @ ..] => Options::parse(rest).and_then(|opts| e5::e5(&data_dir, &opts)),
+        ["exp", "e5-search", rest @ ..] => Options::parse(rest).and_then(|opts| e5search::search(&data_dir, &opts)),
         ["exp", "e5-trace", cpu, opp, opponent, rest @ ..] => {
             Options::parse(rest).and_then(|opts| e5::trace(&data_dir, &opts, cpu, opp, opponent))
         }

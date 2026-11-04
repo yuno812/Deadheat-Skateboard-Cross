@@ -26,10 +26,10 @@ use crate::e3::{terrain, wheels};
 use crate::run::{Engine, parallel_map};
 
 const MAX_STEPS: u32 = 3000;
-const RANDOM_GAMES: u64 = 5;
+pub(crate) const RANDOM_GAMES: u64 = 5;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-enum Opponent {
+pub(crate) enum Opponent {
     Idle,
     Random,
     Rush,
@@ -48,24 +48,26 @@ impl Opponent {
 }
 
 #[derive(Clone, Copy)]
-struct Game {
-    cpu: usize,
-    opp: usize,
-    opponent: Opponent,
+pub(crate) struct Game {
+    pub(crate) cpu: usize,
+    pub(crate) opp: usize,
+    pub(crate) opponent: Opponent,
     /// CPU が P1（true）か P2 か
-    cpu_is_p1: bool,
-    seed: u64,
+    pub(crate) cpu_is_p1: bool,
+    pub(crate) seed: u64,
 }
 
 #[derive(Clone, Copy, Default)]
-struct Outcome {
+pub(crate) struct Outcome {
     /// CPU から見て 1 = 勝ち、0 = 引き分け、-1 = 負け
-    result: i8,
-    steps: u32,
-    dealt: f32,
-    taken: f32,
+    pub(crate) result: i8,
+    pub(crate) steps: u32,
+    pub(crate) dealt: f32,
+    pub(crate) taken: f32,
     /// CPU の行動の内訳（ステップ数）
-    actions: [u32; 5],
+    pub(crate) actions: [u32; 5],
+    /// CPU がダメージを受けたとき、どの行動をしていたか（回数）
+    pub(crate) hurt: [u32; 5],
 }
 
 enum Agent {
@@ -104,11 +106,12 @@ impl Agent {
     }
 }
 
-struct Setup<'a> {
-    stage: &'a StageExport,
-    exports: &'a [CharacterExport],
-    knowledge: &'a [Knowledge],
-    terrain: &'a Terrain,
+pub(crate) struct Setup<'a> {
+    pub(crate) tactics: Tactics,
+    pub(crate) stage: &'a StageExport,
+    pub(crate) exports: &'a [CharacterExport],
+    pub(crate) knowledge: &'a [Knowledge],
+    pub(crate) terrain: &'a Terrain,
 }
 
 pub fn e5(data_dir: &Path, opts: &Options) -> Result<bool, Box<dyn std::error::Error>> {
@@ -118,7 +121,7 @@ pub fn e5(data_dir: &Path, opts: &Options) -> Result<bool, Box<dyn std::error::E
     let exports: Vec<CharacterExport> = names.iter().map(|n| dir.load_character(n)).collect::<Result<_, _>>()?;
     let knowledge = knowledge(data_dir, &opts.stage, &stage, &names, &exports);
     let terrain = terrain(&stage);
-    let setup = Setup { stage: &stage, exports: &exports, knowledge: &knowledge, terrain: &terrain };
+    let setup = Setup { tactics: load_tactics(data_dir, &opts.stage), stage: &stage, exports: &exports, knowledge: &knowledge, terrain: &terrain };
 
     let n = names.len();
     let mut games = Vec::new();
@@ -149,6 +152,15 @@ pub fn e5(data_dir: &Path, opts: &Options) -> Result<bool, Box<dyn std::error::E
     Ok(true)
 }
 
+/// e5-search で選んだ行動の数値（data/results/e5-<STAGE>-tactics.toml）。なければ仮の値
+fn load_tactics(data_dir: &Path, stage: &str) -> Tactics {
+    let path = data_dir.join("results").join(format!("e5-{stage}-tactics.toml"));
+    match std::fs::read_to_string(&path).map(|t| toml::from_str(&t)) {
+        Ok(Ok(t)) => t,
+        _ => Tactics::default(),
+    }
+}
+
 fn load_toml<T: serde::de::DeserializeOwned>(path: &Path) -> BTreeMap<String, T> {
     match std::fs::read_to_string(path).map(|t| toml::from_str(&t)) {
         Ok(Ok(v)) => v,
@@ -160,7 +172,7 @@ fn load_toml<T: serde::de::DeserializeOwned>(path: &Path) -> BTreeMap<String, T>
 }
 
 fn agent(setup: &Setup, opponent: Opponent, character: usize, seed: u64) -> Agent {
-    let cpu = || Agent::Cpu(Box::new(Brain::new(setup.knowledge[character], Tactics::default(), setup.terrain.clone())));
+    let cpu = || Agent::Cpu(Box::new(Brain::new(setup.knowledge[character], setup.tactics, setup.terrain.clone())));
     match opponent {
         Opponent::Idle => Agent::Idle,
         Opponent::Random => Agent::Random { rng: Pcg32::new(7, seed), input: PlayerInput::default(), left: 0 },
@@ -169,7 +181,7 @@ fn agent(setup: &Setup, opponent: Opponent, character: usize, seed: u64) -> Agen
     }
 }
 
-fn play<P: Physics>(setup: &Setup, g: Game) -> Outcome {
+pub(crate) fn play<P: Physics>(setup: &Setup, g: Game) -> Outcome {
     play_traced::<P>(setup, g, &mut |_, _, _| {})
 }
 
@@ -177,7 +189,7 @@ fn play<P: Physics>(setup: &Setup, g: Game) -> Outcome {
 fn play_traced<P: Physics>(setup: &Setup, g: Game, on_step: &mut dyn FnMut(u32, [BodyObs; 2], Option<Action>)) -> Outcome {
     let (p1, p2) = if g.cpu_is_p1 { (g.cpu, g.opp) } else { (g.opp, g.cpu) };
     let Ok(mut m) = Match::<P>::new(setup.stage, &setup.exports[p1], &setup.exports[p2]) else { return Outcome::default() };
-    let cpu_agent = Agent::Cpu(Box::new(Brain::new(setup.knowledge[g.cpu], Tactics::default(), setup.terrain.clone())));
+    let cpu_agent = Agent::Cpu(Box::new(Brain::new(setup.knowledge[g.cpu], setup.tactics, setup.terrain.clone())));
     let opp_agent = agent(setup, g.opponent, g.opp, g.seed);
     let mut agents = if g.cpu_is_p1 { [cpu_agent, opp_agent] } else { [opp_agent, cpu_agent] };
     let cpu_slot = if g.cpu_is_p1 { 0 } else { 1 };
@@ -197,8 +209,14 @@ fn play_traced<P: Physics>(setup: &Setup, g: Game, on_step: &mut dyn FnMut(u32, 
             out.actions[action_index(a)] += 1;
         }
         on_step(step, bodies, action);
+        let cpu_hp = m.snapshot(cpu_slot as u8 + 1).hp;
         m.step(inputs);
         let hp = [m.snapshot(1).hp, m.snapshot(2).hp];
+        if let Some(a) = action
+            && hp[cpu_slot] < cpu_hp
+        {
+            out.hurt[action_index(a)] += 1;
+        }
         if hp[0] <= 0.0 || hp[1] <= 0.0 {
             out.steps = step + 1;
             break;
@@ -265,6 +283,17 @@ fn report(stage: &str, engine: &str, names: &[String], games: &[Game], outcomes:
         "\nCPU の行動の内訳：{}\n",
         labels.iter().zip(actions).map(|(l, a)| format!("{l} {:.1}%", a as f32 / total * 100.0)).collect::<Vec<_>>().join("、")
     );
+    let mut hurt = [0u64; 5];
+    for o in outcomes {
+        for (h, &n) in hurt.iter_mut().zip(&o.hurt) {
+            *h += n as u64;
+        }
+    }
+    let _ = writeln!(
+        md,
+        "CPU がダメージを受けたときの行動：{}\n",
+        labels.iter().zip(hurt).map(|(l, h)| format!("{l} {h}回")).collect::<Vec<_>>().join("、")
+    );
 
     for opponent in [Opponent::Random, Opponent::Rush, Opponent::Cpu] {
         let _ = writeln!(md, "## 勝率：CPU（行） 対 {}（列）\n", opponent.name());
@@ -308,7 +337,7 @@ pub fn trace(data_dir: &Path, opts: &Options, cpu: &str, opp: &str, opponent: &s
     let exports: Vec<CharacterExport> = names.iter().map(|n| dir.load_character(n)).collect::<Result<_, _>>()?;
     let knowledge = knowledge(data_dir, &opts.stage, &stage, &names, &exports);
     let terrain = terrain(&stage);
-    let setup = Setup { stage: &stage, exports: &exports, knowledge: &knowledge, terrain: &terrain };
+    let setup = Setup { tactics: load_tactics(data_dir, &opts.stage), stage: &stage, exports: &exports, knowledge: &knowledge, terrain: &terrain };
     println!("step  cpu: x y angle ground vx action | opp: x y angle ground");
     let o = play_traced::<CppPhysics>(&setup, Game { cpu, opp, opponent, cpu_is_p1: true, seed: 0 }, &mut |step, b, a| {
         if step % 10 == 0 {
@@ -322,7 +351,7 @@ pub fn trace(data_dir: &Path, opts: &Options, cpu: &str, opp: &str, opponent: &s
     Ok(true)
 }
 
-fn knowledge(data_dir: &Path, stage_name: &str, stage: &StageExport, names: &[String], exports: &[CharacterExport]) -> Vec<Knowledge> {
+pub(crate) fn knowledge(data_dir: &Path, stage_name: &str, stage: &StageExport, names: &[String], exports: &[CharacterExport]) -> Vec<Knowledge> {
     let results = data_dir.join("results");
     let recovery: BTreeMap<String, RecoveryParams> = load_toml(&results.join(format!("e2-{stage_name}-best.toml")));
     let landing: BTreeMap<String, LandingParams> = load_toml(&results.join(format!("e3-{stage_name}-best.toml")));
