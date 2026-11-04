@@ -45,6 +45,10 @@ pub struct Snapshot {
     /// 度/秒
     pub ang_vel_deg: f32,
     pub ground: u32,
+    /// 胴体（MainCollision）が地面に触れている数。ゲームのロジックにはない、実験の判定用
+    pub body_ground: u32,
+    /// 板（AttackCollision）が地面に触れている数。同じく実験の判定用
+    pub deck_ground: u32,
     pub pose: Pose,
     pub hp: f32,
     pub ult: f32,
@@ -103,6 +107,8 @@ struct Player<P: Physics> {
     ult_gauge: f32,
     last_position: Vec2,
     ground_wheel_count: u32,
+    body_ground_count: u32,
+    deck_ground_count: u32,
     is_charging_jump: bool,
     /// MovePlayer.chargebool。次のステップの初めに姿勢へ反映される
     charge_flag: bool,
@@ -189,6 +195,8 @@ impl<P: Physics> Match<P> {
             vel: s.vel,
             ang_vel_deg: s.w * RAD2DEG,
             ground: p.ground_wheel_count,
+            body_ground: p.body_ground_count,
+            deck_ground: p.deck_ground_count,
             pose: p.active_pose,
             hp: p.hp,
             ult: p.ult_gauge,
@@ -315,6 +323,17 @@ impl<P: Physics> Match<P> {
                 let g = &mut self.players[owner].ground_wheel_count;
                 *g = g.saturating_sub(1);
             }
+            // ゲームのスクリプトは何もしない。実験で「車輪から着地したか」を見分けるためだけに数える
+            (Handler::MainCollision, Tag::Ground, true) => self.players[owner].body_ground_count += 1,
+            (Handler::MainCollision, Tag::Ground, false) => {
+                let g = &mut self.players[owner].body_ground_count;
+                *g = g.saturating_sub(1);
+            }
+            (Handler::AttackCollision, Tag::Ground, true) => self.players[owner].deck_ground_count += 1,
+            (Handler::AttackCollision, Tag::Ground, false) => {
+                let g = &mut self.players[owner].deck_ground_count;
+                *g = g.saturating_sub(1);
+            }
             (Handler::MainCollision, Tag::Main, true) => self.hit(owner, theirs.owner, 10.0, false),
             (Handler::MainCollision, Tag::Attack, true) => self.hit(owner, theirs.owner, 25.0, true),
             (Handler::AttackCollision, Tag::Main, true) => self.hit(owner, theirs.owner, 25.0, false),
@@ -392,6 +411,8 @@ fn build_player<P: Physics>(
         ult_gauge: 0.0,
         last_position: spawn,
         ground_wheel_count: 0,
+        body_ground_count: 0,
+        deck_ground_count: 0,
         is_charging_jump: false,
         charge_flag: false,
     })

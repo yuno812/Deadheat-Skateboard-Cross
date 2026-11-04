@@ -3,8 +3,10 @@
 
 mod abi;
 mod cpu;
+pub mod landing;
 mod profile;
 pub mod recovery;
+pub mod terrain;
 
 pub use abi::{BodyObs, Difficulty, Input, Observation, Pose, Vec2};
 pub use cpu::Cpu;

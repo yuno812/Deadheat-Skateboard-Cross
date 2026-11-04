@@ -267,7 +267,7 @@ fn attempt<P: Physics>(
     done
 }
 
-fn observe(s: &Snapshot) -> BodyObs {
+pub(crate) fn observe(s: &Snapshot) -> BodyObs {
     BodyObs {
         pos: Vec2 { x: s.pos[0], y: s.pos[1] },
         vel: Vec2 { x: s.vel[0], y: s.vel[1] },
