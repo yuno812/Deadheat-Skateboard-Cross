@@ -140,6 +140,22 @@ mod tests {
         assert!(unsafe { dsc_ai_act(cpu, &obs, &mut out) });
         // 遠くの相手へ：溜めながら前進して右へ傾ける
         assert!(out.jump && out.move_x == 1.0, "{out:?}");
+        // zero はウルトを撃たない（狙いが要るので未対応）
+        obs.me.hp = 3.0;
+        obs.me.ult = 170.0;
+        obs.me.ult_max = 170.0;
+        assert!(unsafe { dsc_ai_act(cpu, &obs, &mut out) });
+        assert!(!out.ult, "{out:?}");
+        unsafe { dsc_ai_destroy(cpu) };
+
+        // cubu はゲージが満タンならすぐ撃つ
+        let name = b"cubu";
+        let cpu = unsafe { dsc_ai_create_brain(name.as_ptr(), name.len(), 1, 0, &setup, xy.as_ptr(), counts.as_ptr(), 1) };
+        assert!(!cpu.is_null());
+        obs.me.ult = 100.0;
+        obs.me.ult_max = 100.0;
+        assert!(unsafe { dsc_ai_act(cpu, &obs, &mut out) });
+        assert!(out.ult, "{out:?}");
         unsafe { dsc_ai_destroy(cpu) };
     }
 

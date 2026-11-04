@@ -63,6 +63,9 @@ public class CpuController : MonoBehaviour
         };
         AiInput input = brain.Act(obs);
         output.Current = new InputState { moveX = input.move_x, rotate = input.rotate, jumpPressed = input.jump };
+        // ウルトのボタンは MovePlayer が Update で受け付けるため、入力で渡すと物理ステップとずれて取りこぼしたり
+        // 2回撃ったりする。このステップの判定に直接入れる（ゲージが満タンでなければ何も起きない）
+        if (input.ult) me.RequestUltimate();
     }
 
     void OnDestroy()

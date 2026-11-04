@@ -11,6 +11,7 @@ use crate::jump::JumpModel;
 use crate::landing::{LandingParams, Wheels};
 use crate::recovery::RecoveryParams;
 use crate::terrain::Terrain;
+use crate::ult::ult_kind;
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -69,7 +70,7 @@ pub fn brain_for(character: &str, stats: Stats, terrain: Terrain) -> Brain {
             dt: stats.dt,
         },
     };
-    Brain::new(knowledge, t.tactics, terrain)
+    Brain::new(knowledge, t.tactics, terrain).with_ult(ult_kind(character))
 }
 
 #[cfg(test)]

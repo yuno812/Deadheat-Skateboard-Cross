@@ -10,6 +10,8 @@
 //! 5. 狙って跳ぶ：ジャンプを溜めながら相手の方へ板を傾け、今離せば下りの途中で相手の真上を通ると
 //!    予測できた瞬間に離す（E4 の予測）。相手が遠ければ、傾ききったところで離して近づく。
 //!    R2500 は中央の丘（約42°の斜面）を走って登れないので、移動もジャンプで行う
+//!
+//! ウルトは行動とは別に、毎ステップ撃つかを決めて操作に足す（ult.rs）
 
 use serde::{Deserialize, Serialize};
 
@@ -17,6 +19,7 @@ use crate::jump::{JumpModel, predict};
 use crate::landing::{LandingParams, Wheels, landing_rotate, landing_target, rotate_toward};
 use crate::recovery::{Recovery, RecoveryParams};
 use crate::terrain::Terrain;
+use crate::ult::{UltContext, UltKind, wants_ult};
 use crate::{BodyObs, Input, Observation, Policy};
 
 /// キャラごとの調整済みの値と形
@@ -94,6 +97,7 @@ pub struct Brain {
     /// ジャンプを溜めているステップ数（溜めていなければ None）
     charging: Option<u32>,
     last_action: Action,
+    ult: UltKind,
 }
 
 /// 予測する最大ステップ数（2秒）
@@ -101,7 +105,13 @@ const LOOKAHEAD: usize = 100;
 
 impl Brain {
     pub fn new(knowledge: Knowledge, tactics: Tactics, terrain: Terrain) -> Self {
-        Self { recovery: Recovery::new(knowledge.recovery), knowledge, tactics, terrain, charging: None, last_action: Action::Aim }
+        Self { recovery: Recovery::new(knowledge.recovery), knowledge, tactics, terrain, charging: None, last_action: Action::Aim, ult: UltKind::None }
+    }
+
+    /// ウルトの使い方を設定する（既定は撃たない）
+    pub fn with_ult(mut self, ult: UltKind) -> Self {
+        self.ult = ult;
+        self
     }
 
     pub fn last_action(&self) -> Action {
@@ -194,8 +204,17 @@ impl Brain {
 
 impl Policy for Brain {
     fn act(&mut self, obs: &Observation) -> Input {
-        let (action, input) = self.decide(obs);
+        let (action, mut input) = self.decide(obs);
         self.last_action = action;
+        let cx = UltContext {
+            jump: &self.knowledge.jump,
+            terrain: &self.terrain,
+            ride_height: self.knowledge.wheels.ride_height,
+            stomp_dx: self.tactics.stomp_dx,
+            stomp_dy: self.tactics.stomp_dy,
+        };
+        // 「空中」の行動は、空中にいて地面に寝てもいないときだけ選ばれる
+        input.ult = wants_ult(self.ult, obs, action == Action::Land, &cx);
         input
     }
 }
@@ -274,5 +293,19 @@ mod tests {
         let me = BodyObs { pos: Vec2 { x: -4.0, y: 0.0 }, ..me };
         b.act(&obs(me, standing(4.0, -1.0)));
         assert_eq!(b.last_action(), Action::Land);
+    }
+
+    #[test]
+    fn fires_the_ult_only_when_set_up_and_full() {
+        let full = BodyObs { hp: 3.0, ult: 100.0, ult_max: 100.0, ..standing(-4.0, 1.0) };
+        // 既定（シミュレーターの E5 など）は撃たない
+        let mut b = brain();
+        assert!(!b.act(&obs(full, standing(4.0, -1.0))).ult);
+        let mut b = brain().with_ult(UltKind::Instant);
+        let input = b.act(&obs(full, standing(4.0, -1.0)));
+        // 行動はそのまま、ウルトだけ足す
+        assert!(input.ult && input.jump && input.move_x == 1.0, "{input:?}");
+        let half = BodyObs { ult: 50.0, ..full };
+        assert!(!b.act(&obs(half, standing(4.0, -1.0))).ult);
     }
 }
