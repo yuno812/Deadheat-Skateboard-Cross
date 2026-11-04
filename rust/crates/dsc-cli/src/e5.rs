@@ -15,6 +15,7 @@ use dsc_ai::jump::JumpModel;
 use dsc_ai::landing::LandingParams;
 use dsc_ai::recovery::RecoveryParams;
 use dsc_ai::terrain::Terrain;
+use dsc_ai::tuned::tuned;
 use dsc_ai::{BodyObs, Observation, Policy, Vec2};
 use dsc_core::export::{CharacterExport, Pose, StageDir, StageExport};
 use dsc_core::sim::{CppPhysics, Match, Physics, PlayerInput, RsPhysics};
@@ -152,12 +153,16 @@ pub fn e5(data_dir: &Path, opts: &Options) -> Result<bool, Box<dyn std::error::E
     Ok(true)
 }
 
-/// e5-search で選んだ行動の数値（data/results/e5-<STAGE>-tactics.toml）。なければ仮の値
+/// e5-search で選んだ行動の数値（data/results/e5-<STAGE>-tactics.toml）。
+/// なければ、ゲームの CPU と同じ調整済みの値（rust/profiles/tuned-R2500.toml）
 fn load_tactics(data_dir: &Path, stage: &str) -> Tactics {
     let path = data_dir.join("results").join(format!("e5-{stage}-tactics.toml"));
     match std::fs::read_to_string(&path).map(|t| toml::from_str(&t)) {
         Ok(Ok(t)) => t,
-        _ => Tactics::default(),
+        _ => {
+            eprintln!("note: {} が無いので、調整済みの値（tuned-R2500.toml）の行動の数値を使う", path.display());
+            tuned().tactics
+        }
     }
 }
 
@@ -165,7 +170,7 @@ fn load_toml<T: serde::de::DeserializeOwned>(path: &Path) -> BTreeMap<String, T>
     match std::fs::read_to_string(path).map(|t| toml::from_str(&t)) {
         Ok(Ok(v)) => v,
         _ => {
-            eprintln!("warning: {} を読めないので仮の値を使う", path.display());
+            eprintln!("warning: {} を読めないので、調整済みの値（tuned-R2500.toml）を使う", path.display());
             BTreeMap::new()
         }
     }
@@ -359,8 +364,9 @@ pub(crate) fn knowledge(data_dir: &Path, stage_name: &str, stage: &StageExport, 
         .iter()
         .zip(exports)
         .map(|(n, e)| Knowledge {
-            recovery: recovery.get(n).copied().unwrap_or_default(),
-            landing: landing.get(n).copied().unwrap_or_default(),
+            // 実験の結果が無ければ、ゲームの CPU と同じ調整済みの値（tuned-R2500.toml）
+            recovery: recovery.get(n).copied().or_else(|| tuned().characters.get(n).map(|c| c.recovery)).unwrap_or_default(),
+            landing: landing.get(n).copied().or_else(|| tuned().characters.get(n).map(|c| c.landing)).unwrap_or_default(),
             wheels: wheels(e),
             jump: JumpModel {
                 jump_force: e.stats.jump_force,

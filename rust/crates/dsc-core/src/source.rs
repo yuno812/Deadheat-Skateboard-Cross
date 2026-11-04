@@ -6,13 +6,13 @@ use serde::Deserialize;
 use sha2::{Digest, Sha256};
 
 /// dsc-core が移植しているゲームのコード。移植を見直したら、`dsc check` が表示するハッシュに更新する。
-/// 今の値は仕様書（2026-11-02）が前提にしている版。
+/// 2026-11-04 に、CPU の入口（GroundWheelCount・RequestUltimate、CpuController を付ける処理）だけが足された版に更新した。
 pub const PORTED_SOURCES: &[(&str, &str)] = &[
-    ("Assets/Code/MovePlayer.cs", "529b04d0ecfba959d68a516f0a61bc98fd3f57c5df3a144043553412d4a5c50a"),
+    ("Assets/Code/MovePlayer.cs", "d774ca0df7b509681dfcb4a28ede43f011011b3c8a2aed486d1444814f102f90"),
     ("Assets/Code/WheelGroundCheck.cs", "8ebb55b44e3d22c6d498b70bfa90c4290d49f7a680a73e824ad8fff3a6bda20e"),
     ("Assets/Code/MainCollision.cs", "74354801b7bf9cf53bb5ed70a4e260e981c963d108fbbc8342e9d2bf458e3a7b"),
     ("Assets/Code/AttackCollision.cs", "6bc54e5b59784bf53218691320b5fcf304862927187ca1dcd3a9a1621bf0cc98"),
-    ("Assets/Code/GameManager.cs", "0349dad9cf9a5e8f13d556952d2c7a2acb7d6ff96743d6580395643ee6305843"),
+    ("Assets/Code/GameManager.cs", "4d660bf43273837204c76a747690c48419531a1c98ec81f9d9a0b42bd0bd0b62"),
 ];
 
 /// 書き出しJSONに記録された元ファイル。パスはUnityプロジェクトのルートから。
