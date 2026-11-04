@@ -22,7 +22,7 @@ pub enum Pose {
 pub struct BodyObs {
     pub pos: Vec2,
     pub vel: Vec2,
-    /// gravity_up 基準、-180..180
+    /// ワールドの上向き（+y）から反時計回り、-180..180。位置・速度もワールドのまま渡す
     pub angle_deg: f32,
     pub ang_vel_deg: f32,
     pub ground_count: u8,
@@ -42,7 +42,7 @@ pub struct Observation {
     pub me: BodyObs,
     /// 相手
     pub opp: BodyObs,
-    /// 重力の逆向き（重力反転ステージ用）
+    /// 自分にかかる重力の逆向き（重力反転ステージ用）。下向き（y < 0）なら、CPU は世界を180°回して判断する
     pub gravity_up: Vec2,
     /// 場外の境界
     pub bounds: Vec2,

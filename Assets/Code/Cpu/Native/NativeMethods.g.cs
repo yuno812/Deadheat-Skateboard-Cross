@@ -86,7 +86,7 @@ namespace Dsc.Ai.Native
         public Vec2 pos;
         public Vec2 vel;
         /// <summary>
-        ///  gravity_up 基準、-180..180
+        ///  ワールドの上向き（+y）から反時計回り、-180..180。位置・速度もワールドのまま渡す
         /// </summary>
         public float angle_deg;
         public float ang_vel_deg;
@@ -114,7 +114,7 @@ namespace Dsc.Ai.Native
         /// </summary>
         public BodyObs opp;
         /// <summary>
-        ///  重力の逆向き（重力反転ステージ用）
+        ///  自分にかかる重力の逆向き（重力反転ステージ用）。下向き（y &lt; 0）なら、CPU は世界を180°回して判断する
         /// </summary>
         public Vec2 gravity_up;
         /// <summary>

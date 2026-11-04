@@ -58,7 +58,7 @@ public class CpuController : MonoBehaviour
             step = step++,
             me = Observe(me, meBody),
             opp = Observe(opponent, opponentBody),
-            gravity_up = new Vec2 { x = 0f, y = 1f },
+            gravity_up = GravityUp(),
             bounds = new Vec2 { x = Mathf.Abs(me.outofArea.x), y = Mathf.Abs(me.outofArea.y) },
         };
         AiInput input = brain.Act(obs);
@@ -73,6 +73,17 @@ public class CpuController : MonoBehaviour
         brain?.Dispose();
         brain = null;
         if (output != null) output.Current = new InputState();
+    }
+
+    // 自分にかかる重力の逆向き。重力反転のステージ（StageGravity）では gravityScale が -1 になり、上下が入れ替わる。
+    // 重力が切れているあいだ（gravityScale 0：nagisa・zero のウルト中）は、前の向きのまま
+    private Vector2 gravityUp = Vector2.up;
+
+    private Vec2 GravityUp()
+    {
+        Vector2 g = Physics2D.gravity * meBody.gravityScale;
+        if (g.sqrMagnitude > 1e-6f) gravityUp = -g.normalized;
+        return new Vec2 { x = gravityUp.x, y = gravityUp.y };
     }
 
     private static BodyObs Observe(MovePlayer p, Rigidbody2D rb)

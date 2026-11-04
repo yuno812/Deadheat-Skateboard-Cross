@@ -33,6 +33,11 @@ impl Terrain {
         Self { edges }
     }
 
+    /// 原点のまわりに180°回した地形（重力が上向きのとき、CPU はこの向きで世界を見る）
+    pub fn rotated_half_turn(&self) -> Self {
+        Self { edges: self.edges.iter().map(|&(a, b)| ([-a[0], -a[1]], [-b[0], -b[1]])).collect() }
+    }
+
     /// (x, y) から真下にある一番近い面の高さと、その面の傾き（度）
     pub fn floor_below(&self, x: f32, y: f32) -> Option<(f32, f32)> {
         let mut best: Option<(f32, f32)> = None;

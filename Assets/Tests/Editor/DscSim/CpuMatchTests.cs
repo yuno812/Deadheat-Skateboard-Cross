@@ -71,6 +71,75 @@ namespace DscSim
             yield return new ExitPlayMode();
         }
 
+        // 重力反転のあるステージ（Rugby：y > 0 で重力が上向き。StageGravity）で、CPU が止まらずに戦えるか。
+        // 0.5 秒ごとの CPU の状態を記録し、最後の 10 秒でほとんど動いていなければ「止まった」とみなす
+        [UnityTest, Timeout(30 * 60 * 1000)]
+        public IEnumerator CpuKeepsPlayingWithReversedGravity()
+        {
+            yield return new EnterPlayMode();
+            LogAssert.ignoreFailingMessages = true;
+
+            Dictionary<string, SimProject.Character> characters = SimProject.SelectableCharacters().ToDictionary(c => c.Name);
+            SimProject.EnsureManagers();
+            float captureDeltaTime = Time.captureDeltaTime;
+            var failures = new List<string>();
+            try
+            {
+                foreach (string cpu in new[] { "zero", "cubu", "hitsuji" })
+                {
+                    InputManager.Instance.inputP1 = new NullInputProvider();
+                    InputManager.Instance.inputP2 = new CpuInputProvider();
+                    PlayerSelection.Instance.playerPrefabP1 = characters["zero"].Prefab;
+                    PlayerSelection.Instance.playerPrefabP2 = characters[cpu].Prefab;
+                    EditorSceneManager.LoadSceneInPlayMode(SimProject.StageScenePath("Rugby"), new LoadSceneParameters(LoadSceneMode.Single));
+                    Time.captureDeltaTime = Time.fixedDeltaTime;
+                    yield return null;
+                    yield return null;
+                    foreach (GameObserver observer in Object.FindObjectsByType<GameObserver>(FindObjectsSortMode.None))
+                        observer.enabled = false;
+
+                    MovePlayer[] players = Object.FindObjectsByType<MovePlayer>(FindObjectsSortMode.None).OrderBy(p => p.playerNumber).ToArray();
+                    Assert.AreEqual(2, players.Length, "プレイヤーが2体生成されていません");
+                    MovePlayer me = players[1];
+                    Rigidbody2D body = me.GetComponent<Rigidbody2D>();
+                    float startHp = players[0].HP;
+                    double start = Time.fixedTimeAsDouble;
+                    double nextSample = 0;
+                    int upperSamples = 0, samples = 0;
+                    var path = new List<Vector2>();
+                    while ((Time.fixedTimeAsDouble - start) < 40.0 && me.HP > 0f && players[0].HP > 0f)
+                    {
+                        double t = Time.fixedTimeAsDouble - start;
+                        if (t >= nextSample)
+                        {
+                            nextSample += 0.5;
+                            InputState input = InputManager.Instance.inputP2.GetInput();
+                            path.Add(body.position);
+                            samples++;
+                            if (body.position.y > 0f) upperSamples++;
+                            Debug.Log($"[DscSim] rugby {cpu} t={t:F1} pos=({body.position.x:F2},{body.position.y:F2}) angle={Vector2.SignedAngle(Vector2.up, me.transform.up):F0} " +
+                                      $"ground={me.GroundWheelCount} gscale={body.gravityScale} input=(move {input.moveX}, rot {input.rotate}, jump {input.jumpPressed}) opp=({players[0].transform.position.x:F2},{players[0].transform.position.y:F2})");
+                        }
+                        yield return null;
+                    }
+                    float seconds = (float)(Time.fixedTimeAsDouble - start);
+                    // 最後の 10 秒（20 サンプル）で動いた範囲
+                    float spread = 0f;
+                    for (int i = Mathf.Max(0, path.Count - 20); i < path.Count; i++)
+                        spread = Mathf.Max(spread, Vector2.Distance(path[i], path[path.Count - 1]));
+                    string line = $"rugby {cpu} CPU vs zero idle: dealt {startHp - players[0].HP} in {seconds:F1}s, upper half {upperSamples}/{samples} samples, last 10s spread {spread:F2}";
+                    Debug.Log($"[DscSim] {line}");
+                    if (players[0].HP > 0f && spread < 0.5f) failures.Add(line);
+                }
+            }
+            finally
+            {
+                Time.captureDeltaTime = captureDeltaTime;
+            }
+            yield return new ExitPlayMode();
+            Assert.IsEmpty(failures, "CPU が止まっています");
+        }
+
         // EnterPlayMode でドメインが読み直されるため、テストのローカル変数をラムダで捕まえると消える。数は static に持つ
         private static int ultFired;
 
