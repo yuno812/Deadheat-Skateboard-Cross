@@ -2,6 +2,7 @@
 //! シミュレーター（dsc-cli）からはそのまま、ゲームからは dsc-ai-ffi のDLL経由で使う。
 
 mod abi;
+pub mod brain;
 mod cpu;
 pub mod jump;
 pub mod landing;

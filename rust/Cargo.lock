@@ -121,6 +121,7 @@ dependencies = [
  "dsc-core",
  "dsc-scenario",
  "regex",
+ "serde",
  "toml",
 ]
 
