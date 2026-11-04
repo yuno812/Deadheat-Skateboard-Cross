@@ -6,6 +6,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Dsc.Ai.Native;
 using Object = UnityEngine.Object;
 
 namespace DscSim
@@ -26,6 +27,8 @@ namespace DscSim
 
             Dictionary<string, SimProject.Character> characters = SimProject.SelectableCharacters().ToDictionary(c => c.Name);
             SimProject.EnsureManagers();
+            // CPU の判断そのものを見るので、ハンデの無い「つよい」で流す
+            InputManager.Instance.cpuDifficulty = Difficulty.Strong;
             var results = new List<string>();
             float captureDeltaTime = Time.captureDeltaTime;
             try
@@ -81,6 +84,8 @@ namespace DscSim
 
             Dictionary<string, SimProject.Character> characters = SimProject.SelectableCharacters().ToDictionary(c => c.Name);
             SimProject.EnsureManagers();
+            // CPU の判断そのものを見るので、ハンデの無い「つよい」で流す
+            InputManager.Instance.cpuDifficulty = Difficulty.Strong;
             float captureDeltaTime = Time.captureDeltaTime;
             var failures = new List<string>();
             try
@@ -140,6 +145,61 @@ namespace DscSim
             Assert.IsEmpty(failures, "CPU が止まっています");
         }
 
+        // 難易度ごとに、ゲームの中で CPU（zero）が何もしない zero にダメージを与えられるか。強さの差は E6（シミュレーター）で測る
+        [UnityTest, Timeout(30 * 60 * 1000)]
+        public IEnumerator EveryDifficultyPlays()
+        {
+            yield return new EnterPlayMode();
+            LogAssert.ignoreFailingMessages = true;
+
+            Dictionary<string, SimProject.Character> characters = SimProject.SelectableCharacters().ToDictionary(c => c.Name);
+            SimProject.EnsureManagers();
+            float captureDeltaTime = Time.captureDeltaTime;
+            var failures = new List<string>();
+            try
+            {
+                foreach (Difficulty difficulty in new[] { Difficulty.Weak, Difficulty.Normal, Difficulty.Strong })
+                {
+                    InputManager.Instance.inputP1 = new NullInputProvider();
+                    InputManager.Instance.inputP2 = new CpuInputProvider();
+                    InputManager.Instance.cpuDifficulty = difficulty;
+                    PlayerSelection.Instance.playerPrefabP1 = characters["zero"].Prefab;
+                    PlayerSelection.Instance.playerPrefabP2 = characters["zero"].Prefab;
+                    EditorSceneManager.LoadSceneInPlayMode(SimProject.StageScenePath(Stage), new LoadSceneParameters(LoadSceneMode.Single));
+                    Time.captureDeltaTime = Time.fixedDeltaTime;
+                    yield return null;
+                    yield return null;
+                    foreach (GameObserver observer in Object.FindObjectsByType<GameObserver>(FindObjectsSortMode.None))
+                        observer.enabled = false;
+
+                    MovePlayer[] players = Object.FindObjectsByType<MovePlayer>(FindObjectsSortMode.None).OrderBy(p => p.playerNumber).ToArray();
+                    Assert.AreEqual(2, players.Length, "プレイヤーが2体生成されていません");
+                    CpuController cpu = players[1].GetComponent<CpuController>();
+                    Assert.AreEqual(difficulty, cpu.difficulty, "難易度が CpuController に渡っていません");
+                    Assert.AreEqual(difficulty == Difficulty.Strong, cpu.reactionDelaySteps == 0, "ハンデの値が CpuController に入っていません");
+                    // プレイ中にインスペクターで変えたハンデが、その場で CPU に届く
+                    if (difficulty == Difficulty.Weak)
+                    {
+                        LogAssert.Expect(LogType.Log, new System.Text.RegularExpressions.Regex("ハンデを変更.*もたつき 0.5"));
+                        cpu.slip = 0.5f;
+                    }
+                    float startHp = players[0].HP;
+                    double start = Time.fixedTimeAsDouble;
+                    while (players[0].HP > 0f && (Time.fixedTimeAsDouble - start) / Time.fixedDeltaTime < MaxSteps)
+                        yield return null;
+                    string line = $"{difficulty} zero CPU vs zero idle: dealt {startHp - players[0].HP} in {Time.fixedTimeAsDouble - start:F1}s (CPU hp {players[1].HP})";
+                    Debug.Log($"[DscSim] {line}");
+                    if (players[0].HP >= startHp) failures.Add(line);
+                }
+            }
+            finally
+            {
+                Time.captureDeltaTime = captureDeltaTime;
+            }
+            yield return new ExitPlayMode();
+            Assert.IsEmpty(failures, "CPU が1回もダメージを与えていません");
+        }
+
         // 狙いが要るウルト（zero の弾・nagisa の突進）が、ランダムに動く相手にどれだけ当たるかを測る（計測用）。
         // ウルトを使わない CPU（CpuController.useUltimate = false）とも比べる。
         // 各キャラ・種（Seeds 個）ごとに 60 秒。機会を増やすため、HP が 1 を切ったら元に戻して戦い続けさせる（勝ち負けは数えない）。
@@ -153,6 +213,8 @@ namespace DscSim
 
             Dictionary<string, SimProject.Character> characters = SimProject.SelectableCharacters().ToDictionary(c => c.Name);
             SimProject.EnsureManagers();
+            // CPU の判断そのものを見るので、ハンデの無い「つよい」で流す
+            InputManager.Instance.cpuDifficulty = Difficulty.Strong;
             float captureDeltaTime = Time.captureDeltaTime;
             Application.logMessageReceived += RecordUlt;
             try
@@ -260,6 +322,8 @@ namespace DscSim
 
             Dictionary<string, SimProject.Character> characters = SimProject.SelectableCharacters().ToDictionary(c => c.Name);
             SimProject.EnsureManagers();
+            // CPU の判断そのものを見るので、ハンデの無い「つよい」で流す
+            InputManager.Instance.cpuDifficulty = Difficulty.Strong;
             float captureDeltaTime = Time.captureDeltaTime;
             Application.logMessageReceived += CountUlt;
             var failures = new List<string>();

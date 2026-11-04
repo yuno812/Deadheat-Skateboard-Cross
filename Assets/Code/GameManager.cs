@@ -49,7 +49,9 @@ public class GameManager : MonoBehaviour
             // P2 が CPU なら、入力を決める CpuController を付ける
             if (InputManager.Instance != null && InputManager.Instance.inputP2 is CpuInputProvider cpuInput)
             {
-                player2.AddComponent<CpuController>().output = cpuInput;
+                CpuController cpu = player2.AddComponent<CpuController>();
+                cpu.output = cpuInput;
+                cpu.difficulty = InputManager.Instance.cpuDifficulty;
             }
         }
         else

@@ -4,10 +4,12 @@
 mod abi;
 pub mod brain;
 mod cpu;
+pub mod handicap;
 pub mod jump;
 pub mod landing;
 mod profile;
 pub mod recovery;
+pub mod rng;
 pub mod terrain;
 pub mod tuned;
 pub mod ult;

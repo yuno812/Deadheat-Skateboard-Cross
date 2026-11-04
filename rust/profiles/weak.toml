@@ -1,3 +1,4 @@
-# よわい（仮の値。E6で決める）
-reaction_delay_steps = 12
-noise = 0.3
+# よわい（遊んで決める。出発点は dsc exp e6-search のハンデの量 6：反応の遅れ 0.72 秒）
+reaction_delay_steps = 36
+aim_noise = 2.4
+slip = 0.36

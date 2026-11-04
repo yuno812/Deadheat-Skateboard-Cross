@@ -140,6 +140,7 @@ dependencies = [
 name = "dsc-scenario"
 version = "0.1.0"
 dependencies = [
+ "dsc-ai",
  "dsc-core",
  "serde",
  "serde_json",

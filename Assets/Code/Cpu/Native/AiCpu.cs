@@ -50,6 +50,24 @@ namespace Dsc.Ai.Native
             return input;
         }
 
+        // 今のハンデ（反応の遅れのステップ数、狙いのブレ、もたつきの確率）。対戦用の CPU でなければ false
+        public bool TryGetHandicap(out int reactionDelaySteps, out float aimNoise, out float slip)
+        {
+            uint delay;
+            float aim, s;
+            bool ok = NativeMethods.dsc_ai_get_handicap(cpu, &delay, &aim, &s);
+            reactionDelaySteps = (int)delay;
+            aimNoise = aim;
+            slip = s;
+            return ok;
+        }
+
+        // 試合の途中でハンデを変える（遊びながら難易度の値を決めるため）
+        public bool SetHandicap(int reactionDelaySteps, float aimNoise, float slip)
+        {
+            return NativeMethods.dsc_ai_set_handicap(cpu, (uint)System.Math.Max(0, reactionDelaySteps), aimNoise, slip);
+        }
+
         public void Dispose()
         {
             Release();

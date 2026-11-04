@@ -15,6 +15,17 @@ public class CpuController : MonoBehaviour
     // false にするとウルトを撃たない（使う・使わないで比べる計測用）
     public bool useUltimate = true;
 
+    // 難易度のハンデ。試合の開始時に、difficulty の値（rust/profiles/*.toml）が入る。
+    // プレイ中にインスペクターで変えると、その場で CPU に反映される（遊びながら難易度の値を決めるため）
+    [Header("ハンデ（プレイ中に変えるとすぐ効く）")]
+    [Tooltip("相手の状態を何ステップ遅れて見るか（1 ステップ = 0.02 秒）")]
+    [Min(0)] public int reactionDelaySteps;
+    [Tooltip("相手の位置をずらして見る大きさ（標準偏差。0.6 秒ごとに引き直す）")]
+    [Min(0f)] public float aimNoise;
+    [Tooltip("判断を入れ損ねて前のステップの操作のままにする確率")]
+    [Range(0f, 1f)] public float slip;
+    private (int, float, float) appliedHandicap;
+
     private MovePlayer me;
     private MovePlayer opponent;
     private Rigidbody2D meBody;
@@ -44,6 +55,11 @@ public class CpuController : MonoBehaviour
         try
         {
             brain = AiCpu.CreateBrain(CharacterName(), difficulty, (ulong)System.Environment.TickCount, setup, xy, counts);
+            if (brain.TryGetHandicap(out reactionDelaySteps, out aimNoise, out slip))
+            {
+                appliedHandicap = (reactionDelaySteps, aimNoise, slip);
+                Debug.Log($"[CpuController] {CharacterName()} {difficulty}: 反応の遅れ {reactionDelaySteps} ステップ、狙いのブレ {aimNoise}、もたつき {slip}");
+            }
         }
         catch (System.Exception e)
         {
@@ -55,6 +71,12 @@ public class CpuController : MonoBehaviour
     void FixedUpdate()
     {
         if (brain == null || opponent == null || output == null) return;
+        var handicap = (reactionDelaySteps, aimNoise, slip);
+        if (handicap != appliedHandicap && brain.SetHandicap(reactionDelaySteps, aimNoise, slip))
+        {
+            appliedHandicap = handicap;
+            Debug.Log($"[CpuController] ハンデを変更：反応の遅れ {reactionDelaySteps} ステップ、狙いのブレ {aimNoise}、もたつき {slip}");
+        }
         var obs = new Observation
         {
             step = step++,

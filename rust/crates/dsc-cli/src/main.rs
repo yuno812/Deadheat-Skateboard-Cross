@@ -9,6 +9,7 @@ mod e3;
 mod e4;
 mod e5;
 mod e5search;
+mod e6;
 mod exp;
 mod generate;
 mod paths;
@@ -36,6 +37,8 @@ const USAGE: &str = "usage: dsc <check|gen|run|compare|bench|exp|sweep> ...
   exp e5 [OPTIONS]     E5：対戦（CPU 対 何もしない／ランダム／突進／CPU。data/results/e5-<STAGE>.md）
   exp e5-search [OPTIONS]  E5：行動の数値をランダム探索（選んだ値は data/results/e5-<STAGE>-tactics.toml）
   exp e5-trace CPU_CHAR OPP_CHAR idle|random|rush|cpu [OPTIONS]  1試合の経過を出す（調査用）
+  exp e6 [OPTIONS]     E6：今の難易度の値（rust/profiles/*.toml）で勝率を測る（data/results/e6-<STAGE>.md）
+  exp e6-search [OPTIONS]  E6：ハンデの量を探して rust/profiles/normal.toml・weak.toml を書き直す（遊んで決めた値も上書きする）
 
   OPTIONS: [STAGE] [--filter REGEX] [--engine rs|cpp]
     STAGE の既定は R2500。REGEX はシナリオ id の正規表現。ENGINE の既定は cpp（rs は照合の突き合わせ用）";
@@ -64,6 +67,8 @@ fn main() -> ExitCode {
         ["exp", "e3", rest @ ..] => Options::parse(rest).and_then(|opts| e3::e3(&data_dir, &opts)),
         ["exp", "e4", rest @ ..] => Options::parse(rest).and_then(|opts| e4::e4(&data_dir, &opts)),
         ["exp", "e5", rest @ ..] => Options::parse(rest).and_then(|opts| e5::e5(&data_dir, &opts)),
+        ["exp", "e6", rest @ ..] => Options::parse(rest).and_then(|opts| e6::e6(&data_dir, &opts)),
+        ["exp", "e6-search", rest @ ..] => Options::parse(rest).and_then(|opts| e6::search_profiles(&root, &data_dir, &opts)),
         ["exp", "e5-search", rest @ ..] => Options::parse(rest).and_then(|opts| e5search::search(&data_dir, &opts)),
         ["exp", "e5-trace", cpu, opp, opponent, rest @ ..] => {
             Options::parse(rest).and_then(|opts| e5::trace(&data_dir, &opts, cpu, opp, opponent))

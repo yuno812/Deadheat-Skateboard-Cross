@@ -37,7 +37,8 @@ namespace Dsc.Ai.Native
         ///  対戦用の CPU を作る。character はキャラ名（Prefab のファイル名の小文字、UTF-8）、調整済みの値は DLL に埋め込み。
         ///  polygon_xy はステージの当たり判定の凸多角形の頂点（ワールド座標、x0, y0, x1, y1, …）を、
         ///  polygon_counts は多角形ごとの頂点数を polygon_count 個並べたもの。失敗したら null を返す。
-        ///  difficulty と seed は今は使わない（難易度は E6 で入れる）。
+        ///  difficulty は難易度（0 よわい・1 ふつう・2 つよい）。「つよい」は調整済みの CPU そのまま、ほかはハンデを足す
+        ///  （rust/profiles/*.toml、dsc exp e6 で決めた値）。seed はハンデの乱数の種。
         ///
         ///  # Safety
         ///  各ポインタは、書かれた長さのぶん読めること（長さが 0 なら null でもよい）。
@@ -54,6 +55,28 @@ namespace Dsc.Ai.Native
         [DllImport(__DllName, EntryPoint = "dsc_ai_act", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         [return: MarshalAs(UnmanagedType.U1)]
         public static extern bool dsc_ai_act(DscAiCpu* cpu, Observation* obs, Input* @out);
+
+        /// <summary>
+        ///  対戦用の CPU の、今のハンデ（反応の遅れのステップ数、狙いのブレ、もたつきの確率）を読む。
+        ///  対戦用でない・null なら false。
+        ///
+        ///  # Safety
+        ///  `cpu` は `dsc_ai_create_brain` が返した破棄前のポインタか null。出力のポインタは有効なものか null。
+        /// </summary>
+        [DllImport(__DllName, EntryPoint = "dsc_ai_get_handicap", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool dsc_ai_get_handicap(DscAiCpu* cpu, uint* reaction_delay_steps, float* aim_noise, float* slip);
+
+        /// <summary>
+        ///  対戦用の CPU のハンデを、試合の途中で変える（遊びながら難易度の値を決めるため）。
+        ///  値は 0 以上（もたつきは 1 以下）に丸める。対戦用でない・null なら false。
+        ///
+        ///  # Safety
+        ///  `cpu` は `dsc_ai_create_brain` が返した破棄前のポインタか null。
+        /// </summary>
+        [DllImport(__DllName, EntryPoint = "dsc_ai_set_handicap", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool dsc_ai_set_handicap(DscAiCpu* cpu, uint reaction_delay_steps, float aim_noise, float slip);
 
         /// <summary>
         ///  # Safety

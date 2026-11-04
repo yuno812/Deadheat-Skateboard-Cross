@@ -1,3 +1,4 @@
-# つよい（仮の値。E6で決める）
-reaction_delay_steps = 2
-noise = 0.0
+# つよい：ハンデなし（調整済みの CPU そのまま）
+reaction_delay_steps = 0
+aim_noise = 0.0
+slip = 0.0
