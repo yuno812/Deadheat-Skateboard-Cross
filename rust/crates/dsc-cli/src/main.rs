@@ -24,6 +24,7 @@ const USAGE: &str = "usage: dsc <check|gen|run|compare|bench|exp|sweep> ...
   bench [OPTIONS]      シナリオの再生速度を測る
   exp e1 [OPTIONS]     E1：回転だけで起き上がれるか（data/results/e1-<STAGE>.md と .csv）
   exp e2 [OPTIONS]     E2：復帰処理の数値探索（data/results/e2-<STAGE>.md、選んだ値は e2-<STAGE>-best.toml）
+  exp e2-check CHARACTER [OPTIONS]  選んだ値で失敗したサンプルを調べる（軌跡は data/traces/e2-fail/）
 
   OPTIONS: [STAGE] [--filter REGEX] [--engine rs|cpp]
     STAGE の既定は R2500。REGEX はシナリオ id の正規表現。ENGINE の既定は cpp（rs は照合の突き合わせ用）";
@@ -49,6 +50,7 @@ fn main() -> ExitCode {
         },
         ["exp", "e1", rest @ ..] => Options::parse(rest).and_then(|opts| exp::e1(&data_dir, &opts)),
         ["exp", "e2", rest @ ..] => Options::parse(rest).and_then(|opts| e2::e2(&data_dir, &opts)),
+        ["exp", "e2-check", character, rest @ ..] => Options::parse(rest).and_then(|opts| e2::check(&data_dir, &opts, character)),
         ["sweep", ..] => Err("dsc sweep: not implemented yet".into()),
         _ => {
             eprintln!("{USAGE}");

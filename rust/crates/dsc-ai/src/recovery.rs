@@ -3,7 +3,9 @@
 //! 回転の入力は向きしか意味を持たない（-1 / 0 / 1）ので、
 //! 「gain × 真上との角度の差 − damping × 角速度」の符号で回す向きを決める。
 //! damping が大きいほど、真上の手前で逆向きに回してブレーキをかける（行き過ぎ防止）。
-//! 真上に近づかなくなったら、逆向きにしばらく回して揺らす（切り返し）。
+//! 真上に近づかなくなったら、ブランコをこぐように揺らす（切り返し）：まず逆向きに押し、
+//! 動き出したら動いている向きに押す。止まったまま押し続けて動かなければ向きを変える。
+//! 重くて回転力の弱いキャラ（cubu）が逆さまの「こぶ」を越えるのに必要。
 
 use serde::{Deserialize, Serialize};
 
@@ -19,7 +21,7 @@ pub struct RecoveryParams {
     pub damping: f32,
     /// 何もしない角度の幅（度）。真上からこれ以内なら回さない
     pub deadband_deg: f32,
-    /// 切り返しの条件：これだけのステップ真上に近づかなければ、逆向きに同じステップ数だけ回す
+    /// 切り返しの条件：これだけのステップ真上に近づかなければ、揺らし始める
     pub stall_steps: u32,
     /// 時間切れ：1回の試行がこれを超えたら、いったん離して落ち着かせてからやり直す
     pub timeout_steps: u32,
@@ -36,6 +38,10 @@ impl Default for RecoveryParams {
 const REST_STEPS: u32 = 25;
 /// 「真上に近づいた」とみなす改善の幅（度）
 const PROGRESS_DEG: f32 = 1.0;
+/// 揺らしをやめる角度（真上からこれ以内まで来たら、普通の制御に戻る）
+const PUMP_EXIT_DEG: f32 = 90.0;
+/// 揺らしで「動いている」とみなす角速度（度/秒）。これより速ければ動いている向きに押す
+const PUMP_SWING_DEG_PER_S: f32 = 30.0;
 
 #[derive(Debug, Clone)]
 pub struct Recovery {
@@ -44,15 +50,19 @@ pub struct Recovery {
     best_error: f32,
     since_best: u32,
     elapsed: u32,
-    /// 切り返し・休みのあいだ出し続ける入力と、残りステップ数
-    forced: f32,
-    forced_left: u32,
+    /// 揺らしている最中
+    pumping: bool,
+    /// 揺らしで押している向きと、動かないまま押し続けたステップ数
+    pump_dir: f32,
+    pump_hold: u32,
+    /// 時間切れの後の休みの残りステップ数
+    rest_left: u32,
     last: f32,
 }
 
 impl Recovery {
     pub fn new(params: RecoveryParams) -> Self {
-        Self { params, best_error: f32::INFINITY, since_best: 0, elapsed: 0, forced: 0.0, forced_left: 0, last: 0.0 }
+        Self { params, best_error: f32::INFINITY, since_best: 0, elapsed: 0, pumping: false, pump_dir: 0.0, pump_hold: 0, rest_left: 0, last: 0.0 }
     }
 
     pub fn params(&self) -> &RecoveryParams {
@@ -77,21 +87,40 @@ impl Recovery {
             self.since_best += 1;
         }
 
-        let out = if self.forced_left > 0 {
-            self.forced_left -= 1;
-            self.forced
+        if self.pumping && error.abs() < PUMP_EXIT_DEG {
+            self.pumping = false;
+        }
+
+        let out = if self.rest_left > 0 {
+            self.rest_left -= 1;
+            0.0
         } else if self.elapsed >= p.timeout_steps {
             // 時間切れ：いったん離して落ち着かせ、やり直す
-            self.start_forced(0.0, REST_STEPS);
+            self.rest_left = REST_STEPS - 1;
             self.elapsed = 0;
             self.best_error = f32::INFINITY;
+            self.pumping = false;
             0.0
-        } else if self.since_best >= p.stall_steps && self.last != 0.0 {
-            // 切り返し：今までと逆向きにしばらく回して揺らす
-            self.start_forced(-self.last, p.stall_steps);
-            self.since_best = 0;
-            self.best_error = error.abs();
-            -self.last
+        } else if self.pumping || (self.since_best >= p.stall_steps && self.last != 0.0) {
+            // 切り返し：動いている向きに押して揺れを大きくする
+            if !self.pumping {
+                self.pumping = true;
+                self.since_best = 0;
+                self.best_error = error.abs();
+                self.pump_dir = if self.last != 0.0 { -self.last } else { error.signum() };
+                self.pump_hold = 0;
+            }
+            if me.ang_vel_deg.abs() > PUMP_SWING_DEG_PER_S {
+                self.pump_dir = me.ang_vel_deg.signum();
+                self.pump_hold = 0;
+            } else {
+                self.pump_hold += 1;
+                if self.pump_hold >= p.stall_steps {
+                    self.pump_dir = -self.pump_dir;
+                    self.pump_hold = 0;
+                }
+            }
+            self.pump_dir
         } else if error.abs() < p.deadband_deg {
             0.0
         } else {
@@ -106,11 +135,6 @@ impl Recovery {
         };
         self.last = out;
         out
-    }
-
-    fn start_forced(&mut self, value: f32, steps: u32) {
-        self.forced = value;
-        self.forced_left = steps.saturating_sub(1);
     }
 }
 
@@ -144,14 +168,24 @@ mod tests {
     }
 
     #[test]
-    fn reverses_when_stalled() {
+    fn pumps_when_stalled() {
         let params = RecoveryParams { stall_steps: 3, timeout_steps: 1000, ..Default::default() };
         let mut r = Recovery::new(params);
         // 角度が変わらない（引っかかっている）
-        let outs: Vec<f32> = (0..8).map(|_| r.update(&obs(-120.0, 0.0))).collect();
-        // 1回目で最良が決まり、3ステップ近づかなかった4回目から3ステップ逆向き
-        assert_eq!(&outs[..3], &[1.0, 1.0, 1.0], "{outs:?}");
-        assert!(outs[3..6].iter().all(|&o| o == -1.0), "{outs:?}");
+        let outs: Vec<f32> = (0..4).map(|_| r.update(&obs(-120.0, 0.0))).collect();
+        // 1回目で最良が決まり、3ステップ近づかなかった4回目から揺らし始める（止まっているので逆向き）
+        assert_eq!(outs, [1.0, 1.0, 1.0, -1.0]);
+        // 止まったままでも、すぐには向きを変えない
+        assert_eq!(r.update(&obs(-120.0, 0.0)), -1.0);
+        // 揺らしの最中は、動いている向きに回す
+        assert_eq!(r.update(&obs(-130.0, -200.0)), -1.0);
+        assert_eq!(r.update(&obs(-140.0, 200.0)), 1.0);
+        // 止まったまま stall_steps 押し続けたら向きを変える
+        let held: Vec<f32> = (0..3).map(|_| r.update(&obs(-140.0, 0.0))).collect();
+        assert_eq!(held, [1.0, 1.0, -1.0]);
+        // 真上から 90° 以内まで来たら普通の制御に戻る（ブレーキがかかる）
+        assert_eq!(r.update(&obs(-60.0, 800.0)), -1.0);
+        assert_eq!(r.update(&obs(-60.0, 0.0)), 1.0);
     }
 
     #[test]
