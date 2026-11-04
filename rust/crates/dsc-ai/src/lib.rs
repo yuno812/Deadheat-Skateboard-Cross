@@ -4,6 +4,7 @@
 mod abi;
 mod cpu;
 mod profile;
+pub mod recovery;
 
 pub use abi::{BodyObs, Difficulty, Input, Observation, Pose, Vec2};
 pub use cpu::Cpu;

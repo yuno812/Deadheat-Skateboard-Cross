@@ -4,6 +4,7 @@ mod bench;
 mod check;
 mod compare;
 mod distribution;
+mod e2;
 mod exp;
 mod generate;
 mod paths;
@@ -22,6 +23,7 @@ const USAGE: &str = "usage: dsc <check|gen|run|compare|bench|exp|sweep> ...
   compare [OPTIONS]    Unity とシミュレーターのトレースを照合する（data/results/compare-<STAGE>-<ENGINE>.md）
   bench [OPTIONS]      シナリオの再生速度を測る
   exp e1 [OPTIONS]     E1：回転だけで起き上がれるか（data/results/e1-<STAGE>.md と .csv）
+  exp e2 [OPTIONS]     E2：復帰処理の数値探索（data/results/e2-<STAGE>.md、選んだ値は e2-<STAGE>-best.toml）
 
   OPTIONS: [STAGE] [--filter REGEX] [--engine rs|cpp]
     STAGE の既定は R2500。REGEX はシナリオ id の正規表現。ENGINE の既定は cpp（rs は照合の突き合わせ用）";
@@ -46,6 +48,7 @@ fn main() -> ExitCode {
             (Err(e), _) => Err(e),
         },
         ["exp", "e1", rest @ ..] => Options::parse(rest).and_then(|opts| exp::e1(&data_dir, &opts)),
+        ["exp", "e2", rest @ ..] => Options::parse(rest).and_then(|opts| e2::e2(&data_dir, &opts)),
         ["sweep", ..] => Err("dsc sweep: not implemented yet".into()),
         _ => {
             eprintln!("{USAGE}");
