@@ -61,7 +61,7 @@ pub fn e3(data_dir: &Path, opts: &Options) -> Result<bool, Box<dyn std::error::E
     let dir = StageDir::new(data_dir, &opts.stage);
     let stage = dir.load_stage()?;
     let names = dir.characters()?;
-    let terrain = Terrain::from_polygons(stage.shapes.iter().filter(|s| s.kind == ShapeKind::Polygon).map(|s| s.vertices.as_slice()));
+    let terrain = terrain(&stage);
 
     let references = [
         Candidate { label: "none".into(), control: Control::None },
@@ -141,8 +141,13 @@ pub fn e3(data_dir: &Path, opts: &Options) -> Result<bool, Box<dyn std::error::E
     Ok(all_ok)
 }
 
+/// ステージの当たり判定（多角形）から地形を作る
+pub(crate) fn terrain(stage: &StageExport) -> Terrain {
+    Terrain::from_polygons(stage.shapes.iter().filter(|s| s.kind == ShapeKind::Polygon).map(|s| s.vertices.as_slice()))
+}
+
 /// 通常の姿勢でまっすぐ立ったときの、体の中心から車輪の下端までの距離
-fn wheels(export: &CharacterExport) -> Wheels {
+pub(crate) fn wheels(export: &CharacterExport) -> Wheels {
     let slot = export.slot(1).expect("slot 1");
     let ride_height = slot
         .shapes

@@ -3,6 +3,7 @@
 
 mod abi;
 mod cpu;
+pub mod jump;
 pub mod landing;
 mod profile;
 pub mod recovery;
