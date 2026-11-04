@@ -1,0 +1,152 @@
+# CPU の調整済みの値（dsc tune-profile R2500 が生成。手で直さない）
+# 出どころ：E2 復帰 / E3 着地合わせ / E5 行動の数値、キャラの形は data/export/R2500
+
+[tactics]
+upright_deg = 45.0
+dodge_radius = 1.5400935
+stomp_dx = 0.40041342
+stomp_dy = [
+    0.7764278,
+    1.4976988,
+]
+min_hold = 4
+max_hold = 11
+tilt_per_unit = 4.9140043
+max_tilt_deg = 34.085793
+travel_dx = 3.953184
+bounds_margin = 1.0
+on_ground_height = 0.8
+on_ground_vy = 1.0
+
+[characters.cubu]
+ride_height = 1.2222
+center_of_mass = [
+    -0.040368192,
+    -0.7062607,
+]
+
+[characters.cubu.recovery]
+gain = 8.297677
+damping = 0.8189944
+deadband_deg = 0.015470982
+stall_steps = 22
+timeout_steps = 144
+
+[characters.cubu.landing]
+gain = 4.4749975
+damping = 1.1149799
+deadband_deg = 5.4678144
+
+[characters.hitsuji]
+ride_height = 1.2212614
+center_of_mass = [
+    -0.015203439,
+    -0.44111025,
+]
+
+[characters.hitsuji.recovery]
+gain = 9.955347
+damping = 1.1219295
+deadband_deg = 0.38046062
+stall_steps = 46
+timeout_steps = 281
+
+[characters.hitsuji.landing]
+gain = 9.181915
+damping = 1.698528
+deadband_deg = 1.0592628
+
+[characters.maiden]
+ride_height = 1.1779172
+center_of_mass = [
+    0.00063103123,
+    -0.42808422,
+]
+
+[characters.maiden.recovery]
+gain = 9.955347
+damping = 1.1219295
+deadband_deg = 0.38046062
+stall_steps = 46
+timeout_steps = 281
+
+[characters.maiden.landing]
+gain = 2.08075
+damping = 0.3696828
+deadband_deg = 7.0745773
+
+[characters.meme]
+ride_height = 1.2248569
+center_of_mass = [
+    0.02151779,
+    -0.5884406,
+]
+
+[characters.meme.recovery]
+gain = 9.955347
+damping = 1.1219295
+deadband_deg = 0.38046062
+stall_steps = 46
+timeout_steps = 281
+
+[characters.meme.landing]
+gain = 4.126608
+damping = 0.8600466
+deadband_deg = 3.1389494
+
+[characters.nagisa]
+ride_height = 1.2267396
+center_of_mass = [
+    -0.023223234,
+    -0.46891728,
+]
+
+[characters.nagisa.recovery]
+gain = 4.138717
+damping = 0.80469215
+deadband_deg = 6.138096
+stall_steps = 5
+timeout_steps = 161
+
+[characters.nagisa.landing]
+gain = 1.3912892
+damping = 0.3261459
+deadband_deg = 3.8527584
+
+[characters.okuda]
+ride_height = 1.218983
+center_of_mass = [
+    -0.00002245176,
+    -0.48513877,
+]
+
+[characters.okuda.recovery]
+gain = 8.5731535
+damping = 0.71459174
+deadband_deg = 1.0816884
+stall_steps = 9
+timeout_steps = 116
+
+[characters.okuda.landing]
+gain = 9.181915
+damping = 1.698528
+deadband_deg = 1.0592628
+
+[characters.zero]
+ride_height = 1.2171742
+center_of_mass = [
+    -0.039488196,
+    -0.5370503,
+]
+
+[characters.zero.recovery]
+gain = 8.5731535
+damping = 0.71459174
+deadband_deg = 1.0816884
+stall_steps = 9
+timeout_steps = 116
+
+[characters.zero.landing]
+gain = 4.126608
+damping = 0.8600466
+deadband_deg = 3.1389494

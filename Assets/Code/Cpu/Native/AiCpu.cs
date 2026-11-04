@@ -17,6 +17,31 @@ namespace Dsc.Ai.Native
                 throw new ArgumentOutOfRangeException(nameof(difficulty), difficulty, "不明な難易度です");
         }
 
+        private AiCpu(DscAiCpu* cpu)
+        {
+            this.cpu = cpu;
+        }
+
+        // 対戦用のCPU。character はキャラ名（Prefab のファイル名の小文字）、調整済みの値はDLLに埋め込み。
+        // polygonXY はステージの当たり判定の凸多角形の頂点（ワールド座標、x0, y0, x1, y1, …）、
+        // polygonCounts は多角形ごとの頂点数
+        public static AiCpu CreateBrain(string character, Difficulty difficulty, ulong seed, BrainSetup setup, float[] polygonXY, uint[] polygonCounts)
+        {
+            CheckLayout();
+            byte[] name = System.Text.Encoding.UTF8.GetBytes(character ?? "");
+            DscAiCpu* cpu;
+            fixed (byte* namePtr = name)
+            fixed (float* xy = polygonXY)
+            fixed (uint* counts = polygonCounts)
+            {
+                cpu = NativeMethods.dsc_ai_create_brain(
+                    namePtr, (nuint)name.Length, (byte)difficulty, seed, &setup, xy, counts, (uint)polygonCounts.Length);
+            }
+            if (cpu == null)
+                throw new InvalidOperationException($"CPU を作れませんでした（{character}, {difficulty}）");
+            return new AiCpu(cpu);
+        }
+
         // 失敗したとき（Rust側のpanic、Dispose後）は入力なしを返す
         public Input Act(Observation obs)
         {

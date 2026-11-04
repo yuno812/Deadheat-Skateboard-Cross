@@ -48,6 +48,19 @@ pub struct Observation {
     pub bounds: Vec2,
 }
 
+/// 対戦用 CPU を作るときにゲームから渡す、キャラの今の能力値と物理の設定
+#[repr(C)]
+#[derive(Debug, Clone, Copy, Default, PartialEq)]
+pub struct BrainSetup {
+    pub jump_force: f32,
+    pub max_speed: f32,
+    /// MovePlayer.deceleration（moveForce / 10）
+    pub deceleration: f32,
+    pub gravity_y: f32,
+    /// Time.fixedDeltaTime
+    pub dt: f32,
+}
+
 #[repr(C)]
 #[derive(Debug, Clone, Copy, Default, PartialEq)]
 pub struct Input {

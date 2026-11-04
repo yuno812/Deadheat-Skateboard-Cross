@@ -34,6 +34,18 @@ namespace Dsc.Ai.Native
         public static extern DscAiCpu* dsc_ai_create(byte difficulty, ulong seed);
 
         /// <summary>
+        ///  対戦用の CPU を作る。character はキャラ名（Prefab のファイル名の小文字、UTF-8）、調整済みの値は DLL に埋め込み。
+        ///  polygon_xy はステージの当たり判定の凸多角形の頂点（ワールド座標、x0, y0, x1, y1, …）を、
+        ///  polygon_counts は多角形ごとの頂点数を polygon_count 個並べたもの。失敗したら null を返す。
+        ///  difficulty と seed は今は使わない（難易度は E6 で入れる）。
+        ///
+        ///  # Safety
+        ///  各ポインタは、書かれた長さのぶん読めること（長さが 0 なら null でもよい）。
+        /// </summary>
+        [DllImport(__DllName, EntryPoint = "dsc_ai_create_brain", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern DscAiCpu* dsc_ai_create_brain(byte* character, nuint character_len, byte difficulty, ulong seed, BrainSetup* setup, float* polygon_xy, uint* polygon_counts, uint polygon_count);
+
+        /// <summary>
         ///  成功なら true。null や panic のときは `out` に入力なしを書いて false を返す。
         ///
         ///  # Safety
@@ -109,6 +121,25 @@ namespace Dsc.Ai.Native
         ///  場外の境界
         /// </summary>
         public Vec2 bounds;
+    }
+
+    /// <summary>
+    ///  対戦用 CPU を作るときにゲームから渡す、キャラの今の能力値と物理の設定
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe partial struct BrainSetup
+    {
+        public float jump_force;
+        public float max_speed;
+        /// <summary>
+        ///  MovePlayer.deceleration（moveForce / 10）
+        /// </summary>
+        public float deceleration;
+        public float gravity_y;
+        /// <summary>
+        ///  Time.fixedDeltaTime
+        /// </summary>
+        public float dt;
     }
 
     [StructLayout(LayoutKind.Sequential)]

@@ -13,7 +13,7 @@ use crate::BodyObs;
 
 /// E2 で探索する数値
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[serde(default, deny_unknown_fields)]
 pub struct RecoveryParams {
     /// 効きの強さ：真上との角度の差 1° あたりの目標角速度（度/秒）
     pub gain: f32,

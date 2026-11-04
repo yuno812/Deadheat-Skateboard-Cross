@@ -308,6 +308,8 @@ public class MovePlayer : MonoBehaviour
 
     public void WheelLanded() => groundWheelCount++;
     public void WheelLifted() => groundWheelCount = Mathf.Max(groundWheelCount - 1, 0);
+    // CPU（CpuController）が接地しているかを読むため
+    public int GroundWheelCount => groundWheelCount;
 
     public void OutofArea()
     {

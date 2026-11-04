@@ -9,8 +9,9 @@ pub mod landing;
 mod profile;
 pub mod recovery;
 pub mod terrain;
+pub mod tuned;
 
-pub use abi::{BodyObs, Difficulty, Input, Observation, Pose, Vec2};
+pub use abi::{BodyObs, BrainSetup, Difficulty, Input, Observation, Pose, Vec2};
 pub use cpu::Cpu;
 pub use profile::Profile;
 

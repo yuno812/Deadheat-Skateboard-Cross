@@ -10,7 +10,7 @@ use crate::terrain::Terrain;
 
 /// E3 で探索する数値
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[serde(default, deny_unknown_fields)]
 pub struct LandingParams {
     /// 効きの強さ：目標との角度の差 1° あたりの目標角速度（度/秒）
     pub gain: f32,

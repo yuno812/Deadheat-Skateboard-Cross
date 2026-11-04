@@ -13,6 +13,7 @@ mod exp;
 mod generate;
 mod paths;
 mod run;
+mod tune_profile;
 
 use std::process::ExitCode;
 
@@ -26,6 +27,7 @@ const USAGE: &str = "usage: dsc <check|gen|run|compare|bench|exp|sweep> ...
   run [OPTIONS]        シナリオを再生して data/traces/sim-<ENGINE>/ にトレースを書く
   compare [OPTIONS]    Unity とシミュレーターのトレースを照合する（data/results/compare-<STAGE>-<ENGINE>.md）
   bench [OPTIONS]      シナリオの再生速度を測る
+  tune-profile [STAGE]  E2・E3・E5 の結果を rust/profiles/tuned-<STAGE>.toml にまとめる（DLL に埋め込まれる）
   exp e1 [OPTIONS]     E1：回転だけで起き上がれるか（data/results/e1-<STAGE>.md と .csv）
   exp e2 [OPTIONS]     E2：復帰処理の数値探索（data/results/e2-<STAGE>.md、選んだ値は e2-<STAGE>-best.toml）
   exp e2-check CHARACTER [OPTIONS]  選んだ値で失敗したサンプルを調べる（軌跡は data/traces/e2-fail/）
@@ -67,6 +69,7 @@ fn main() -> ExitCode {
             Options::parse(rest).and_then(|opts| e5::trace(&data_dir, &opts, cpu, opp, opponent))
         }
         ["exp", "e2-check", character, rest @ ..] => Options::parse(rest).and_then(|opts| e2::check(&data_dir, &opts, character)),
+        ["tune-profile", rest @ ..] if rest.len() <= 1 => tune_profile::run(&root, &data_dir, rest.first().copied().unwrap_or("R2500")),
         ["sweep", ..] => Err("dsc sweep: not implemented yet".into()),
         _ => {
             eprintln!("{USAGE}");
