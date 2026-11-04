@@ -140,12 +140,16 @@ mod tests {
         assert!(unsafe { dsc_ai_act(cpu, &obs, &mut out) });
         // 遠くの相手へ：溜めながら前進して右へ傾ける
         assert!(out.jump && out.move_x == 1.0, "{out:?}");
-        // zero はウルトを撃たない（狙いが要るので未対応）
+        // zero は、正面の相手（落ちてきて弾の線に入る）には撃ち、背中側の相手には撃たない
         obs.me.hp = 3.0;
         obs.me.ult = 170.0;
         obs.me.ult_max = 170.0;
         assert!(unsafe { dsc_ai_act(cpu, &obs, &mut out) });
+        assert!(out.ult, "{out:?}");
+        obs.opp.pos.x = -5.0;
+        assert!(unsafe { dsc_ai_act(cpu, &obs, &mut out) });
         assert!(!out.ult, "{out:?}");
+        obs.opp.pos.x = 5.0;
         unsafe { dsc_ai_destroy(cpu) };
 
         // cubu はゲージが満タンならすぐ撃つ

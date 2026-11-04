@@ -112,6 +112,12 @@ pub struct Brain {
     charging: Option<u32>,
     last_action: Action,
     ult: UltKind,
+    /// 前のステップでウルトを押したか、そのときのゲージ、出したジャンプの押し方
+    ult_pressed: bool,
+    last_gauge: f32,
+    last_jump: bool,
+    /// ウルトの効果（zero の停止・nagisa の突進）が続く残りステップ数。この間は回転も移動も入れない
+    ult_active: u32,
 }
 
 /// 予測する最大ステップ数（2秒）
@@ -137,6 +143,10 @@ impl Brain {
             charging: None,
             last_action: Action::Aim,
             ult: UltKind::None,
+            ult_pressed: false,
+            last_gauge: 0.0,
+            last_jump: false,
+            ult_active: 0,
         }
     }
 
@@ -290,9 +300,24 @@ impl Policy for Brain {
             self.charging = None;
             self.recovery.reset();
         }
+        // 体の正面の向きは、ワールドでの P1・P2 で決まる（回した世界の facing とは符号が逆になる）
+        let nose = obs.me.facing;
         let view = if flipped { half_turn(obs) } else { *obs };
         let obs = &view;
         self.opp_on_ceiling_steps = if self.opp_on_ceiling(&obs.opp) { self.opp_on_ceiling_steps + 1 } else { 0 };
+
+        // 前のステップで押したウルトが出た（ゲージが減った）なら、効果が続く間は待つ。
+        // ジャンプの押し方は変えない（溜めていたのを離すと、その場で跳んでしまう）
+        if self.ult_pressed && obs.me.ult + 0.5 < self.last_gauge {
+            self.ult_active = self.ult.active_steps();
+        }
+        self.last_gauge = obs.me.ult;
+        self.ult_pressed = false;
+        if self.ult_active > 0 {
+            self.ult_active -= 1;
+            return Input { jump: self.last_jump, ..Default::default() };
+        }
+
         let (action, mut input) = self.decide(obs);
         self.last_action = action;
         let cx = UltContext {
@@ -301,9 +326,14 @@ impl Policy for Brain {
             ride_height: self.knowledge.wheels.ride_height,
             stomp_dx: self.tactics.stomp_dx,
             stomp_dy: self.tactics.stomp_dy,
+            dodge_radius: self.tactics.dodge_radius,
+            bounds_margin: self.tactics.bounds_margin,
+            nose,
         };
         // 「空中」の行動は、空中にいて地面に寝てもいないときだけ選ばれる
         input.ult = wants_ult(self.ult, obs, action == Action::Land, &cx);
+        self.ult_pressed = input.ult;
+        self.last_jump = input.jump;
         input
     }
 }
@@ -445,6 +475,21 @@ mod tests {
         // 浮いている相手、天井の無いステージで逆さまの相手は、天井に立っているとみなさない
         assert!(!b.opp_on_ceiling(&BodyObs { ground_count: 0, angle_deg: 0.0, ..opp }));
         assert!(!brain().opp_on_ceiling(&opp));
+    }
+
+    #[test]
+    fn holds_still_while_the_ult_is_active() {
+        // zero：正面の相手に撃つ。出た（ゲージが 0 になった）ら、止まっている間は回転も移動も入れない
+        let mut b = brain().with_ult(UltKind::Shoot);
+        let full = BodyObs { hp: 3.0, ult: 170.0, ult_max: 170.0, ..standing(-2.0, 1.0) };
+        let first = b.act(&obs(full, standing(2.0, -1.0)));
+        assert!(first.ult && first.jump, "{first:?}");
+        let fired = BodyObs { ult: 0.0, ..full };
+        let held: Vec<Input> = (0..UltKind::Shoot.active_steps()).map(|_| b.act(&obs(fired, standing(2.0, -1.0)))).collect();
+        assert!(held.iter().all(|i| *i == Input { jump: true, ..Default::default() }), "{held:?}");
+        // 終わったら、ふつうに戻る
+        let after = b.act(&obs(fired, standing(2.0, -1.0)));
+        assert!(after.move_x != 0.0, "{after:?}");
     }
 
     #[test]
