@@ -20,6 +20,8 @@ namespace DscSim
     //
     // 環境変数：DSC_SCENARIOS（既定 rust/data/scenarios、下のフォルダも含む）、
     //           DSC_TRACE_OUT（既定 rust/data/traces/unity）、DSC_SCENARIO_FILTER（idの正規表現）
+    // 照合用のシナリオを全部再生する（長い）ので、Test Runner の Run All では動かさない。scripts/trace-unity.ps1 が名前を指定して流す
+    [Explicit("照合用のトレースを記録する。scripts/trace-unity.ps1 から流す")]
     public class TraceTests
     {
         private static readonly FieldInfo LastPosition =

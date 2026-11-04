@@ -21,6 +21,9 @@ namespace DscSim
     //
     // 実際にステージを起動し、Awake/Start が終わった時点（物理は1ステップも進めない）の値を取る。
     // キャラの値は、GameManager がかける playerScale や、MovePlayer.Awake が上書きする質量を含むため。
+    // rust/data/export/ を書き出し直す（git に入っているファイルを上書きする）ので、Test Runner の Run All では動かさない。
+    // scripts/export-sim-data.ps1 が名前を指定して流す
+    [Explicit("シミュレーター用のデータを書き出す。scripts/export-sim-data.ps1 から流す")]
     public class ExportTests
     {
         private const int Schema = 2;

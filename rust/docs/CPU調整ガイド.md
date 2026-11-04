@@ -181,7 +181,7 @@ dsc exp e5-trace zero cubu random   # 1 試合の経過を出す（調査用）
 **測る**：シミュレーターはウルトを再現しないので、Unity で測る（[6](#6-確かめ方)）。
 
 - `CpuFiresItsUltimate`：cubu・maiden・meme・hitsuji が 40 秒で撃つか
-- `MeasureAimedUltimates`（計測用。名前を指定したときだけ動く）：ランダムに動く zero 相手に、zero と nagisa を 60 秒 × 20 種。撃った回数・当たった回数・自分もダメージを受けた回数と、ウルトを使わない場合（`CpuController.useUltimate = false`）との与えた／受けたダメージを出す。今の値では zero は 33 回中 25 回、nagisa は 24 回中 14 回当たる
+- `DscSim.CpuUltMeasureTests`（計測用、5 分ほど）：ランダムに動く zero 相手に、zero と nagisa を 60 秒 × 20 種。撃った回数・当たった回数・自分もダメージを受けた回数と、ウルトを使わない場合（`CpuController.useUltimate = false`）との与えた／受けたダメージを出す。今の値では zero は 33 回中 25 回、nagisa は 24 回中 14 回当たる
 
 ## 6. 確かめ方
 
@@ -211,9 +211,10 @@ Select-String -Path $r.Log -Pattern '\[DscSim\]' | ForEach-Object { $_.Line }
 | `CpuFiresItsUltimate` | ウルトを撃つか |
 | `CpuKeepsPlayingWithReversedGravity` | 重力反転の Rugby で止まらずに戦えるか |
 | `EveryDifficultyPlays` | 3 つの難易度が CPU に渡り、それぞれ戦えるか。プレイ中にハンデを変えると届くか |
-| `MeasureAimedUltimates` | 計測用（[5](#5-ウルトの使い方の調整)）。`Invoke-UnityTests 'DscSim.CpuMatchTests.MeasureAimedUltimates' 'cpu-aimed'` |
 
+- ウルトの当たり具合の計測は別のクラス：`Invoke-UnityTests 'DscSim.CpuUltMeasureTests' 'cpu-aimed'`（[5](#5-ウルトの使い方の調整)）
 - 難易度のテスト以外は、判断そのものを見るために「つよい」で流す
+- `CpuMatchTests`・`CpuUltMeasureTests` と、データを書き出す `ExportTests`・`TraceTests` は時間がかかるか git のファイルを書き換えるので、Unity の Test Runner の「Run All」では動かない（`Explicit`）。上のように名前を指定するか、Test Runner でテストを選んで実行する。Run All で動くのは `AiCpuTests`（DLL を読み込めるか）だけ
 - ログは `Logs/<名前>.log`。Unity のバッチ実行は `.vscode/settings.json` を書き換えるので、終わったら `git checkout -- .vscode/settings.json` で戻す
 - hitsuji の試合は Unity の中で毎回少し結果が変わる（ほかのキャラは同じ結果になる）。まれに、テストを続けて流したときだけ別のキャラの結果も変わることがある
 
