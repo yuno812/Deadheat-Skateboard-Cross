@@ -36,7 +36,7 @@ Deadheat-Skateboard-Cross/                 （このリポジトリ）
   Assets/Tests/EditMode/DscSim/            ⑥C#とRustの一致テスト
   Assets/Code/Cpu/                         ⑥CpuController、CpuInputProvider、判断ロジック
 
-C:\Users\hiro-\source\repos\rust\dsc-sim\
+Deadheat-Skateboard-Cross/rust/             （当初は別の場所に置く予定だったが、このリポジトリの中に置いた）
   crates/dsc-core  dsc-scenario  dsc-ai  dsc-cli
   data/export/        Unityの書き出しJSON
   data/scenarios/     シナリオJSON
@@ -143,7 +143,7 @@ Unity.exe -batchmode -nographics -projectPath <プロジェクト> -runTests -te
 
 ## Rustシミュレーター
 
-置き場所は `C:\Users\hiro-\source\repos\rust\dsc-sim`（cargoのワークスペース）。目標速度は、1コアあたり毎秒5万ステップ以上（実時間の1000倍）。これを全コアで並列に回す。
+置き場所はこのリポジトリの `rust/`（cargoのワークスペース）。目標速度は、1コアあたり毎秒5万ステップ以上（実時間の1000倍）。これを全コアで並列に回す。
 
 **クレートの構成**
 
