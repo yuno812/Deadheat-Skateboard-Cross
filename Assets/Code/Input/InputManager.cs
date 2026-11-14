@@ -8,6 +8,13 @@ public class InputManager : MonoBehaviour
     public IInputProvider inputP1;
     public IInputProvider inputP2;
 
+    // P2 が CPU か（デバイス選択で C キーを押したとき）
+    public bool P2IsCpu => inputP2 is CpuInputProvider;
+
+    // CPU の難易度（よわい・ふつう・つよい）。試合の開始時に GameManager が CpuController に渡す。
+    // 選ぶ画面はまだ無いので、今はいつも「ふつう」
+    public Dsc.Ai.Native.Difficulty cpuDifficulty = Dsc.Ai.Native.Difficulty.Normal;
+
     void Awake()
     {
         if (Instance == null)
@@ -54,6 +61,11 @@ public class InputManager : MonoBehaviour
             // 1Pがコントローラーなら2Pは2台目(1)、1Pがキーボードなら2Pは1台目(0)
             int p2PadIndex = (p1Type == "Controller") ? 1 : 0;
             inputP2 = new GamepadInputProvider(p2PadIndex);
+        }
+        else if (p2Type == "CPU")
+        {
+            // ステージに入ると GameManager が P2 に CpuController を付け、この入力を動かす
+            inputP2 = new CpuInputProvider();
         }
         else
         {

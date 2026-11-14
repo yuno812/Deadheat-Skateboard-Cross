@@ -97,3 +97,10 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Rust（CPUシミュレーターとAI）。DLLは Assets/Plugins にコピーしたものをコミットする
+/rust/target/
+/rust/data/traces/
+/rust/data/results/
+# ランダム照合のシナリオは dsc gen random で同じ種から作り直せる
+/rust/data/scenarios/*/R1-*.json

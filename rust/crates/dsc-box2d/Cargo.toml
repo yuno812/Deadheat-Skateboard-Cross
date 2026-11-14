@@ -1,0 +1,12 @@
+[package]
+name = "dsc-box2d"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+# box2d/ は Box2D 2.4.1（https://github.com/erincatto/box2d、MIT）をそのまま取り込んだもの
+links = "box2d"
+
+[dependencies]
+
+[build-dependencies]
+cc = "1"

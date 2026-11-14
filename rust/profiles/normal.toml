@@ -1,0 +1,4 @@
+# ふつう（遊んで決める。出発点は dsc exp e6-search のハンデの量 3：反応の遅れ 0.36 秒）
+reaction_delay_steps = 18
+aim_noise = 1.2
+slip = 0.18

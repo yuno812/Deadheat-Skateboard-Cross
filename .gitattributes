@@ -1,0 +1,12 @@
+# GitHub の差分で、自動生成・取り込んだファイルを最初から畳んで表示する（ファイルの中身や改行の扱いは変えない）
+
+# Unity から書き出したステージとキャラの形（scripts/export-sim-data.ps1）
+rust/data/export/** linguist-generated=true
+# 照合用シナリオ（dsc gen verify）
+rust/data/scenarios/** linguist-generated=true
+# CPU の調整済みの値（dsc tune-profile）
+rust/profiles/tuned-*.toml linguist-generated=true
+# DLL の C# 宣言（csbindgen）
+Assets/Code/Cpu/Native/*.g.cs linguist-generated=true
+# Box2D 2.4.1 のソースをそのまま取り込んだもの
+rust/crates/dsc-box2d/box2d/** linguist-generated=true linguist-vendored=true

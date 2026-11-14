@@ -1,0 +1,16 @@
+{
+  "id": "S9-nagisa",
+  "stage": "R2500",
+  "p1": "nagisa",
+  "p2": "nagisa",
+  "steps": 150,
+  "init": [
+    {
+      "slot": 1,
+      "pos": [
+        4.6,
+        1.0
+      ]
+    }
+  ]
+}

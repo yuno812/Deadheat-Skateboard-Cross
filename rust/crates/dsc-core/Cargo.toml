@@ -1,0 +1,12 @@
+[package]
+name = "dsc-core"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+dsc-box2d = { path = "../dsc-box2d" }
+sha2.workspace = true
+box2d-rs.workspace = true

@@ -108,6 +108,18 @@ public class SelectCharacter : MonoBehaviour
             UpdateSelection();
         }
 
+        // CPU：ランダムにキャラを選んで自動で決定する
+        if (InputManager.Instance.P2IsCpu && !confirmedP2)
+        {
+            currentIndexP2 = Random.Range(0, characters.Length);
+            confirmedP2 = true;
+            PlayerSelection.Instance.playerPrefabP2 = characters[currentIndexP2].PlayerPrefab;
+            PlayerSelection.Instance.heartPrefabP2 = characters[currentIndexP2].HeartPrefab;
+            PlayerSelection.Instance.resultHeader2 = characters[currentIndexP2].headerSprite;
+            PlayerSelection.Instance.Icon2 = characters[currentIndexP2].normalSprite;
+            UpdateSelection();
+        }
+
         // -------- 両者確定 --------
         if (confirmedP1 && confirmedP2 && !countdownStarted)
         {

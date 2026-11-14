@@ -1,0 +1,14 @@
+{
+    "name": "Dsc.Ai.Native",
+    "rootNamespace": "Dsc.Ai.Native",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

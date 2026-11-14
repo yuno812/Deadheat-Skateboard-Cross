@@ -1,0 +1,21 @@
+{
+  "id": "S8-meme",
+  "stage": "R2500",
+  "p1": "meme",
+  "p2": "meme",
+  "steps": 250,
+  "inputs": [
+    {
+      "slot": 1,
+      "from": 50,
+      "to": 250,
+      "moveX": 1.0
+    },
+    {
+      "slot": 2,
+      "from": 50,
+      "to": 250,
+      "moveX": 1.0
+    }
+  ]
+}

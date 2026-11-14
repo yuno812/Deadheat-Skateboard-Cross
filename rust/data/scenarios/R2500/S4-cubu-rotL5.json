@@ -1,0 +1,33 @@
+{
+  "id": "S4-cubu-rotL5",
+  "stage": "R2500",
+  "p1": "cubu",
+  "p2": "cubu",
+  "steps": 200,
+  "inputs": [
+    {
+      "slot": 1,
+      "from": 50,
+      "to": 60,
+      "jump": true
+    },
+    {
+      "slot": 2,
+      "from": 50,
+      "to": 60,
+      "jump": true
+    },
+    {
+      "slot": 1,
+      "from": 55,
+      "to": 60,
+      "rotate": 1.0
+    },
+    {
+      "slot": 2,
+      "from": 55,
+      "to": 60,
+      "rotate": 1.0
+    }
+  ]
+}

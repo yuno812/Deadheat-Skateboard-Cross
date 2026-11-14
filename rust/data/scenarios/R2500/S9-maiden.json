@@ -1,0 +1,16 @@
+{
+  "id": "S9-maiden",
+  "stage": "R2500",
+  "p1": "maiden",
+  "p2": "maiden",
+  "steps": 150,
+  "init": [
+    {
+      "slot": 1,
+      "pos": [
+        4.6,
+        1.0
+      ]
+    }
+  ]
+}

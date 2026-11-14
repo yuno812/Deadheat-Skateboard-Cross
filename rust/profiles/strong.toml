@@ -1,0 +1,4 @@
+# つよい：ハンデなし（調整済みの CPU そのまま）
+reaction_delay_steps = 0
+aim_noise = 0.0
+slip = 0.0

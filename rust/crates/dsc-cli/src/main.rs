@@ -1,0 +1,131 @@
+//! `dsc` コマンド：check / gen / run / compare / sweep / bench（各段階で実装）
+
+mod bench;
+mod check;
+mod compare;
+mod distribution;
+mod e2;
+mod e3;
+mod e4;
+mod e5;
+mod e5search;
+mod e6;
+mod exp;
+mod generate;
+mod paths;
+mod run;
+mod tune_profile;
+
+use std::process::ExitCode;
+
+use regex::Regex;
+
+const USAGE: &str = "usage: dsc <check|gen|run|compare|bench|exp|sweep> ...
+
+  check [STAGE...]                     書き出しデータと移植が、Unityプロジェクトの今の状態に追いついているか確かめる
+  gen verify [STAGE]                   照合用シナリオ S1〜S11 を data/scenarios/<STAGE>/ に書き出す
+  gen random [STAGE] [--count N] [--seed S]  ランダム照合 R1 のシナリオを書き出す（既定 100 本/キャラ、種 1）
+  run [OPTIONS]        シナリオを再生して data/traces/sim-<ENGINE>/ にトレースを書く
+  compare [OPTIONS]    Unity とシミュレーターのトレースを照合する（data/results/compare-<STAGE>-<ENGINE>.md）
+  bench [OPTIONS]      シナリオの再生速度を測る
+  tune-profile [STAGE]  E2・E3・E5 の結果を rust/profiles/tuned-<STAGE>.toml にまとめる（DLL に埋め込まれる）
+  exp e1 [OPTIONS]     E1：回転だけで起き上がれるか（data/results/e1-<STAGE>.md と .csv）
+  exp e2 [OPTIONS]     E2：復帰処理の数値探索（data/results/e2-<STAGE>.md、選んだ値は e2-<STAGE>-best.toml）
+  exp e2-check CHARACTER [OPTIONS]  選んだ値で失敗したサンプルを調べる（軌跡は data/traces/e2-fail/）
+  exp e3 [OPTIONS]     E3：着地合わせ（data/results/e3-<STAGE>.md、選んだ値は e3-<STAGE>-best.toml）
+  exp e4 [OPTIONS]     E4：ジャンプ予測の精度（data/results/e4-<STAGE>.md）
+  exp e5 [OPTIONS]     E5：対戦（CPU 対 何もしない／ランダム／突進／CPU。data/results/e5-<STAGE>.md）
+  exp e5-search [OPTIONS]  E5：行動の数値をランダム探索（選んだ値は data/results/e5-<STAGE>-tactics.toml）
+  exp e5-trace CPU_CHAR OPP_CHAR idle|random|rush|cpu [OPTIONS]  1試合の経過を出す（調査用）
+  exp e6 [OPTIONS]     E6：今の難易度の値（rust/profiles/*.toml）で勝率を測る（data/results/e6-<STAGE>.md）
+  exp e6-search [OPTIONS]  E6：ハンデの量を探して rust/profiles/normal.toml・weak.toml を書き直す（遊んで決めた値も上書きする）
+
+  OPTIONS: [STAGE] [--filter REGEX] [--engine rs|cpp]
+    STAGE の既定は R2500。REGEX はシナリオ id の正規表現。ENGINE の既定は cpp（rs は照合の突き合わせ用）";
+
+fn main() -> ExitCode {
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    let root = paths::project_root();
+    let data_dir = paths::data_dir(&root);
+    let result: Result<bool, Box<dyn std::error::Error>> = match args.iter().map(String::as_str).collect::<Vec<_>>().as_slice() {
+        ["check", stages @ ..] => {
+            let stages: Vec<String> = stages.iter().map(|s| s.to_string()).collect();
+            Ok(check::run(&root, &data_dir, &stages))
+        }
+        ["gen", "verify", rest @ ..] if rest.len() <= 1 => {
+            generate::verify(&data_dir, rest.first().copied().unwrap_or("R2500")).map(|()| true)
+        }
+        ["gen", "random", rest @ ..] => gen_random(&data_dir, rest),
+        [cmd @ ("run" | "compare" | "bench"), rest @ ..] => match (Options::parse(rest), *cmd) {
+            (Ok(opts), "run") => run::run(&data_dir, &opts).map(|()| true),
+            (Ok(opts), "compare") => compare::compare(&data_dir, &opts),
+            (Ok(opts), _) => bench::bench(&data_dir, &opts).map(|()| true),
+            (Err(e), _) => Err(e),
+        },
+        ["exp", "e1", rest @ ..] => Options::parse(rest).and_then(|opts| exp::e1(&data_dir, &opts)),
+        ["exp", "e2", rest @ ..] => Options::parse(rest).and_then(|opts| e2::e2(&data_dir, &opts)),
+        ["exp", "e3", rest @ ..] => Options::parse(rest).and_then(|opts| e3::e3(&data_dir, &opts)),
+        ["exp", "e4", rest @ ..] => Options::parse(rest).and_then(|opts| e4::e4(&data_dir, &opts)),
+        ["exp", "e5", rest @ ..] => Options::parse(rest).and_then(|opts| e5::e5(&data_dir, &opts)),
+        ["exp", "e6", rest @ ..] => Options::parse(rest).and_then(|opts| e6::e6(&data_dir, &opts)),
+        ["exp", "e6-search", rest @ ..] => Options::parse(rest).and_then(|opts| e6::search_profiles(&root, &data_dir, &opts)),
+        ["exp", "e5-search", rest @ ..] => Options::parse(rest).and_then(|opts| e5search::search(&data_dir, &opts)),
+        ["exp", "e5-trace", cpu, opp, opponent, rest @ ..] => {
+            Options::parse(rest).and_then(|opts| e5::trace(&data_dir, &opts, cpu, opp, opponent))
+        }
+        ["exp", "e2-check", character, rest @ ..] => Options::parse(rest).and_then(|opts| e2::check(&data_dir, &opts, character)),
+        ["tune-profile", rest @ ..] if rest.len() <= 1 => tune_profile::run(&root, &data_dir, rest.first().copied().unwrap_or("R2500")),
+        ["sweep", ..] => Err("dsc sweep: not implemented yet".into()),
+        _ => {
+            eprintln!("{USAGE}");
+            return ExitCode::FAILURE;
+        }
+    };
+    match result {
+        Ok(true) => ExitCode::SUCCESS,
+        Ok(false) => ExitCode::FAILURE,
+        Err(e) => {
+            eprintln!("dsc: {e}");
+            ExitCode::FAILURE
+        }
+    }
+}
+
+fn gen_random(data_dir: &std::path::Path, args: &[&str]) -> Result<bool, Box<dyn std::error::Error>> {
+    let (mut stage, mut count, mut seed) = ("R2500", 100u32, 1u64);
+    let mut it = args.iter();
+    while let Some(&arg) = it.next() {
+        match arg {
+            "--count" => count = it.next().ok_or("--count needs a value")?.parse()?,
+            "--seed" => seed = it.next().ok_or("--seed needs a value")?.parse()?,
+            other if !other.starts_with('-') => stage = other,
+            other => return Err(format!("unknown option {other}").into()),
+        }
+    }
+    generate::random(data_dir, stage, count, seed).map(|()| true)
+}
+
+pub struct Options {
+    pub stage: String,
+    pub filter: Option<Regex>,
+    pub engine: run::Engine,
+}
+
+impl Options {
+    fn parse(args: &[&str]) -> Result<Self, Box<dyn std::error::Error>> {
+        let mut opts = Options { stage: "R2500".to_owned(), filter: None, engine: run::Engine::Cpp };
+        let mut it = args.iter();
+        while let Some(&arg) = it.next() {
+            match arg {
+                "--filter" => opts.filter = Some(Regex::new(it.next().ok_or("--filter needs a value")?)?),
+                "--engine" => {
+                    let name = it.next().ok_or("--engine needs a value")?;
+                    opts.engine = run::Engine::parse(name).ok_or_else(|| format!("unknown engine {name} (rs|cpp)"))?;
+                }
+                other if !other.starts_with('-') => opts.stage = other.to_owned(),
+                other => return Err(format!("unknown option {other}").into()),
+            }
+        }
+        Ok(opts)
+    }
+}

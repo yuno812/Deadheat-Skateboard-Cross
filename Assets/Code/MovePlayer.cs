@@ -308,6 +308,10 @@ public class MovePlayer : MonoBehaviour
 
     public void WheelLanded() => groundWheelCount++;
     public void WheelLifted() => groundWheelCount = Mathf.Max(groundWheelCount - 1, 0);
+    // CPU（CpuController）が接地しているかを読むため
+    public int GroundWheelCount => groundWheelCount;
+    // CPU（CpuController）がウルトのボタンを押す。人の入力（Update で受け付ける）と同じく、次の判定で撃つ
+    public void RequestUltimate() => ultInputBuffered = true;
 
     public void OutofArea()
     {

@@ -1,0 +1,16 @@
+[package]
+name = "dsc-ai-ffi"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+# dsc-ai の lib 名（dsc_ai）とぶつからないよう、DLLは dsc_ai_native.dll にする
+[lib]
+name = "dsc_ai_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+dsc-ai.workspace = true
+
+[build-dependencies]
+csbindgen = "1"
