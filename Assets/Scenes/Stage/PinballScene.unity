@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f4150a32190584c8d3d814da105e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer1: 0
+  isPlayer1: 1
   reverseDirection: 0
   hinge: {fileID: 762145268}
   flipSpeed: 1000
@@ -2267,7 +2267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f4150a32190584c8d3d814da105e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer1: 1
+  isPlayer1: 0
   reverseDirection: 1
   hinge: {fileID: 1551584517}
   flipSpeed: 1000
